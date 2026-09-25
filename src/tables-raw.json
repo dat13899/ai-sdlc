@@ -1,0 +1,2281 @@
+[
+ {
+  "page": 1,
+  "rows": [
+   [
+    "Phiên bản",
+    "Nội dung thay đổi chính"
+   ],
+   [
+    "5.0",
+    "Bản gốc — 14 bước, 5 giai đoạn, RACI rút gọn, 4 phụ lục biểu mẫu."
+   ],
+   [
+    "5.1",
+    "Bổ sung: RACI đầy đủ 14 bước với 7 vai trò (thêm PO/Sponsor, Security, DevOps/Ops); tách rõ 3\nsign-off trong Gate 4 (SIT/Regression, ATTT, Hiệu năng); chuẩn hóa Defect Management (bảng\nSeverity/Priority/SLA, vòng đời bug, quy trình hotfix); luật thăng cấp môi trường (build-once-\npromote-many, IaC); Hypercare & Go/No-Go meeting; quản trị AI tool & bản quyền code AI;\nthống nhất thuật ngữ Tầng 2 skill.md; kiểm duyệt skill.md đối tác chống prompt injection; 2 phụ\nlục mới (Bug Report, UAT Sign-off & Go/No-Go Checklist); sửa lỗi tham chiếu chéo."
+   ],
+   [
+    "5.2",
+    "Đào sâu B2 (Constitution & skill.md): mở rộng nhóm rules/ (thêm adr-rules, api-rules, test-rules,\ncode-review-rules); bổ sung 6 tài liệu mới (glossary.md, dor-dod.md, data-classification.md, ai-\ntool-scope.md, tool-permissions.md, adr-template.md) + file chỉ mục docs-index.md; cập nhật\nthực tế công cụ 2026 (chuẩn liên-công-cụ AGENTS.md, rủi ro prompt injection qua file cấu hình\nagent). Thêm Phụ lục 7 — Bộ biểu mẫu chi tiết cho B2."
+   ],
+   [
+    "5.3",
+    "Bổ sung mục \"Hướng dẫn thực hiện\" (quy trình từng bước, ai làm gì theo đúng thứ tự) cho toàn\nbộ 14 bước B1–B14, làm rõ trình tự bàn giao giữa PM/BA/Dev/Tech\nLead/Test/Security/DevOps/PO và AI tại mỗi bước."
+   ],
+   [
+    "5.4",
+    "Gộp Phụ lục 3 và Phụ lục 7 (V5.2) thành một Phụ lục 3 duy nhất, đầy đủ 17 file theo đúng 4\nnhóm + 1 nhóm file chỉ mục đã mô tả ở B2 (trước đây chỉ có 6/17 file, phần còn lại tách rời ở\nPhụ lục 7 gây khó tra cứu). Cập nhật các tham chiếu chéo từ \"Phụ lục 7\" sang \"Phụ lục 3\"."
+   ],
+   [
+    "5.5",
+    "Mở rộng chi tiết cả 17 mục trong Phụ lục 3: mỗi mục có thêm phần \"Cách dựng\" (ai dựng, dựa"
+   ],
+   [
+    "trên chuẩn nào, quy trình nạp vào AI agent) và nội dung mẫu đầy đủ hơn — đặc biệt"
+   ],
+   [
+    "constitution.md (theo đúng cấu trúc /speckit.constitution của GitHub Spec Kit: Metadata, Core"
+   ],
+   [
+    "Principles với Rule/Rationale/Application, Governance), CODING CONVENTION.md (bảng\n_"
+   ],
+   [
+    "naming, formatting, cây thư mục, ví dụ docstring), SKILL.md (7 phần: Identity, thứ tự đọc file,"
+   ],
+   [
+    "phạm vi quyền hạn, xử lý khi không chắc chắn, workflow coding, Tầng 1/Tầng 2), và prompts.md"
+   ],
+   [
+    "(bổ sung prompt cho B9/B10/B13)."
+   ],
+   [
+    "5.6",
+    "Mở rộng Phụ lục 4 (đổi tên thành \"Bộ biểu mẫu cho bước B3\"): trước đây chỉ có mẫu BRD sơ\nsài, nay bổ sung đầy đủ cả 3 tài liệu đầu ra của B3 — Biên bản họp/Workshop (mới, có phân biệt\nphát biểu gốc vs AI diễn giải), BRD nâng cấp theo BABOK v3 (User Story chuẩn, MoSCoW, yêu\ncầu phi chức năng định lượng được), và Process Flow/User Journey (mới, theo ký hiệu BPMN\n2.0, mẫu bảng As-is/To-be, User Journey Map rút gọn)."
+   ],
+   [
+    "5.7",
+    "Vẽ lưu đồ chuẩn cho B3 (oval/chữ nhật/hình thoi) kèm bảng chi tiết Người thực hiện/Cách thức\nthực hiện/Lưu ý/Biểu mẫu sử dụng cho từng bước. Phát hiện & bổ sung 2 mẫu còn thiếu mà lưu\nđồ có nhắc tới: 4.1 Hướng dẫn phỏng vấn/Interview Guide (mới, dùng ở bước 1) và 4.5 Q&A Log\n(mới, dùng khi xử lý xung đột ý kiến giữa stakeholder — cũng dùng xuyên suốt tới B5). Đánh số\nlại Phụ lục 4 thành 5 mục (4.1–4.5)."
+   ],
+   [
+    "5.8",
+    "Nhúng lưu đồ chuẩn B3 (dạng ảnh) và bảng chi tiết 5 cột (Bước/Người thực hiện/Cách thức\nthực hiện/Lưu ý/Biểu mẫu sử dụng) trực tiếp vào mục 2, B3, thay cho danh sách \"Hướng dẫn\nthực hiện\" ngắn gọn trước đây — là bước B đầu tiên có lưu đồ trực quan trong tài liệu."
+   ],
+   [
+    "5.9",
+    "Áp dụng lưu đồ + bảng 5 cột cho toàn bộ 13 bước còn lại (B1, B2, B4–B14) — mỗi bước giờ có"
+   ],
+   [
+    "lưu đồ trực quan (oval/chữ nhật, tô màu vàng riêng cho các bước Human Gate) và bảng chi tiết"
+   ],
+   [
+    "Cách thức thực hiện/Biểu mẫu sử dụng. Rà soát phát hiện 9 tài liệu đầu ra hiện CHƯA có biểu"
+   ],
+   [
+    "mẫu chuẩn trong phụ lục: User Story/AC (B4), Biên bản duyệt Spec (B5), plan.md/C4 Model"
+   ],
+   [
+    "(B6), tasks.md (B7), checklist Human Review riêng (B10, khác với rules/code-review-rules.md"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 2,
+  "rows": [
+   [
+    "Phiên bản",
+    "Nội dung thay đổi chính"
+   ],
+   [
+    "dùng cho AI), Test Plan/Test Case (B11), Rollback Plan (B13), Runbook (B14), Post-mortem (B14)\n— đã đánh dấu rõ trong bảng để bổ sung ở bản kế tiếp."
+   ]
+  ],
+  "ncols": 1
+ },
+ {
+  "page": 3,
+  "rows": [
+   [
+    "Giai đoạn",
+    "Bước",
+    "Tên bước",
+    "Human Gate"
+   ],
+   [
+    "GĐ 0. Khởi tạo",
+    "B1",
+    "Project Charter & Kick-off",
+    "PM duyệt"
+   ],
+   [
+    "B2",
+    "Constitution & skill.md (luật của dự án)",
+    "Tech Lead + PM duyệt"
+   ],
+   [
+    "GĐ 1. Yêu cầu",
+    "B3",
+    "Thu thập & phân tích yêu cầu",
+    "—"
+   ],
+   [
+    "B4",
+    "Viết Spec (Specify)",
+    "—"
+   ],
+   [
+    "B5",
+    "Làm rõ & chốt Spec (Clarify)",
+    "⛔ Gate 1: PO/PM ký duyệt\nSpec"
+   ],
+   [
+    "GĐ 2. Thiết kế",
+    "B6",
+    "Technical Plan & Kiến trúc",
+    "⛔ Gate 2: Tech Lead duyệt kiến\ntrúc"
+   ],
+   [
+    "B7",
+    "Phân rã Task & lập kế hoạch sprint",
+    "PM duyệt sprint backlog"
+   ],
+   [
+    "GĐ 3. Lập trình",
+    "B8",
+    "Coding (AI-assisted / agentic)",
+    "—"
+   ],
+   [
+    "B9",
+    "Unit Test",
+    "Coverage gate tự động"
+   ],
+   [
+    "B10",
+    "Code Review (2 tầng: AI → Người)",
+    "⛔ Gate 3: Human approve mới\nđược merge"
+   ],
+   [
+    "GĐ 4. Kiểm thử",
+    "B11",
+    "Test Plan & Test Case",
+    "Test Lead duyệt"
+   ],
+   [
+    "B12",
+    "SIT / Regression / UAT / ATTT & Hiệu năng",
+    "⛔ Gate 4a/4b/4c + Gate 4: xem\nmục 2, B12"
+   ],
+   [
+    "GĐ 5. Phát hành\n& Vận hành",
+    "B13",
+    "Release & Triển khai môi trường",
+    "⛔ Gate 5: Go/No-Go go-live"
+   ],
+   [
+    "B14",
+    "Vận hành, giám sát & cải tiến",
+    "Post-mortem có người chủ trì"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 4,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Lên lịch họp\nkick-off",
+    "PM",
+    "Lên lịch họp, mời Sponsor/PO\nvà các thành viên chủ chốt; gửi\nagenda trước tối thiểu 1 ngày.",
+    "Thiếu người có quyền\nquyết định sẽ phải họp\nlại.",
+    "—"
+   ],
+   [
+    "2. AI ghi âm &\ntóm tắt",
+    "AI\n(Fireflies/Otter)",
+    "Ghi âm toàn bộ buổi kick-off, tự\nđộng tóm tắt thành biên bản\nnháp.",
+    "Xin phép người tham\ndự trước khi ghi âm.",
+    "—"
+   ],
+   [
+    "3. Draft Charter,\nStakeholder,\nComm Plan",
+    "PM (dùng AI hỗ\ntrợ)",
+    "Dùng Claude/ChatGPT draft cả\n3 tài liệu từ bản tóm tắt, đúng\ncấu trúc mẫu.",
+    "AI chỉ draft — PM chịu\ntrách nhiệm nội dung\ncuối cùng.",
+    "Project Charter,\nStakeholder\nRegister, Comm\nPlan — PL 1"
+   ],
+   [
+    "4. PM rà soát &\nchỉnh sửa",
+    "PM",
+    "Đối chiếu thực tế ngân",
+    "AI không được tự",
+    "—"
+   ],
+   [
+    "sách/phạm vi; sửa lại phần AI",
+    "quyết định số liệu ngân"
+   ],
+   [
+    "draft sai.",
+    "sách/phạm vi."
+   ],
+   [
+    "5. Gửi\nSponsor/PO xem\ntrước",
+    "PM",
+    "Gửi bản draft qua\nemail/Confluence, tổng hợp\ngóp ý trước buổi ký.",
+    "—",
+    "—"
+   ],
+   [
+    "6. Ký duyệt\nCharter",
+    "Sponsor/PO",
+    "Ký duyệt chính thức — điều\nkiện để cấp ngân sách/nhân sự.",
+    "Human Gate — không\nchặn kỹ thuật nhưng\nbắt buộc trước khi\ntriển khai.",
+    "PL 1"
+   ],
+   [
+    "7. Lưu trữ & khởi\ntạo dự án",
+    "PM",
+    "Lưu Charter vào\nConfluence/SharePoint, khởi\ntạo project trên Jira/Azure\nDevOps.",
+    "—",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 6,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Khởi tạo repo & Spec Kit",
+    "Tech Lead",
+    "Chạy Spec Kit CLI\n(/speckit.constitution) để sinh\nkhung constitution.md ban đầu.",
+    "—",
+    "—"
+   ],
+   [
+    "2. Soạn constitution.md &\nCODING CONVENTION.md\n_",
+    "Tech Lead +\nAI",
+    "Điền đầy đủ Core Principles\n(Rule/Rationale/Application)\ndựa trên stack đã chọn ở B1.",
+    "Mỗi nguyên tắc\nphải đo lường\nđược, không viết\nchung chung.",
+    "PL 3.1, 3.2"
+   ],
+   [
+    "3. Soạn SKILL.md",
+    "Tech Lead",
+    "Soạn Tầng 1 theo chuẩn công\nty, bổ sung Tầng 2 riêng cho dự\nán.",
+    "—",
+    "PL 3.4"
+   ],
+   [
+    "4. Khởi tạo glossary.md",
+    "BA",
+    "Điền khung ban đầu với vài\nthuật ngữ cốt lõi đã biết trước.",
+    "Sẽ hoàn thiện dần\ntừ B3, không chờ\nxong hết mới bắt\nđầu.",
+    "PL 3.16"
+   ],
+   [
+    "5. Định nghĩa DoR-DoD &\nquy tắc AI",
+    "PM + Tech\nLead",
+    "Copy mẫu dor-dod.md, tool-\npermissions.md, data-\nclassification.md, ai-tool-\nscope.md, tùy biến theo dự án.",
+    "—",
+    "PL 3.5, 3.6,\n3.7, 3.17"
+   ],
+   [
+    "6. Thiết lập rules/",
+    "Tech Lead",
+    "Copy 6 file rules/ (brd, bpm,\nadr, api, test, code-review) từ\nmẫu có sẵn.",
+    "—",
+    "PL 3.9–3.14"
+   ],
+   [
+    "7. Tạo docs-index.md &\nAGENTS.md",
+    "Tech Lead",
+    "Liệt kê toàn bộ tài liệu B2; đồng\nbộ SKILL.md ra AGENTS.md ở\ngốc repo.",
+    "—",
+    "PL 3.15"
+   ],
+   [
+    "8. Rà soát & ký duyệt",
+    "Tech Lead +\nPM",
+    "Rà soát lần cuối toàn bộ tài liệu,\nký duyệt, commit vào main, gắn\ntag v0-constitution.",
+    "Human Gate —\nquyết định chất\nlượng toàn bộ 12\nbước sau.",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 7,
+  "rows": [
+   [
+    "Bước",
+    "Người thực",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử"
+   ],
+   [
+    "hiện",
+    "dụng"
+   ],
+   [
+    "1. Chọn kỹ\nthuật & lên lịch",
+    "BA",
+    "Chọn kỹ thuật theo tình huống:\nInterview (vấn đề nhạy cảm),\nWorkshop (nhiều stakeholder),\nDocument Analysis (đã có tài\nliệu cũ), Observation,\nPrototyping.",
+    "Không mặc định luôn\nphỏng vấn — chọn\nđúng kỹ thuật tiết kiệm\nthời gian hơn nhiều.",
+    "Hướng dẫn\nphỏng vấn — PL\n4.1"
+   ],
+   [
+    "2. Ghi âm &\ntrích xuất yêu\ncầu",
+    "AI\n(Fireflies/Otter)\n+ BA",
+    "Bật ghi âm, xin phép người\ntham dự trước. Sau họp lấy\ntranscript, đưa vào prompt B3\n(prompts.md) để AI trích xuất\n→ BRD nháp.",
+    "Chỗ AI tóm tắt còn nghi\nngờ, phải nghe lại đúng\nđoạn ghi âm gốc.",
+    "Biên bản họp —\nPL 4.2"
+   ],
+   [
+    "3. Tự kiểm BRD",
+    "BA",
+    "Đọc từng câu hỏi trong\nrules/brd-rules.md, đánh dấu\nĐạt/Không đạt cho từng mục.",
+    "Mục nào Không đạt\nphải sửa BRD ngay tại\nchỗ, không dồn qua\nbước sau.",
+    "rules/brd-\nrules.md — PL 3.9"
+   ],
+   [
+    "4. Vẽ luồng\nnghiệp vụ",
+    "AI (vẽ nháp) +\nBA (review)",
+    "Luồng >3 actor hoặc >2 điểm rẽ\nnhánh → bắt buộc BPMN đầy\nđủ theo rules/bpm-rules.md;",
+    "Không được để \"nhánh\ncụt\" — mọi Gateway",
+    "Process Flow/User\nJourney — PL 4.4\n+ rules/bpm-"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 8,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "đơn giản hơn → chỉ cần User\nJourney Map.",
+    "phải dẫn tới End Event\nhoặc hội tụ lại.",
+    "rules.md — PL\n3.10"
+   ],
+   [
+    "5. Cập nhật\nthuật ngữ",
+    "BA",
+    "Thêm vào glossary.md nếu từ:\nlặp lại nhiều lần, có nghĩa riêng\nkhác thông thường, hoặc dễ\nnhầm với từ khác.",
+    "Cập nhật liên tục ngay\ntrong B3, không chờ\ngom hết mới cập nhật 1\nlần.",
+    "glossary.md — PL\n3.16"
+   ],
+   [
+    "6. Xin xác nhận\nsơ bộ",
+    "BA →\nPO/khách hàng",
+    "Gửi BRD qua kênh chính thức\n(email/Confluence), nêu rõ thời\nhạn phản hồi 2-3 ngày làm việc.",
+    "Đây chưa phải Human\nGate chính thức — chỉ\nlà xác nhận sơ bộ trước\nkhi qua B4.",
+    "BRD — PL 4.3"
+   ],
+   [
+    "Xử lý xung đột\n(nếu có)",
+    "BA",
+    "Khi 2 stakeholder nói khác nhau\nvề cùng một quy trình, ghi nhận\nđầy đủ cả 2 ý kiến.",
+    "Không tự chọn bên nào\nđúng — đưa\nPO/Sponsor quyết định\nchính thức tại Gate 1\n(B5).",
+    "Q&A Log — PL 4.5"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 8,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. AI sinh spec.md từ\nBRD",
+    "BA",
+    "Dùng prompt B4 (prompts.md),\nđưa BRD đã xác nhận sơ bộ cho AI\nsinh spec.md theo chuẩn Spec Kit.",
+    "—",
+    "prompts.md —\nPL 3.8"
+   ],
+   [
+    "2. AI phân rã User\nStory + AC",
+    "AI",
+    "Phân rã theo INVEST, viết\nAcceptance Criteria dạng Gherkin\n(Given-When-Then).",
+    "—",
+    "Chưa có mẫu\nchuẩn"
+   ],
+   [
+    "3. BA rà soát User\nStory",
+    "BA",
+    "Đảm bảo đúng phạm vi BRD, loại\nbỏ tính năng AI \"tự chế\" ngoài\nphạm vi cuộc họp.",
+    "—",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 9,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "4. Tech Lead sanity-\ncheck",
+    "Tech Lead",
+    "Kiểm nhanh tính khả thi kỹ thuật\ncủa spec.",
+    "Chưa phải Gate 2\nchính thức, chỉ\nsanity-check.",
+    "—"
+   ],
+   [
+    "5. Cập nhật\nglossary.md",
+    "BA",
+    "Bổ sung thuật ngữ kỹ thuật mới\nphát sinh.",
+    "—",
+    "PL 3.16"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 9,
+  "rows": [
+   [
+    "Bước",
+    "Người thực",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử"
+   ],
+   [
+    "hiện",
+    "dụng"
+   ],
+   [
+    "1. Tổng hợp câu\nhỏi mở",
+    "BA",
+    "Gom toàn bộ mục [CẦN LÀM RÕ]\ntrong spec.md, gửi PO/khách hàng.",
+    "—",
+    "—"
+   ],
+   [
+    "2. AI đọc chéo\nphát hiện mâu\nthuẫn",
+    "AI",
+    "Dùng Spec Kit /speckit.clarify rà\ntoàn bộ spec.md tìm mâu\nthuẫn/mơ hồ.",
+    "—",
+    "—"
+   ],
+   [
+    "3. Cập nhật Q&A\nLog, chốt spec",
+    "BA",
+    "Ghi nhận câu trả lời vào Q&A Log,\nchỉnh spec.md thành bản final.",
+    "—",
+    "Q&A Log — PL\n4.5"
+   ],
+   [
+    "4. Họp duyệt Spec",
+    "PM",
+    "Tổ chức họp với PO/Sponsor, đối\nchiếu dor-dod.md (mục DoR).",
+    "—",
+    "dor-dod.md — PL\n3.17"
+   ],
+   [
+    "5. Ký duyệt —\nGate 1",
+    "PO/PM",
+    "Ký Biên bản duyệt Spec chính thức.",
+    "Chưa qua Gate 1 thì\nkhông được sinh\nplan/code.",
+    "Chưa có mẫu\nchuẩn"
+   ],
+   [
+    "6. Khóa spec.md",
+    "PM",
+    "Freeze spec.md bằng tag/branch",
+    "Thay đổi sau đó phải",
+    "CR Form — PL 2"
+   ],
+   [
+    "protection trên Git.",
+    "qua CR Form."
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 10,
+  "rows": [
+   [
+    "Bước",
+    "Người thực hiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. AI đề xuất kiến\ntrúc",
+    "Tech Lead",
+    "Dùng prompt B6, đưa spec.md\ncho AI (Claude Code) đề xuất C4,\nADR, OpenAPI.",
+    "—",
+    "adr-\ntemplate.md —\nPL 3.3"
+   ],
+   [
+    "2. AI tự kiểm",
+    "AI",
+    "Tự kiểm ADR bằng adr-rules.md,\nOpenAPI bằng api-rules.md.",
+    "—",
+    "PL 3.11, 3.12"
+   ],
+   [
+    "3. Tech Lead\nreview",
+    "Tech Lead",
+    "Chỉnh sửa, bổ sung ADR, đối chiếu\nconstitution.md.",
+    "—",
+    "constitution.md\n— PL 3.1"
+   ],
+   [
+    "4. Design Review",
+    "Tech Lead + Dev\nsenior",
+    "Phản biện kiến trúc trước khi trình\nduyệt chính thức.",
+    "Khuyến khích,\nkhông bắt buộc.",
+    "—"
+   ],
+   [
+    "5. Ký duyệt —\nGate 2",
+    "Tech Lead (hoặc\nArchitect/CTO)",
+    "Ký duyệt, commit\nplan.md/ADR/C4/OpenAPI vào\nrepo.",
+    "Tránh\n\"architecture by\nautocomplete\".",
+    "Chưa có mẫu\nplan.md/C4"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 11,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Phân rã task",
+    "Tech Lead + AI",
+    "Dùng /speckit.tasks phân rã\nplan.md thành tasks.md, mỗi task\nnhỏ có AC riêng.",
+    "—",
+    "Chưa có mẫu\nchuẩn"
+   ],
+   [
+    "2. AI estimate",
+    "AI",
+    "Ước lượng effort dựa trên dữ liệu\nlịch sử (Jira AI/Atlassian\nIntelligence).",
+    "—",
+    "—"
+   ],
+   [
+    "3. Tech Lead\nreview",
+    "Tech Lead",
+    "Điều chỉnh, đảm bảo mỗi task ≤ 1\nngày công.",
+    "—",
+    "—"
+   ],
+   [
+    "4. Đẩy ticket",
+    "AI",
+    "Dùng /speckit.taskstoissues đẩy\ntask thành ticket Jira/Azure\nDevOps.",
+    "—",
+    "—"
+   ],
+   [
+    "5. Sprint Planning",
+    "PM + Tech Lead",
+    "Họp chọn task vào Sprint Backlog.",
+    "—",
+    "—"
+   ],
+   [
+    "6. Duyệt Sprint\nBacklog",
+    "PM",
+    "Duyệt chính thức backlog cho\nsprint.",
+    "Human Gate nhẹ.",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 12,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Đọc tài liệu B2",
+    "Dev",
+    "Đọc constitution → convention →\nSKILL.md → spec/plan liên quan\ntrước khi code.",
+    "Thứ tự đọc quy\nđịnh trong\nSKILL.md.",
+    "PL 3.1, 3.2, 3.4"
+   ],
+   [
+    "2. Giao task cho\nAI/code",
+    "Dev",
+    "Giao AI agent hoặc tự code với\ninline copilot, đúng phạm vi 1 task.",
+    "PR mục tiêu < 400\ndòng.",
+    "—"
+   ],
+   [
+    "3. AI tuân thủ\nquyền hạn",
+    "AI",
+    "Tự chạy lint/test cục bộ, không tự\nmerge PR hay push thẳng main.",
+    "—",
+    "tool-\npermissions.md\n— PL 3.5"
+   ],
+   [
+    "4. AI dừng khi mâu\nthuẫn",
+    "AI",
+    "Dừng lại, hỏi Dev nếu spec và code\nhiện tại mâu thuẫn.",
+    "Không tự suy đoán\ný định.",
+    "—"
+   ],
+   [
+    "5. Commit & mở\nPR",
+    "Dev",
+    "Commit theo Conventional\nCommits, mở PR gắn với ticket\ntương ứng.",
+    "—",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 13,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. AI sinh unit test",
+    "AI",
+    "Sinh test từ Acceptance Criteria\n(Gherkin), không sinh từ code.",
+    "—",
+    "—"
+   ],
+   [
+    "2. AI tự kiểm",
+    "AI",
+    "Tự kiểm bằng rules/test-rules.md\ntrước khi đưa vào PR.",
+    "—",
+    "PL 3.13"
+   ],
+   [
+    "3. Dev đọc assert",
+    "Dev",
+    "Đọc lại từng assert, xác nhận đúng ý\nnghĩa nghiệp vụ.",
+    "Không chỉ kiểm tra\n\"chạy được\".",
+    "—"
+   ],
+   [
+    "4. CI chạy test",
+    "CI (tự động)",
+    "Chạy toàn bộ test suite, đo\ncoverage.",
+    "Fail pipeline nếu\ndưới ngưỡng\n80%/100%.",
+    "—"
+   ],
+   [
+    "5. Bổ sung edge\ncase",
+    "Dev",
+    "Thêm test cho edge case mà AI bỏ\nsót.",
+    "—",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 14,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Kích hoạt AI\nreview",
+    "CI (tự động)",
+    "Kích hoạt AI review tầng 1 dựa trên\ncode-review-rules.md, song song\nSAST/secret scan.",
+    "—",
+    "PL 3.14"
+   ],
+   [
+    "2. AI comment\nfinding",
+    "AI",
+    "Comment trực tiếp trên PR các\nfinding phát hiện được.",
+    "—",
+    "—"
+   ],
+   [
+    "3. Dev sửa\nfinding",
+    "Dev",
+    "Sửa toàn bộ finding mức\nHigh/Critical trước khi mời review.",
+    "—",
+    "—"
+   ],
+   [
+    "4. Mời Human\nreviewer",
+    "Dev",
+    "Mời tối thiểu 1 reviewer khác tác\ngiả (2 nếu module lõi/bảo mật).",
+    "—",
+    "—"
+   ],
+   [
+    "5. Reviewer dùng\nchecklist",
+    "Reviewer",
+    "Review nghiệp vụ, kiến trúc, khả\nnăng bảo trì, tác động chéo.",
+    "—",
+    "Chưa có checklist\nriêng"
+   ],
+   [
+    "6. Approve PR",
+    "Reviewer",
+    "Approve khi đạt yêu cầu; branch\nprotection chặn merge nếu thiếu\nreview/CI chưa xanh.",
+    "—",
+    "—"
+   ],
+   [
+    "7. Merge — Gate\n3",
+    "Tech\nLead/Reviewer",
+    "Merge PR chính thức.",
+    "—",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 15,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Sinh Test\nPlan/Case",
+    "Test Lead + AI",
+    "Sinh từ Acceptance Criteria bằng\nprompt tương ứng trong\nprompts.md.",
+    "—",
+    "Chưa có mẫu\nchuẩn"
+   ],
+   [
+    "2. Ánh xạ RTM",
+    "Tester",
+    "Ánh xạ Test Case vào RTM, đảm bảo\nphủ 100% Acceptance Criteria.",
+    "—",
+    "—"
+   ],
+   [
+    "3. Viết automation",
+    "Tester + AI",
+    "Viết automation script (Playwright\ncodegen) cho các luồng chính.",
+    "—",
+    "—"
+   ],
+   [
+    "4. Duyệt Test\nPlan/Case",
+    "Test Lead",
+    "Review & duyệt chính thức.",
+    "Human Gate nhẹ.",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 16,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Deploy Staging",
+    "DevOps",
+    "Deploy build qua CI/CD, dùng đúng\nartifact đã build ở B10 (build-\nonce).",
+    "—",
+    "—"
+   ],
+   [
+    "2. Chạy\nRegression + SIT",
+    "Tester",
+    "Chạy regression tự động + SIT thủ\ncông cho luồng phức tạp.",
+    "Bug phát hiện\ndùng mẫu Bug\nReport.",
+    "Bug Report — PL\n5"
+   ],
+   [
+    "3. Ký Gate 4a",
+    "Test Lead",
+    "Ký khi Regression xanh 100% và\nRTM phủ đủ AC.",
+    "—",
+    "—"
+   ],
+   [
+    "4. Chạy ATTT, ký\nGate 4b",
+    "Security\nLead/pentest",
+    "DAST + Pentest + kiểm PAM/MFA;\nký khi hết lỗ hổng Critical/High.",
+    "—",
+    "—"
+   ],
+   [
+    "5. Load test, ký\nGate 4c",
+    "Tech Lead +\nDevOps",
+    "Chạy JMeter/k6; ký khi đạt SLA\nhiệu năng cam kết.",
+    "—",
+    "—"
+   ],
+   [
+    "6. Deploy UAT",
+    "DevOps",
+    "Deploy cùng artifact (không\nrebuild) sau khi 4a+4b+4c đã đạt.",
+    "—",
+    "—"
+   ],
+   [
+    "7. Chạy kịch bản\nUAT",
+    "PO/khách hàng",
+    "Chạy cùng BA/Tester hỗ trợ giải\nthích nghiệp vụ.",
+    "—",
+    "—"
+   ],
+   [
+    "8. Ký UAT Sign-\noff — Gate 4",
+    "PO",
+    "Ký Biên bản UAT Sign-off chính\nthức.",
+    "—",
+    "UAT Sign-off —\nPL 6"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 18,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử dụng"
+   ],
+   [
+    "1. Họp Go/No-Go",
+    "PM",
+    "Chủ trì họp, rà soát checklist\ncùng Tech Lead, Test Lead,\nSecurity Lead, PO.",
+    "—",
+    "Go/No-Go Checklist\n— PL 6"
+   ],
+   [
+    "2. Xác nhận Rollback\n& IaC",
+    "DevOps",
+    "Xác nhận Rollback Plan đã diễn\ntập, IaC đã review, dashboard\nsẵn sàng.",
+    "—",
+    "Chưa có mẫu\nRollback Plan"
+   ],
+   [
+    "3. Quyết định\nGO/NO-GO — Gate 5",
+    "PM",
+    "Ra quyết định chính thức; nếu\nNO-GO nêu lý do và dời lịch.",
+    "—",
+    "—"
+   ],
+   [
+    "4. Deploy Production",
+    "DevOps",
+    "Deploy đúng artifact đã qua UAT\ntheo blue-green/canary.",
+    "Chỉ khi GO.",
+    "—"
+   ],
+   [
+    "5. Trực Hypercare",
+    "Dev + DevOps",
+    "Trực 1-2 tuần, giám sát tăng\ncường, SLA rút ngắn.",
+    "—",
+    "—"
+   ],
+   [
+    "6. Thông báo go-live",
+    "PM",
+    "Thông báo cho stakeholder theo\nCommunication Plan.",
+    "—",
+    "Communication Plan\n— PL 1"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 18,
+  "rows": [
+   [
+    "Bước",
+    "Người thực\nhiện",
+    "Cách thức thực hiện",
+    "Lưu ý",
+    "Biểu mẫu sử\ndụng"
+   ],
+   [
+    "1. Vận hành theo\nRunbook",
+    "DevOps/Ops",
+    "AI hỗ trợ giám sát log/alert, đề\nxuất xử lý (SRE agent).",
+    "—",
+    "Chưa có mẫu\nRunbook"
+   ],
+   [
+    "2. Xử lý Hotfix",
+    "Đội trực",
+    "Theo quy trình Hotfix Production\n(mục 3) nếu Severity 1 phát sinh.",
+    "—",
+    "—"
+   ],
+   [
+    "3.\nRetrospective/Post-\nmortem",
+    "PM",
+    "Tổ chức cuối sprint hoặc sau sự cố\nlớn, có người chủ trì.",
+    "—",
+    "Chưa có mẫu Post-\nmortem"
+   ],
+   [
+    "4. Cập nhật\nconstitution.md",
+    "Tech Lead",
+    "Đưa bài học vào\nconstitution.md/rules/ — khép\nvòng lặp cải tiến.",
+    "—",
+    "constitution.md —\nPL 3.1"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 19,
+  "rows": [
+   [
+    "Mức độ\n(Severity)",
+    "Định nghĩa",
+    "SLA sửa lỗi (từ lúc xác\nnhận)"
+   ],
+   [
+    "S1 – Blocker",
+    "Hệ thống down, mất dữ liệu, chặn toàn bộ luồng nghiệp vụ\nchính, lỗ hổng bảo mật khai thác được ngay.",
+    "4 giờ"
+   ],
+   [
+    "S2 – Critical",
+    "Một chức năng chính không dùng được, không có\nworkaround, ảnh hưởng nhiều người dùng.",
+    "1 ngày làm việc"
+   ],
+   [
+    "S3 – Major",
+    "Chức năng phụ lỗi hoặc chức năng chính lỗi nhưng có\nworkaround.",
+    "3–5 ngày làm việc (theo\nsprint)"
+   ],
+   [
+    "S4 – Minor",
+    "Lỗi giao diện, chính tả, không ảnh hưởng nghiệp vụ.",
+    "Backlog, xử lý theo ưu tiên\nsprint"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 19,
+  "rows": [
+   [
+    "Mức độ ưu tiên (Priority)",
+    "Ý nghĩa"
+   ],
+   [
+    "P1 – Khẩn cấp",
+    "Xử lý ngay lập tức, có thể phá quy trình sprint bình thường (áp dụng quy trình\nHotfix)."
+   ],
+   [
+    "P2 – Cao",
+    "Ưu tiên xử lý trong sprint hiện tại."
+   ],
+   [
+    "P3 – Trung bình",
+    "Đưa vào backlog, lên kế hoạch sprint kế tiếp."
+   ],
+   [
+    "P4 – Thấp",
+    "Xử lý khi có nguồn lực rảnh, không cam kết thời gian."
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 21,
+  "rows": [
+   [
+    "Bước",
+    "PM",
+    "BA",
+    "Dev/Tech Lead",
+    "Test",
+    "PO/Sponsor",
+    "Security",
+    "DevOps/Ops",
+    "AI"
+   ],
+   [
+    "B1. Charter & Kick-off",
+    "A/R",
+    "C",
+    "C",
+    "I",
+    "C",
+    "I",
+    "I",
+    "draft, tóm tắt"
+   ],
+   [
+    "B2. Constitution & skill.md",
+    "A",
+    "C",
+    "R",
+    "C",
+    "I",
+    "C",
+    "I",
+    "sinh khung"
+   ],
+   [
+    "B3. Thu thập yêu cầu",
+    "I",
+    "A/R",
+    "C",
+    "I",
+    "C",
+    "I",
+    "I",
+    "ghi họp, trích yêu cầu"
+   ],
+   [
+    "B4. Viết Spec",
+    "I",
+    "A/R",
+    "C",
+    "C",
+    "C",
+    "I",
+    "I",
+    "draft story/AC"
+   ],
+   [
+    "B5. Chốt Spec (Gate 1)",
+    "A",
+    "R",
+    "C",
+    "C",
+    "A",
+    "I",
+    "I",
+    "soát mâu thuẫn"
+   ],
+   [
+    "B6. Plan & Kiến trúc (Gate 2)",
+    "I",
+    "C",
+    "A/R",
+    "C",
+    "I",
+    "C",
+    "C",
+    "draft plan, ADR"
+   ],
+   [
+    "B7. Phân rã Task",
+    "A",
+    "C",
+    "R",
+    "C",
+    "I",
+    "I",
+    "I",
+    "sinh task, estimate"
+   ],
+   [
+    "B8. Coding",
+    "I",
+    "I",
+    "A/R",
+    "I",
+    "I",
+    "I",
+    "I",
+    "thực thi chính"
+   ],
+   [
+    "B9. Unit Test",
+    "I",
+    "I",
+    "A/R",
+    "C",
+    "I",
+    "I",
+    "I",
+    "sinh test từ AC"
+   ],
+   [
+    "B10. Code Review (Gate 3)",
+    "I",
+    "I",
+    "A/R",
+    "I",
+    "I",
+    "C",
+    "I",
+    "review tầng 1"
+   ],
+   [
+    "B11. Test Plan/Case",
+    "I",
+    "C",
+    "C",
+    "A/R",
+    "I",
+    "I",
+    "I",
+    "sinh test case"
+   ],
+   [
+    "B12. SIT/ATTT/Hiệu năng/UAT (Gate 4)",
+    "A",
+    "C",
+    "C (fix bug)",
+    "R (4a)",
+    "A (UAT)",
+    "A/R (4b)",
+    "C (4c)",
+    "phân loại bug"
+   ],
+   [
+    "B13. Release/Go-live (Gate 5)",
+    "A",
+    "I",
+    "R",
+    "C",
+    "A",
+    "C",
+    "R",
+    "changelog, checklist"
+   ],
+   [
+    "B14. Vận hành & cải tiến",
+    "A",
+    "I",
+    "R",
+    "C",
+    "I",
+    "C",
+    "R",
+    "giám sát, đề xuất fix"
+   ]
+  ],
+  "ncols": 9
+ },
+ {
+  "page": 24,
+  "rows": [
+   [
+    "STT",
+    "Tên cột mốc (Milestone)",
+    "Ngày dự kiến",
+    "Đầu ra (Deliverables)"
+   ],
+   [
+    "1",
+    "Chốt Spec (Gate 1)",
+    "[Ngày]",
+    "Tài liệu Spec được ký duyệt"
+   ],
+   [
+    "2",
+    "Chốt Kiến trúc (Gate 2)",
+    "[Ngày]",
+    "Technical Plan & C4 Model"
+   ],
+   [
+    "3",
+    "Sẵn sàng UAT (Gate 4a/4b/4c đạt)",
+    "[Ngày]",
+    "Hệ thống deploy lên Staging, ATTT & Hiệu\nnăng đạt"
+   ],
+   [
+    "4",
+    "UAT Sign-off (Gate 4)",
+    "[Ngày]",
+    "Biên bản UAT ký bởi PO"
+   ],
+   [
+    "5",
+    "Go-live (Gate 5: Go/No-Go)",
+    "[Ngày]",
+    "Triển khai Production + Hypercare"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 24,
+  "rows": [
+   [
+    "STT",
+    "Mô tả rủi ro",
+    "Ảnh hưởng",
+    "Khả năng",
+    "Giảm thiểu"
+   ],
+   [
+    "1",
+    "Thay đổi yêu cầu nghiệp vụ liên tục",
+    "Cao",
+    "Cao",
+    "Áp dụng quy trình chốt Spec\nGate 1 chặt chẽ"
+   ],
+   [
+    "2",
+    "[Rủi ro 2...]"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 24,
+  "rows": [
+   [
+    "STT",
+    "Họ và Tên",
+    "Vai trò",
+    "Ảnh hưởng",
+    "Quan tâm",
+    "Kỳ vọng chính"
+   ],
+   [
+    "1",
+    "[Tên]",
+    "Project Sponsor",
+    "Cao",
+    "Cao",
+    "Dự án đúng tiến độ, tối ưu chi\nphí"
+   ],
+   [
+    "2",
+    "[Tên]",
+    "Product Owner",
+    "Cao",
+    "Cao",
+    "Đáp ứng đúng luồng nghiệp vụ"
+   ],
+   [
+    "3",
+    "[Tên]",
+    "Tech Lead",
+    "Cao",
+    "TB",
+    "Kiến trúc chuẩn, dễ bảo trì"
+   ],
+   [
+    "4",
+    "[Tên]",
+    "Security Lead",
+    "Cao",
+    "TB",
+    "Không có lỗ hổng Critical/High\nkhi go-live"
+   ],
+   [
+    "5",
+    "[Tên]",
+    "End-User đại diện",
+    "TB",
+    "Cao",
+    "Hệ thống dễ dùng, không lỗi"
+   ]
+  ],
+  "ncols": 6
+ },
+ {
+  "page": 24,
+  "rows": [
+   [
+    "STT",
+    "Loại thông tin",
+    "Đối tượng nhận",
+    "Tần suất",
+    "Kênh & Lưu trữ",
+    "Người chịu trách\nnhiệm"
+   ],
+   [
+    "1",
+    "Báo cáo tiến độ",
+    "Sponsor, PO, Nhóm\ndự án",
+    "Hàng tuần",
+    "Hệ thống QLDA /\nConfluence",
+    "Project Manager"
+   ],
+   [
+    "2",
+    "Sprint\nPlanning/Review",
+    "PO, Nhóm dự án",
+    "Đầu/Cuối\nSprint",
+    "Họp trực tiếp/Teams",
+    "Scrum Master/PM"
+   ]
+  ],
+  "ncols": 6
+ },
+ {
+  "page": 25,
+  "rows": [
+   [
+    "STT",
+    "Loại thông tin",
+    "Đối tượng nhận",
+    "Tần suất",
+    "Kênh & Lưu trữ",
+    "Người chịu trách\nnhiệm"
+   ],
+   [
+    "3",
+    "Cảnh báo rủi\nro/Blocker",
+    "PO, Tech Lead",
+    "Ngay lập tức",
+    "Kênh Slack riêng",
+    "Bất kỳ thành viên\nnào"
+   ],
+   [
+    "4",
+    "Ký duyệt tài liệu\n(Gate)",
+    "PO, Sponsor, Tech\nLead",
+    "Theo\nMilestone",
+    "Ký bản cứng/điện tử",
+    "Project Manager"
+   ]
+  ],
+  "ncols": 6
+ },
+ {
+  "page": 26,
+  "rows": [
+   [
+    "Hạng mục tác động",
+    "Đánh giá chi tiết"
+   ],
+   [
+    "1. Phạm vi (Scope)",
+    "[Khối lượng công việc phát sinh thêm; ảnh hưởng tính năng khác?]"
+   ],
+   [
+    "2. Tiến độ (Schedule)",
+    "[Man-day phát sinh; ảnh hưởng ngày Go-live?]"
+   ],
+   [
+    "3. Ngân sách (Budget)",
+    "[Chi phí phát sinh; cần license/server thêm?]"
+   ],
+   [
+    "4. Kiến trúc/Hệ thống",
+    "[Phá vỡ kiến trúc hiện tại? Ảnh hưởng hiệu năng/bảo mật?]"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 29,
+  "rows": [
+   [
+    "Đối tượng",
+    "Quy tắc",
+    "Ví dụ"
+   ],
+   [
+    "Class / Interface",
+    "PascalCase, danh từ",
+    "UserRepository, IPaymentGateway"
+   ],
+   [
+    "Function / Method",
+    "camelCase, động từ + danh từ",
+    "calculateInvoiceTotal(), validateUserInput()"
+   ],
+   [
+    "Biến / Constant",
+    "camelCase (biến), UPPER SNAKE CASE\n_ _\n(const)",
+    "retryCount, MAX RETRY ATTEMPTS\n_ _"
+   ],
+   [
+    "File / Folder",
+    "kebab-case",
+    "user-profile.service.ts, order-management/"
+   ],
+   [
+    "DB table / column",
+    "snake case, số nhiều cho table\n_",
+    "user accounts, created at\n_ _"
+   ],
+   [
+    "Nhánh Git",
+    "<type>/<ticket-id>-<mô tả ngắn>",
+    "feature/PROJ-123-add-payment"
+   ],
+   [
+    "Biến môi trường",
+    "UPPER SNAKE CASE, prefix theo service\n_ _",
+    "PAYMENT SERVICE DB URL\n_ _ _"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 29,
+  "rows": [
+   [
+    "Ngôn ngữ",
+    "Formatter",
+    "Linter",
+    "Config file"
+   ],
+   [
+    "Python",
+    "Black",
+    "Ruff",
+    "pyproject.toml [tool.ruff]"
+   ],
+   [
+    "TypeScript / JS",
+    "Prettier",
+    "ESLint",
+    ".eslintrc.json, .prettierrc"
+   ],
+   [
+    "Java",
+    "google-java-format",
+    "Checkstyle",
+    "checkstyle.xml"
+   ],
+   [
+    "Go",
+    "gofmt",
+    "golangci-lint",
+    ".golangci.yml"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 31,
+  "rows": [
+   [
+    "Phương án",
+    "Ưu điểm",
+    "Nhược điểm",
+    "Lý do không chọn"
+   ],
+   [
+    "[Phương án A — được\nchọn]",
+    "[...]",
+    "[...]",
+    "—"
+   ],
+   [
+    "[Phương án B]",
+    "[...]",
+    "[...]",
+    "[Lý do]"
+   ],
+   [
+    "[Phương án C]",
+    "[...]",
+    "[...]",
+    "[Lý do]"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 33,
+  "rows": [
+   [
+    "Hành động",
+    "Được tự động thực\nhiện?",
+    "Điều kiện / Ghi chú"
+   ],
+   [
+    "Chạy unit test / lint / build cục bộ",
+    "Có",
+    "Không giới hạn"
+   ],
+   [
+    "Tạo nhánh (branch) mới",
+    "Có",
+    "Theo naming convention trong\nCODING CONVENTION.md\n_"
+   ],
+   [
+    "Mở Pull Request",
+    "Có",
+    "Phải gắn task/ticket, mô tả rõ phạm vi"
+   ],
+   [
+    "Merge Pull Request",
+    "❌ Không",
+    "Bắt buộc người duyệt (Gate 3)"
+   ],
+   [
+    "Chạy migration cơ sở dữ liệu",
+    "❌ Không",
+    "Chỉ Dev/DevOps chạy tay sau khi review riêng"
+   ],
+   [
+    "Push trực tiếp lên nhánh\nmain/production",
+    "❌ Không",
+    "Luôn qua PR + CI/CD"
+   ],
+   [
+    "Xóa file test đã có",
+    "❌ Không",
+    "Phải hỏi người nếu thấy test không còn phù hợp"
+   ],
+   [
+    "Cài thêm dependency mới",
+    "Có điều kiện",
+    "Phải nêu lý do trong PR; quét license trước khi merge"
+   ],
+   [
+    "Truy cập dữ liệu Production thật",
+    "❌ Không",
+    "Chỉ dùng dữ liệu Staging/synthetic"
+   ],
+   [
+    "Gặp mâu thuẫn giữa spec và code\nhiện tại",
+    "⏸ Dừng & hỏi người",
+    "Không tự suy đoán ý định, phải escalate"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 34,
+  "rows": [
+   [
+    "Mức phân loại",
+    "Ví dụ",
+    "Được đưa vào prompt\nAI?",
+    "Yêu cầu xử lý trước khi dùng"
+   ],
+   [
+    "Public",
+    "Tài liệu marketing, spec tính\nnăng đã công bố",
+    "Có, không hạn chế",
+    "Không cần xử lý"
+   ],
+   [
+    "Internal",
+    "Sơ đồ kiến trúc nội bộ,\ncoding convention",
+    "Có, chỉ với tool trong ai-\ntool-scope.md",
+    "Không gửi ra ngoài công ty"
+   ],
+   [
+    "Confidential",
+    "Dữ liệu khách hàng B2B, hợp\nđồng, chiến lược giá",
+    "Chỉ với tool có Zero Data\nRetention đã duyệt",
+    "Ẩn danh hóa các trường định\ndanh trước khi đưa vào prompt\nnếu có thể"
+   ],
+   [
+    "Restricted (PII/PCI)",
+    "CMND/CCCD, số thẻ, số điện\nthoại, bệnh án",
+    "Không — cấm tuyệt đối\nđưa vào prompt AI dưới\nmọi hình thức",
+    "Dùng dữ liệu synthetic/giả lập\nthay thế (xem quy tắc sinh dữ\nliệu test ở B13)"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 34,
+  "rows": [
+   [
+    "Công cụ",
+    "Mục đích dùng trong dự\nán",
+    "Dữ liệu tối đa cho\nphép",
+    "Zero Data\nRetention?",
+    "Người phê duyệt"
+   ],
+   [
+    "Claude Code",
+    "Coding agentic, sinh test,\nreview",
+    "Confidential (đã ẩn\ndanh)",
+    "Có",
+    "Tech Lead"
+   ],
+   [
+    "GitHub Copilot",
+    "Inline suggestion khi code",
+    "Internal",
+    "Theo cấu hình\ntổ chức",
+    "Tech Lead"
+   ],
+   [
+    "CodeRabbit",
+    "AI review tầng 1 trên PR",
+    "Internal",
+    "Có",
+    "Tech Lead + Security"
+   ],
+   [
+    "ChatGPT (web)",
+    "—",
+    "KHÔNG được dùng cho\ndự án này",
+    "Không áp dụng",
+    "Không duyệt"
+   ],
+   [
+    "[Tool khác...]",
+    "[...]",
+    "[...]",
+    "[...]",
+    "[...]"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 39,
+  "rows": [
+   [
+    "File",
+    "Mục đích",
+    "Owner",
+    "Tầng",
+    "Cập nhật khi nào"
+   ],
+   [
+    "constitution.md",
+    "Luật kiến trúc/bảo mật/logging\nbất biến",
+    "Tech Lead",
+    "1 – Công ty",
+    "Khi có thay đổi kiến\ntrúc lớn, qua PR"
+   ],
+   [
+    "CODING CONVENTION.md\n_",
+    "Chuẩn code, naming, cấu trúc\nthư mục",
+    "Tech Lead",
+    "1 – Công ty",
+    "Khi đổi stack/tool\nformat"
+   ],
+   [
+    "SKILL.md",
+    "Luật vận hành AI Agent",
+    "Tech Lead",
+    "1+2",
+    "Mỗi khi đổi quy\ntrình hoặc phạm vi\ndự án"
+   ],
+   [
+    "tool-permissions.md",
+    "Quyền hạn hành động của AI\nAgent",
+    "Tech Lead",
+    "1 – Công ty",
+    "Khi thêm loại\nagent/tool mới"
+   ],
+   [
+    "data-classification.md",
+    "Phân loại dữ liệu & quy tắc\nđưa vào prompt",
+    "Security Lead",
+    "1 – Công ty",
+    "Khi có loại dữ liệu\nmới phát sinh"
+   ],
+   [
+    "ai-tool-scope.md",
+    "Danh mục AI tool duyệt riêng\ncho dự án",
+    "Tech Lead +\nSecurity",
+    "2 – Dự án",
+    "Khi thêm/gỡ 1 công\ncụ AI"
+   ],
+   [
+    "prompts.md",
+    "Thư viện system prompt theo\ngiai đoạn",
+    "BA/Tech Lead",
+    "2 – Dự án",
+    "Khi thêm giai\nđoạn/prompt mới"
+   ],
+   [
+    "glossary.md",
+    "Từ điển thuật ngữ nghiệp vụ",
+    "BA",
+    "2 – Dự án",
+    "Liên tục từ B3 trở đi"
+   ],
+   [
+    "dor-dod.md",
+    "Definition of Ready / Done cho\nmọi Gate",
+    "PM + Tech Lead",
+    "1 – Công ty",
+    "Khi thay đổi tiêu chí\nGate"
+   ],
+   [
+    "adr-template.md",
+    "Khuôn mẫu ADR",
+    "Tech Lead",
+    "1 – Công ty",
+    "Hiếm khi đổi"
+   ],
+   [
+    "rules/brd-rules.md, bpm-\nrules.md",
+    "Linter BRD/BPMN (B3–B4)",
+    "BA",
+    "2 – Dự án",
+    "Khi phát hiện lỗi BA\nlặp lại"
+   ],
+   [
+    "rules/adr-rules.md, api-\nrules.md",
+    "Linter ADR/OpenAPI (B6)",
+    "Tech Lead",
+    "2 – Dự án",
+    "Khi phát hiện lỗi\nkiến trúc lặp lại"
+   ],
+   [
+    "rules/test-rules.md",
+    "Linter Unit Test (B9)",
+    "Tech Lead/Test\nLead",
+    "2 – Dự án",
+    "Khi phát hiện test\nkém chất lượng lặp\nlại"
+   ],
+   [
+    "rules/code-review-",
+    "Checklist AI review tầng 1",
+    "Tech Lead +",
+    "1 – Công ty",
+    "Khi cập nhật OWASP"
+   ],
+   [
+    "rules.md",
+    "(B10)",
+    "Security",
+    "ASVS"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 40,
+  "rows": [
+   [
+    "Thuật ngữ (VN)",
+    "Tên trong code\n(EN)",
+    "Định nghĩa",
+    "Từ dễ nhầm — cấm\ndùng thay thế"
+   ],
+   [
+    "Khách hàng",
+    "Customer",
+    "[Định nghĩa cụ thể theo domain — VD: tổ\nchức/cá nhân ký hợp đồng mua dịch vụ]",
+    "\"Client\", \"User\" (2\nkhái niệm khác trong\nhệ thống này)"
+   ],
+   [
+    "Người dùng cuối",
+    "EndUser",
+    "[Định nghĩa]",
+    "\"Customer\",\n\"Account\""
+   ],
+   [
+    "Đơn hàng",
+    "Order",
+    "[Định nghĩa]",
+    "\"Request\", \"Ticket\""
+   ],
+   [
+    "[Thuật ngữ khác...]",
+    "[...]",
+    "[...]",
+    "[...]"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 41,
+  "rows": [
+   [
+    "Trường",
+    "Nội dung"
+   ],
+   [
+    "Người được phỏng vấn",
+    "[Tên + vai trò]"
+   ],
+   [
+    "Ngày giờ / Thời lượng dự kiến",
+    "[DD/MM/YYYY, HH:MM — dự kiến bao lâu]"
+   ],
+   [
+    "Mục tiêu phỏng vấn",
+    "[VD: Làm rõ quy tắc tính phí hoàn trả đơn hàng]"
+   ],
+   [
+    "Kỹ thuật áp dụng",
+    "Interview / Workshop / Observation / Prototyping (chọn 1, xem tiêu chí ở\nB3)"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 41,
+  "rows": [
+   [
+    "Câu hỏi",
+    "Mục đích hỏi",
+    "Câu trả lời (điền khi phỏng vấn)"
+   ],
+   [
+    "[Câu hỏi 1]",
+    "[Muốn làm rõ điều gì]"
+   ],
+   [
+    "[Câu hỏi 2]",
+    "[Muốn làm rõ điều gì]"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 42,
+  "rows": [
+   [
+    "Trường",
+    "Nội dung"
+   ],
+   [
+    "Dự án / Module",
+    "[Tên dự án]"
+   ],
+   [
+    "Ngày họp",
+    "[DD/MM/YYYY]"
+   ],
+   [
+    "Người tham dự",
+    "[Danh sách + vai trò — VD: Nguyễn Văn A (PO), Trần Thị B (BA)]"
+   ],
+   [
+    "Mục tiêu buổi họp",
+    "[VD: Làm rõ luồng xử lý đơn hàng hoàn trả]"
+   ],
+   [
+    "Người ghi biên bản",
+    "AI (Fireflies/Otter) + BA rà soát"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 42,
+  "rows": [
+   [
+    "Chủ đề",
+    "Ý kiến / Quyết định",
+    "Người phát biểu",
+    "Nguồn gốc"
+   ],
+   [
+    "[Chủ đề 1]",
+    "[Nội dung]",
+    "[Tên]",
+    "Nguyên văn / AI diễn\ngiải"
+   ],
+   [
+    "[Chủ đề 2]",
+    "[Nội dung]",
+    "[Tên]",
+    "Nguyên văn / AI diễn\ngiải"
+   ]
+  ],
+  "ncols": 4
+ },
+ {
+  "page": 42,
+  "rows": [
+   [
+    "Việc cần làm",
+    "Người phụ trách",
+    "Deadline"
+   ],
+   [
+    "[Việc 1]",
+    "[Tên]",
+    "[Ngày]"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 43,
+  "rows": [
+   [
+    "ID",
+    "User Story",
+    "Độ ưu tiên",
+    "Nguồn",
+    "Trạng thái"
+   ],
+   [
+    "FR-001",
+    "Là [vai trò], tôi muốn [hành động] để [lợi ích]",
+    "Must have",
+    "Biên bản họp #1",
+    "Đã chốt"
+   ],
+   [
+    "FR-002",
+    "Là [vai trò], tôi muốn [hành động] để [lợi ích]",
+    "Should have",
+    "Biên bản họp #1",
+    "[CẦN LÀM RÕ]"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 43,
+  "rows": [
+   [
+    "Loại",
+    "Chỉ tiêu cụ thể",
+    "Cách đo"
+   ],
+   [
+    "Hiệu năng",
+    "API response P95 < 500ms",
+    "Load test JMeter/k6 (xem Gate 4c)"
+   ],
+   [
+    "Bảo mật",
+    "Không lỗ hổng Critical/High",
+    "DAST + Pentest (xem Gate 4b)"
+   ],
+   [
+    "Khả năng mở rộng",
+    "Chịu tải 1000 concurrent user",
+    "Load test"
+   ]
+  ],
+  "ncols": 3
+ },
+ {
+  "page": 44,
+  "rows": [
+   [
+    "Ký hiệu",
+    "Ý nghĩa"
+   ],
+   [
+    "Pool / Lane",
+    "Ranh giới hệ thống / Actor thực hiện"
+   ],
+   [
+    "Start Event (vòng tròn mảnh)",
+    "Điểm bắt đầu luồng"
+   ],
+   [
+    "Task (hình chữ nhật bo góc)",
+    "Một hành động — tên PHẢI là Động từ + Danh từ"
+   ],
+   [
+    "Gateway Exclusive (hình thoi có\nX)",
+    "Rẽ nhánh loại trừ — chỉ 1 nhánh được đi"
+   ],
+   [
+    "Gateway Parallel (hình thoi có +)",
+    "Rẽ nhánh song song — tất cả nhánh đều chạy"
+   ],
+   [
+    "End Event (vòng tròn đậm)",
+    "Điểm kết thúc luồng"
+   ],
+   [
+    "Sequence Flow (mũi tên liền)",
+    "Thứ tự thực hiện trong cùng 1 lane"
+   ],
+   [
+    "Message Flow (mũi tên đứt)",
+    "Trao đổi thông tin giữa 2 Pool khác nhau"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 44,
+  "rows": [
+   [
+    "Bước",
+    "Lane / Actor",
+    "Loại",
+    "Mô tả",
+    "Điều kiện rẽ nhánh"
+   ],
+   [
+    "1",
+    "Khách hàng",
+    "Start Event",
+    "Khách hàng yêu cầu hoàn trả",
+    "—"
+   ],
+   [
+    "2",
+    "Hệ thống",
+    "Task",
+    "Kiểm tra điều kiện hoàn trả",
+    "—"
+   ],
+   [
+    "3",
+    "Hệ thống",
+    "Gateway\nExclusive",
+    "Đủ điều kiện hoàn trả?",
+    "Đủ → bước 4; Không\nđủ → bước 6"
+   ],
+   [
+    "4",
+    "Kế toán",
+    "Task",
+    "Xử lý hoàn tiền",
+    "—"
+   ],
+   [
+    "5",
+    "Hệ thống",
+    "End Event",
+    "Hoàn tất hoàn trả",
+    "—"
+   ],
+   [
+    "6",
+    "Hệ thống",
+    "End Event",
+    "Từ chối yêu cầu, thông báo lý do",
+    "—"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 44,
+  "rows": [
+   [
+    "Giai đoạn",
+    "Hành động người dùng",
+    "Điểm chạm\n(Touchpoint)",
+    "Pain point",
+    "Cơ hội cải thiện"
+   ],
+   [
+    "[Giai đoạn 1]",
+    "[Hành động]",
+    "[App/Web/Email...]",
+    "[Khó khăn gặp phải]",
+    "[Đề xuất]"
+   ]
+  ],
+  "ncols": 5
+ },
+ {
+  "page": 45,
+  "rows": [
+   [
+    "ID",
+    "Câu hỏi / Vấn đề",
+    "Ý kiến các bên (nếu có\nxung đột)",
+    "Người quyết\nđịnh",
+    "Quyết định\ncuối cùng",
+    "Trạng\nthái"
+   ],
+   [
+    "Q-001",
+    "[Nội dung câu hỏi]",
+    "[Bên A nói X, Bên B nói Y —\nnếu có]",
+    "[PO/Sponsor]",
+    "[Quyết định]",
+    "Mở / Đã\nchốt"
+   ]
+  ],
+  "ncols": 6
+ },
+ {
+  "page": 46,
+  "rows": [
+   [
+    "Trường",
+    "Nội dung"
+   ],
+   [
+    "Bug ID",
+    "[Tự sinh, VD: BUG-0142]"
+   ],
+   [
+    "Dự án / Module",
+    "[Tên dự án / module]"
+   ],
+   [
+    "Người báo lỗi",
+    "[Tên]"
+   ],
+   [
+    "Ngày phát hiện",
+    "[DD/MM/YYYY]"
+   ],
+   [
+    "Môi trường phát hiện",
+    "☐ DEV ☐ CI/TEST ☐ STAGING ☐ UAT ☐ PRODUCTION"
+   ],
+   [
+    "Severity",
+    "☐ S1 ☐ S2 ☐ S3 ☐ S4 (xem bảng định nghĩa mục 3)"
+   ],
+   [
+    "Priority",
+    "☐ P1 ☐ P2 ☐ P3 ☐ P4"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 46,
+  "rows": [
+   [
+    "Trường",
+    "Nội dung"
+   ],
+   [
+    "Root cause (nếu đã xác định)",
+    "[Mô tả nguyên nhân gốc, AI có thể hỗ trợ phân tích log]"
+   ],
+   [
+    "Người xử lý",
+    "[Tên Dev được gán]"
+   ],
+   [
+    "Trạng thái",
+    "☐ New ☐ Triage ☐ Assigned ☐ In Progress ☐ Fixed ☐ Retest ☐ Closed ☐\nReopen"
+   ],
+   [
+    "Ngày đóng / kết quả retest",
+    "[DD/MM/YYYY — Pass/Fail]"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 47,
+  "rows": [
+   [
+    "Tiêu chí",
+    "Kết quả",
+    "Ghi chú"
+   ],
+   [
+    "Regression suite tự động xanh 100%",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Bug Severity 1–2 đang mở = 0",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Gate 4a — SIT/Regression (Test Lead ký)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Gate 4b — ATTT (Security Lead ký)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Gate 4c — Hiệu năng (Tech Lead xác nhận)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Toàn bộ kịch bản UAT đã chạy với PO/khách hàng",
+    "☐ Đạt ☐ Không đạt"
+   ]
+  ],
+  "ncols": 2
+ },
+ {
+  "page": 47,
+  "rows": [
+   [
+    "Hạng mục",
+    "Kết quả"
+   ],
+   [
+    "UAT Sign-off đã ký (Phần 1 ở trên)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Rollback Plan đã được viết và diễn tập",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Build artifact deploy Production giống hệt build đã qua UAT (build-once-promote-\nmany)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Kế hoạch truyền thông người dùng / thông báo downtime (nếu có)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Đội trực Hypercare đã sẵn sàng (lịch trực, kênh escalation)",
+    "☐ Đạt ☐ Không đạt"
+   ],
+   [
+    "Giám sát/Dashboard/Alerting đã cấu hình cho hệ thống mới",
+    "☐ Đạt ☐ Không đạt"
+   ]
+  ],
+  "ncols": 2
+ }
+]

@@ -1,0 +1,90 @@
+{
+  "note": "Registry của bộ mẫu — nguồn sự thật cho sidebar phải và các trang xem mẫu. Thêm file: tạo .md trong templates/ rồi thêm entry ở đây, chạy node build.js.",
+  "groups": [
+    {
+      "id": "phu-luc",
+      "title": "Phụ lục biểu mẫu (PL1–PL6)",
+      "note": "Biểu mẫu chuẩn hoá của tài liệu gốc, viết lại dạng .md dùng ngay.",
+      "files": [
+        { "id": "pl1-project-charter", "file": "phu-luc/PL1-project-charter.md", "title": "PL1 — Project Charter & Kick-off", "for": "B1", "desc": "Charter (mục tiêu SMART, in/out-scope, ngân sách), milestones gắn Gate 1–5, Stakeholder Register, Communication Plan." },
+        { "id": "pl2-change-request", "file": "phu-luc/PL2-change-request.md", "title": "PL2 — Change Request Form", "for": "Sau Gate 1", "desc": "Mọi thay đổi phạm vi/thiết kế sau khi Spec đã chốt — PM + PO duyệt trước khi làm." },
+        { "id": "pl3-bo-tai-lieu-b2", "file": "phu-luc/PL3-bo-tai-lieu-b2.md", "title": "PL3 — Bộ tài liệu B2 (chỉ mục 17 file)", "for": "B2", "desc": "Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules." },
+        { "id": "pl4-bo-bieu-mau-b3", "file": "phu-luc/PL4-bo-bieu-mau-B3.md", "title": "PL4 — Bộ biểu mẫu B3 (chỉ mục 5 mẫu)", "for": "B3", "desc": "Interview Guide, Biên bản họp, BRD, Process Flow/User Journey, Q&A Log — ánh xạ sang nhóm B3." },
+        { "id": "pl5-bug-report", "file": "phu-luc/PL5-bug-report.md", "title": "PL5 — Bug Report", "for": "Vận hành", "desc": "Steps to reproduce, expected vs actual, evidence, liên kết AC/Test Case, Severity + Priority." },
+        { "id": "pl6-uat-go-no-go", "file": "phu-luc/PL6-uat-signoff-go-no-go.md", "title": "PL6 — UAT Sign-off & Go/No-Go Checklist", "for": "Gate 4 & 5", "desc": "Phần 1 biên bản UAT (Test Lead, Security Lead, PO ký). Phần 2 checklist Go/No-Go trước go-live." }
+      ]
+    },
+    {
+      "id": "b2",
+      "title": "Nhóm 1–3: quy định kỹ thuật & vận hành AI",
+      "note": "12 file 'luật' — nạp vào repo ngay từ B2. Tổng hợp theo GitHub Spec Kit, AGENTS.md, MADR, NIST/ISO.",
+      "files": [
+        { "id": "constitution", "file": "b2/constitution.md", "title": "constitution.md — Hiến pháp dự án", "for": "B2 · PL 3.1", "desc": "Nguyên tắc bất biến: mỗi Rule phải kèm Rationale + Application, có Governance." },
+        { "id": "coding-convention", "file": "b2/CODING_CONVENTION.md", "title": "CODING_CONVENTION.md", "for": "B2 · PL 3.2", "desc": "Naming, formatting, cấu trúc thư mục, docstring; ánh xạ formatter/linter theo ngôn ngữ." },
+        { "id": "adr-template", "file": "b2/adr-template.md", "title": "adr-template.md — ADR theo MADR", "for": "B2 · PL 3.3", "desc": "Khuôn Architecture Decision Record (MADR): Context, Decision Drivers, Options, Outcome, Consequences." },
+        { "id": "skill", "file": "b2/SKILL.md", "title": "SKILL.md — luật điều khiển AI Agent", "for": "B2 · PL 3.4", "desc": "Identity, thứ tự đọc file, phạm vi quyền hạn, xử lý khi không chắc chắn, workflow coding, Tầng 1/2." },
+        { "id": "agents", "file": "b2/AGENTS.md", "title": "AGENTS.md — chuẩn liên-công-cụ", "for": "B2", "desc": "Chuẩn file chỉ dẫn agent dùng chung cho nhiều công cụ (de-facto 2026); SKILL.md có thể include file này." },
+        { "id": "tool-permissions", "file": "b2/tool-permissions.md", "title": "tool-permissions.md — quyền hạn AI", "for": "B2 · PL 3.5", "desc": "Least-privilege: bảng hành động được/không được tự chạy; mức tự chủ theo môi trường." },
+        { "id": "data-classification", "file": "b2/data-classification.md", "title": "data-classification.md — phân loại dữ liệu", "for": "B2 · PL 3.6", "desc": "Public / Internal / Confidential / Restricted — loại nào được đưa vào prompt AI (tham chiếu NIST/ISO 27001)." },
+        { "id": "ai-tool-scope", "file": "b2/ai-tool-scope.md", "title": "ai-tool-scope.md — tool AI được duyệt", "for": "B2 · PL 3.7", "desc": "Danh mục tool theo dự án + trạng thái Zero Data Retention + điều kiện phê duyệt tool ngoài danh sách." },
+        { "id": "prompts", "file": "b2/prompts.md", "title": "prompts.md — thư viện prompt", "for": "B2 · PL 3.8", "desc": "System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay." },
+        { "id": "docs-index", "file": "b2/docs-index.md", "title": "docs-index.md — bản đồ tài liệu", "for": "B2 · PL 3.15", "desc": "Danh mục tài liệu + thứ tự đọc cho AI; ai sở hữu, cập nhật khi nào." },
+        { "id": "glossary", "file": "b2/glossary.md", "title": "glossary.md — từ điển thuật ngữ", "for": "B2 · PL 3.16", "desc": "Thuật ngữ nghiệp vụ + kỹ thuật, quy tắc: từ nào phải vào glossary." },
+        { "id": "dor-dod", "file": "b2/dor-dod.md", "title": "dor-dod.md — Definition of Ready / Done", "for": "B2 · PL 3.17", "desc": "Tiêu chí khách quan cho mọi gate (tham chiếu Scrum.org), tách DoR sprint / DoD task." }
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "Nhóm 4 (rules/): linter để AI tự kiểm",
+      "note": "Checklist dạng câu hỏi Đạt/Không đạt — AI chạy trước, người review sau.",
+      "files": [
+        { "id": "brd-rules", "file": "rules/brd-rules.md", "title": "rules/brd-rules.md", "for": "B3 · PL 3.9", "desc": "Linter BRD: yêu cầu đo lường được, phân biệt FR/NFR, truy vết mục tiêu kinh doanh." },
+        { "id": "bpm-rules", "file": "rules/bpm-rules.md", "title": "rules/bpm-rules.md", "for": "B3/B4 · PL 3.10", "desc": "Linter BPMN: không nhánh cụt, mọi gateway có nhãn, actor nhất quán, ký hiệu đúng BPMN 2.0." },
+        { "id": "adr-rules", "file": "rules/adr-rules.md", "title": "rules/adr-rules.md", "for": "B6 · PL 3.11", "desc": "Checklist tự kiểm ADR theo MADR trước khi trình Tech Lead." },
+        { "id": "api-rules", "file": "rules/api-rules.md", "title": "rules/api-rules.md", "for": "B6 · PL 3.12", "desc": "Checklist OpenAPI 3.x: naming, versioning, lỗi, bảo mật, ví dụ request/response." },
+        { "id": "test-rules", "file": "rules/test-rules.md", "title": "rules/test-rules.md", "for": "B9 · PL 3.13", "desc": "Checklist unit test AI sinh: assert thật, một hành vi/test, bao phủ edge case, không test giả." },
+        { "id": "code-review-rules", "file": "rules/code-review-rules.md", "title": "rules/code-review-rules.md", "for": "B10 · PL 3.14", "desc": "Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST." }
+      ]
+    },
+    {
+      "id": "b3",
+      "title": "B3 — phân tích yêu cầu (PL4)",
+      "note": "5 mẫu theo BABOK v3 + BPMN 2.0, có phân biệt phát biểu gốc vs AI diễn giải.",
+      "files": [
+        { "id": "interview-guide", "file": "b3/4.1-interview-guide.md", "title": "4.1 Interview Guide", "for": "B3 b.1", "desc": "Chọn kỹ thuật theo tình huống + bộ câu hỏi mở, nguyên tắc không dẫn dắt." },
+        { "id": "meeting-minutes", "file": "b3/4.2-bien-ban-hop.md", "title": "4.2 Biên bản họp / Workshop", "for": "B3 b.2", "desc": "Ghi rõ phát biểu gốc vs phần AI diễn giải; ai xác nhận, khi nào." },
+        { "id": "brd", "file": "b3/4.3-BRD.md", "title": "4.3 BRD theo BABOK v3", "for": "B3 b.3", "desc": "Business context, stakeholder, FR/NFR có số, User Story chuẩn, MoSCoW, giả định & rủi ro." },
+        { "id": "process-flow", "file": "b3/4.4-process-flow-user-journey.md", "title": "4.4 Process Flow / User Journey", "for": "B3 b.4", "desc": "As-is/To-be, ký hiệu BPMN 2.0, User Journey Map rút gọn." },
+        { "id": "qa-log", "file": "b3/4.5-QA-log.md", "title": "4.5 Q&A Log", "for": "B3 → B5", "desc": "Nguồn chính thức duy nhất trả lời 'ai quyết định gì, khi nào' — dùng tới khi chốt Spec." }
+      ]
+    },
+    {
+      "id": "bo-sung",
+      "title": "Mẫu còn thiếu (bổ sung cho bản 5.10)",
+      "note": "Tài liệu gốc ghi rõ 5 mẫu này 'chưa có' — nhóm này lấp khoảng trống đó bằng chuẩn quốc tế.",
+      "files": [
+        { "id": "spec", "file": "bo-sung/spec.md", "title": "spec.md + User Story & AC", "for": "B4", "desc": "Theo cấu trúc Spec Kit spec-template: User Scenarios, Requirements, Success Criteria, Assumptions." },
+        { "id": "plan", "file": "bo-sung/plan.md", "title": "plan.md + C4 Model", "for": "B6", "desc": "Technical plan: bối cảnh, container, dữ liệu, API, rủi ro; C4 có thể vẽ bằng Mermaid/Structurizr." },
+        { "id": "tasks", "file": "bo-sung/tasks.md", "title": "tasks.md", "for": "B7", "desc": "Danh sách task ≤1 ngày công, mỗi task có AC riêng, thứ tự phụ thuộc." },
+        { "id": "test-plan", "file": "bo-sung/test-plan.md", "title": "Test Plan theo ISO/IEC/IEEE 29119-3", "for": "B11", "desc": "Phạm vi, mục tiêu, hạng mục test, cách tiếp cận, tiêu chí dừng, môi trường, rủi ro." },
+        { "id": "test-case-rtm", "file": "bo-sung/test-case-rtm.md", "title": "Test Case + RTM", "for": "B11", "desc": "Mẫu test case (Given-When-Then, dữ liệu, kết quả mong đợi) và RTM phủ 100% AC." },
+        { "id": "code-review-human", "file": "bo-sung/code-review-checklist-nguoi.md", "title": "Checklist review tầng 2 (người)", "for": "B10", "desc": "Nghiệp vụ, kiến trúc, khả năng bảo trì, tác động chéo — theo Google eng-practices." },
+        { "id": "runbook", "file": "bo-sung/runbook.md", "title": "Runbook vận hành", "for": "B14", "desc": "Sự cố thường gặp, cách kiểm tra, lệnh xử lý, escalation, đầu mối liên hệ." },
+        { "id": "postmortem", "file": "bo-sung/postmortem.md", "title": "Post-mortem (blameless)", "for": "B14", "desc": "Theo Google SRE: timeline, tác động, nguyên nhân gốc, hành động khắc phục có owner + hạn." },
+        { "id": "changelog", "file": "bo-sung/CHANGELOG.md", "title": "CHANGELOG theo Keep a Changelog", "for": "B13", "desc": "Added/Changed/Deprecated/Removed/Fixed/Security + Semantic Versioning." },
+        { "id": "conventional-commits", "file": "bo-sung/conventional-commits.md", "title": "Conventional Commits 1.0", "for": "B8", "desc": "Định dạng commit, type/scope/breaking change, cách nối với CHANGELOG và semver." },
+        { "id": "threat-model", "file": "bo-sung/threat-model-STRIDE.md", "title": "Threat Model theo STRIDE", "for": "B6/B12", "desc": "Bảng đe dọa/đối sách theo STRIDE + OWASP LLM Top 10 cho tính năng có AI." }
+      ]
+    },
+    {
+      "id": "quy-chuan",
+      "title": "Quy chuẩn & chỉ số tham chiếu",
+      "note": "Bảng tra cứu chuẩn đang áp dụng, kèm nguồn chính thống.",
+      "files": [
+        { "id": "standards-index", "file": "quy-chuan/standards-index.md", "title": "Chỉ mục chuẩn đang áp dụng", "for": "Toàn quy trình", "desc": "Bảng 20+ chuẩn (Spec Kit, MADR, BABOK, BPMN, ISO 29119, OWASP, C4, DORA…) — áp ở bước nào, link gốc." },
+        { "id": "ai-governance", "file": "quy-chuan/ai-governance.md", "title": "Quản trị rủi ro AI", "for": "Mục 5 & 7", "desc": "OWASP LLM Top 10, NIST AI RMF, ISO/IEC 42001 — áp vào chính sách tool/prompt của dự án." },
+        { "id": "dora-metrics", "file": "quy-chuan/dora-metrics.md", "title": "Chỉ số DORA & KPI chất lượng", "for": "Mục 8", "desc": "4 chỉ số DORA + escaped defects + mutation score: cách đo, ngưỡng tốt, cách thu thập." }
+      ]
+    }
+  ]
+}

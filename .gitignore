@@ -1,0 +1,27 @@
+# Logs
+*.log
+server.log
+
+# Environment
+.env
+!.env.example
+
+# Dependencies
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.bak
+
+# Build output (giữ lại để deploy nhanh — bỏ comment nếu muốn xóa)
+# public/
+
+# IDE
+.vscode/
+.idea/
+
+# Temp
+*.tmp

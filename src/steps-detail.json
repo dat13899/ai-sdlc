@@ -1,0 +1,1004 @@
+{
+  "B1": [
+    [
+      "1. Lên lịch họp kick-off",
+      "PM",
+      "Lên lịch họp, mời Sponsor/PO và các thành viên chủ chốt; gửi agenda trước tối thiểu 1 ngày.",
+      "Thiếu người có quyền quyết định sẽ phải họp lại.",
+      "—"
+    ],
+    [
+      "2. AI ghi âm & tóm tắt",
+      "AI (Fireflies/Otter)",
+      "Ghi âm toàn bộ buổi kick-off, tự động tóm tắt thành biên bản nháp.",
+      "Xin phép người tham dự trước khi ghi âm.",
+      "—"
+    ],
+    [
+      "3. Draft Charter, Stakeholder, Comm Plan",
+      "PM (dùng AI hỗ trợ)",
+      "Dùng Claude/ChatGPT draft cả 3 tài liệu từ bản tóm tắt, đúng cấu trúc mẫu.",
+      "AI chỉ draft — PM chịu trách nhiệm nội dung cuối cùng.",
+      "Project Charter, Stakeholder Register, Comm Plan — PL 1",
+      {
+        "links": [
+          {
+            "id": "pl1-project-charter",
+            "label": "PL1"
+          }
+        ]
+      }
+    ],
+    [
+      "4. PM rà soát & chỉnh sửa",
+      "PM",
+      "Đối chiếu thực tế ngân",
+      "AI không được tự",
+      "—"
+    ],
+    [
+      "5. Gửi Sponsor/PO xem trước",
+      "PM",
+      "Gửi bản draft qua email/Confluence, tổng hợp góp ý trước buổi ký.",
+      "—",
+      "—"
+    ],
+    [
+      "6. Ký duyệt Charter",
+      "Sponsor/PO",
+      "Ký duyệt chính thức — điều kiện để cấp ngân sách/nhân sự.",
+      "Human Gate — không chặn kỹ thuật nhưng bắt buộc trước khi triển khai.",
+      "PL 1",
+      {
+        "links": [
+          {
+            "id": "pl1-project-charter",
+            "label": "PL1"
+          }
+        ]
+      }
+    ],
+    [
+      "7. Lưu trữ & khởi tạo dự án",
+      "PM",
+      "Lưu Charter vào Confluence/SharePoint, khởi tạo project trên Jira/Azure DevOps.",
+      "—",
+      "—"
+    ]
+  ],
+  "B2": [
+    [
+      "1. Khởi tạo repo & Spec Kit",
+      "Tech Lead",
+      "Chạy Spec Kit CLI (/speckit.constitution) để sinh khung constitution.md ban đầu.",
+      "—",
+      "—"
+    ],
+    [
+      "2. Soạn constitution.md & CODING CONVENTION.md _",
+      "Tech Lead + AI",
+      "Điền đầy đủ Core Principles (Rule/Rationale/Application) dựa trên stack đã chọn ở B1.",
+      "Mỗi nguyên tắc phải đo lường được, không viết chung chung.",
+      "PL 3.1, 3.2",
+      {
+        "links": [
+          {
+            "id": "constitution",
+            "label": "3.1 constitution"
+          },
+          {
+            "id": "coding-convention",
+            "label": "3.2 CODING_CONVENTION"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Soạn SKILL.md",
+      "Tech Lead",
+      "Soạn Tầng 1 theo chuẩn công ty, bổ sung Tầng 2 riêng cho dự án.",
+      "—",
+      "PL 3.4",
+      {
+        "links": [
+          {
+            "id": "skill",
+            "label": "3.4 SKILL"
+          }
+        ]
+      }
+    ],
+    [
+      "4. Khởi tạo glossary.md",
+      "BA",
+      "Điền khung ban đầu với vài thuật ngữ cốt lõi đã biết trước.",
+      "Sẽ hoàn thiện dần từ B3, không chờ xong hết mới bắt đầu.",
+      "PL 3.16",
+      {
+        "links": [
+          {
+            "id": "glossary",
+            "label": "3.16 glossary"
+          },
+          {
+            "id": "docs-index",
+            "label": "3.15 docs-index"
+          }
+        ]
+      }
+    ],
+    [
+      "5. Định nghĩa DoR-DoD & quy tắc AI",
+      "PM + Tech Lead",
+      "Copy mẫu dor-dod.md, tool- permissions.md, data- classification.md, ai-tool- scope.md, tùy biến theo dự án.",
+      "—",
+      "PL 3.5, 3.6, 3.7, 3.17",
+      {
+        "links": [
+          {
+            "id": "tool-permissions",
+            "label": "3.5 tool-permissions"
+          },
+          {
+            "id": "data-classification",
+            "label": "3.6 data-classification"
+          },
+          {
+            "id": "ai-tool-scope",
+            "label": "3.7 ai-tool-scope"
+          },
+          {
+            "id": "dor-dod",
+            "label": "3.17 dor-dod"
+          }
+        ]
+      }
+    ],
+    [
+      "6. Thiết lập rules/",
+      "Tech Lead",
+      "Copy 6 file rules/ (brd, bpm, adr, api, test, code-review) từ mẫu có sẵn.",
+      "—",
+      "PL 3.9–3.14",
+      {
+        "links": [
+          {
+            "id": "brd-rules",
+            "label": "3.9 brd-rules"
+          },
+          {
+            "id": "bpm-rules",
+            "label": "3.10 bpm-rules"
+          },
+          {
+            "id": "adr-rules",
+            "label": "3.11 adr-rules"
+          },
+          {
+            "id": "api-rules",
+            "label": "3.12 api-rules"
+          },
+          {
+            "id": "test-rules",
+            "label": "3.13 test-rules"
+          },
+          {
+            "id": "code-review-rules",
+            "label": "3.14 code-review-rules"
+          }
+        ]
+      }
+    ],
+    [
+      "7. Tạo docs-index.md & AGENTS.md",
+      "Tech Lead",
+      "Liệt kê toàn bộ tài liệu B2; đồng bộ SKILL.md ra AGENTS.md ở gốc repo.",
+      "—",
+      "PL 3.15",
+      {
+        "links": [
+          {
+            "id": "docs-index",
+            "label": "3.15 docs-index"
+          }
+        ]
+      }
+    ],
+    [
+      "8. Rà soát & ký duyệt",
+      "Tech Lead + PM",
+      "Rà soát lần cuối toàn bộ tài liệu, ký duyệt, commit vào main, gắn tag v0-constitution.",
+      "Human Gate — quyết định chất lượng toàn bộ 12 bước sau.",
+      "—"
+    ]
+  ],
+  "B3": [
+    [
+      "1. Chọn kỹ thuật & lên lịch",
+      "BA",
+      "Chọn kỹ thuật theo tình huống: Interview (vấn đề nhạy cảm), Workshop (nhiều stakeholder), Document Analysis (đã có tài liệu cũ), Observation, Prototyping.",
+      "Không mặc định luôn phỏng vấn — chọn đúng kỹ thuật tiết kiệm thời gian hơn nhiều.",
+      "Hướng dẫn phỏng vấn — PL 4.1",
+      {
+        "links": [
+          {
+            "id": "interview-guide",
+            "label": "4.1 Interview Guide"
+          }
+        ]
+      }
+    ],
+    [
+      "2. Ghi âm & trích xuất yêu cầu",
+      "AI (Fireflies/Otter) + BA",
+      "Bật ghi âm, xin phép người tham dự trước. Sau họp lấy transcript, đưa vào prompt B3 (prompts.md) để AI trích xuất → BRD nháp.",
+      "Chỗ AI tóm tắt còn nghi ngờ, phải nghe lại đúng đoạn ghi âm gốc.",
+      "Biên bản họp — PL 4.2",
+      {
+        "links": [
+          {
+            "id": "meeting-minutes",
+            "label": "4.2 Biên bản họp / Workshop"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Tự kiểm BRD",
+      "BA",
+      "Đọc từng câu hỏi trong rules/brd-rules.md, đánh dấu Đạt/Không đạt cho từng mục.",
+      "Mục nào Không đạt phải sửa BRD ngay tại chỗ, không dồn qua bước sau.",
+      "rules/brd- rules.md — PL 3.9",
+      {
+        "links": [
+          {
+            "id": "brd-rules",
+            "label": "3.9 brd-rules"
+          },
+          {
+            "id": "brd",
+            "label": "4.3 BRD theo BABOK v3"
+          }
+        ]
+      }
+    ],
+    [
+      "4. Vẽ luồng nghiệp vụ",
+      "AI (vẽ nháp) + BA (review)",
+      "Luồng >3 actor hoặc >2 điểm rẽ nhánh → bắt buộc BPMN đầy đủ theo rules/bpm-rules.md;",
+      "Không được để \"nhánh cụt\" — mọi Gateway",
+      "Process Flow/User Journey — PL 4.4 + rules/bpm-",
+      {
+        "links": [
+          {
+            "id": "process-flow",
+            "label": "4.4 Process Flow / User Journey"
+          },
+          {
+            "id": "bpm-rules",
+            "label": "3.10 bpm-rules"
+          }
+        ]
+      }
+    ],
+    [
+      "5. Cập nhật thuật ngữ",
+      "BA",
+      "Thêm vào glossary.md nếu từ: lặp lại nhiều lần, có nghĩa riêng khác thông thường, hoặc dễ nhầm với từ khác.",
+      "Cập nhật liên tục ngay trong B3, không chờ gom hết mới cập nhật 1 lần.",
+      "glossary.md — PL 3.16",
+      {
+        "links": [
+          {
+            "id": "glossary",
+            "label": "3.16 glossary"
+          }
+        ]
+      }
+    ],
+    [
+      "6. Xin xác nhận sơ bộ",
+      "BA → PO/khách hàng",
+      "Gửi BRD qua kênh chính thức (email/Confluence), nêu rõ thời hạn phản hồi 2-3 ngày làm việc.",
+      "Đây chưa phải Human Gate chính thức — chỉ là xác nhận sơ bộ trước khi qua B4.",
+      "BRD — PL 4.3",
+      {
+        "links": [
+          {
+            "id": "brd",
+            "label": "4.3 BRD theo BABOK v3"
+          }
+        ]
+      }
+    ]
+  ],
+  "B4": [
+    [
+      "1. AI sinh spec.md từ BRD",
+      "BA",
+      "Dùng prompt B4 (prompts.md), đưa BRD đã xác nhận sơ bộ cho AI sinh spec.md theo chuẩn Spec Kit.",
+      "—",
+      "prompts.md — PL 3.8",
+      {
+        "links": [
+          {
+            "id": "prompts",
+            "label": "3.8 prompts"
+          }
+        ]
+      }
+    ],
+    [
+      "2. AI phân rã User Story + AC",
+      "AI",
+      "Phân rã theo INVEST, viết Acceptance Criteria dạng Gherkin (Given-When-Then).",
+      "—",
+      "Chưa có mẫu chuẩn",
+      {
+        "links": [
+          {
+            "id": "spec",
+            "label": "spec.md + AC"
+          }
+        ]
+      }
+    ],
+    [
+      "3. BA rà soát User Story",
+      "BA",
+      "Đảm bảo đúng phạm vi BRD, loại bỏ tính năng AI \"tự chế\" ngoài phạm vi cuộc họp.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Tech Lead sanity- check",
+      "Tech Lead",
+      "Kiểm nhanh tính khả thi kỹ thuật của spec.",
+      "Chưa phải Gate 2 chính thức, chỉ sanity-check.",
+      "—"
+    ],
+    [
+      "5. Cập nhật glossary.md",
+      "BA",
+      "Bổ sung thuật ngữ kỹ thuật mới phát sinh.",
+      "—",
+      "PL 3.16",
+      {
+        "links": [
+          {
+            "id": "glossary",
+            "label": "3.16 glossary"
+          }
+        ]
+      }
+    ]
+  ],
+  "B5": [
+    [
+      "1. Tổng hợp câu hỏi mở",
+      "BA",
+      "Gom toàn bộ mục [CẦN LÀM RÕ] trong spec.md, gửi PO/khách hàng.",
+      "—",
+      "—"
+    ],
+    [
+      "2. AI đọc chéo phát hiện mâu thuẫn",
+      "AI",
+      "Dùng Spec Kit /speckit.clarify rà toàn bộ spec.md tìm mâu thuẫn/mơ hồ.",
+      "—",
+      "—"
+    ],
+    [
+      "3. Cập nhật Q&A Log, chốt spec",
+      "BA",
+      "Ghi nhận câu trả lời vào Q&A Log, chỉnh spec.md thành bản final.",
+      "—",
+      "Q&A Log — PL 4.5",
+      {
+        "links": [
+          {
+            "id": "qa-log",
+            "label": "4.5 Q&A Log"
+          }
+        ]
+      }
+    ],
+    [
+      "4. Họp duyệt Spec",
+      "PM",
+      "Tổ chức họp với PO/Sponsor, đối chiếu dor-dod.md (mục DoR).",
+      "—",
+      "dor-dod.md — PL 3.17",
+      {
+        "links": [
+          {
+            "id": "dor-dod",
+            "label": "3.17 dor-dod"
+          }
+        ]
+      }
+    ],
+    [
+      "5. Ký duyệt — Gate 1",
+      "PO/PM",
+      "Ký Biên bản duyệt Spec chính thức.",
+      "Chưa qua Gate 1 thì không được sinh plan/code.",
+      "Chưa có mẫu chuẩn",
+      {
+        "links": [
+          {
+            "id": "pl6-uat-go-no-go",
+            "label": "PL6"
+          },
+          {
+            "id": "spec",
+            "label": "spec.md + AC"
+          }
+        ]
+      }
+    ],
+    [
+      "6. Khóa spec.md",
+      "PM",
+      "Freeze spec.md bằng tag/branch",
+      "Thay đổi sau đó phải",
+      "CR Form — PL 2",
+      {
+        "links": [
+          {
+            "id": "pl2-change-request",
+            "label": "PL2"
+          }
+        ]
+      }
+    ]
+  ],
+  "B6": [
+    [
+      "1. AI đề xuất kiến trúc",
+      "Tech Lead",
+      "Dùng prompt B6, đưa spec.md cho AI (Claude Code) đề xuất C4, ADR, OpenAPI.",
+      "—",
+      "adr- template.md — PL 3.3",
+      {
+        "links": [
+          {
+            "id": "adr-template",
+            "label": "3.3 adr-template"
+          }
+        ]
+      }
+    ],
+    [
+      "2. AI tự kiểm",
+      "AI",
+      "Tự kiểm ADR bằng adr-rules.md, OpenAPI bằng api-rules.md.",
+      "—",
+      "PL 3.11, 3.12",
+      {
+        "links": [
+          {
+            "id": "adr-rules",
+            "label": "3.11 adr-rules"
+          },
+          {
+            "id": "api-rules",
+            "label": "3.12 api-rules"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Tech Lead review",
+      "Tech Lead",
+      "Chỉnh sửa, bổ sung ADR, đối chiếu constitution.md.",
+      "—",
+      "constitution.md — PL 3.1",
+      {
+        "links": [
+          {
+            "id": "constitution",
+            "label": "3.1 constitution"
+          }
+        ]
+      }
+    ],
+    [
+      "4. Design Review",
+      "Tech Lead + Dev senior",
+      "Phản biện kiến trúc trước khi trình duyệt chính thức.",
+      "Khuyến khích, không bắt buộc.",
+      "—"
+    ],
+    [
+      "5. Ký duyệt — Gate 2",
+      "Tech Lead (hoặc Architect/CTO)",
+      "Ký duyệt, commit plan.md/ADR/C4/OpenAPI vào repo.",
+      "Tránh \"architecture by autocomplete\".",
+      "Chưa có mẫu plan.md/C4",
+      {
+        "links": [
+          {
+            "id": "plan",
+            "label": "plan.md + C4"
+          },
+          {
+            "id": "threat-model",
+            "label": "Threat Model (STRIDE)"
+          }
+        ]
+      }
+    ]
+  ],
+  "B7": [
+    [
+      "1. Phân rã task",
+      "Tech Lead + AI",
+      "Dùng /speckit.tasks phân rã plan.md thành tasks.md, mỗi task nhỏ có AC riêng.",
+      "—",
+      "Chưa có mẫu chuẩn",
+      {
+        "links": [
+          {
+            "id": "tasks",
+            "label": "tasks.md"
+          }
+        ]
+      }
+    ],
+    [
+      "2. AI estimate",
+      "AI",
+      "Ước lượng effort dựa trên dữ liệu lịch sử (Jira AI/Atlassian Intelligence).",
+      "—",
+      "—"
+    ],
+    [
+      "3. Tech Lead review",
+      "Tech Lead",
+      "Điều chỉnh, đảm bảo mỗi task ≤ 1 ngày công.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Đẩy ticket",
+      "AI",
+      "Dùng /speckit.taskstoissues đẩy task thành ticket Jira/Azure DevOps.",
+      "—",
+      "—"
+    ],
+    [
+      "5. Sprint Planning",
+      "PM + Tech Lead",
+      "Họp chọn task vào Sprint Backlog.",
+      "—",
+      "—"
+    ],
+    [
+      "6. Duyệt Sprint Backlog",
+      "PM",
+      "Duyệt chính thức backlog cho sprint.",
+      "Human Gate nhẹ.",
+      "—"
+    ]
+  ],
+  "B8": [
+    [
+      "1. Đọc tài liệu B2",
+      "Dev",
+      "Đọc constitution → convention → SKILL.md → spec/plan liên quan trước khi code.",
+      "Thứ tự đọc quy định trong SKILL.md.",
+      "PL 3.1, 3.2, 3.4",
+      {
+        "links": [
+          {
+            "id": "constitution",
+            "label": "3.1 constitution"
+          },
+          {
+            "id": "coding-convention",
+            "label": "3.2 CODING_CONVENTION"
+          },
+          {
+            "id": "skill",
+            "label": "3.4 SKILL"
+          }
+        ]
+      }
+    ],
+    [
+      "2. Giao task cho AI/code",
+      "Dev",
+      "Giao AI agent hoặc tự code với inline copilot, đúng phạm vi 1 task.",
+      "PR mục tiêu < 400 dòng.",
+      "—"
+    ],
+    [
+      "3. AI tuân thủ quyền hạn",
+      "AI",
+      "Tự chạy lint/test cục bộ, không tự merge PR hay push thẳng main.",
+      "—",
+      "tool- permissions.md — PL 3.5",
+      {
+        "links": [
+          {
+            "id": "tool-permissions",
+            "label": "3.5 tool-permissions"
+          },
+          {
+            "id": "conventional-commits",
+            "label": "Conventional Commits"
+          }
+        ]
+      }
+    ],
+    [
+      "4. AI dừng khi mâu thuẫn",
+      "AI",
+      "Dừng lại, hỏi Dev nếu spec và code hiện tại mâu thuẫn.",
+      "Không tự suy đoán ý định.",
+      "—"
+    ],
+    [
+      "5. Commit & mở PR",
+      "Dev",
+      "Commit theo Conventional Commits, mở PR gắn với ticket tương ứng.",
+      "—",
+      "—"
+    ]
+  ],
+  "B9": [
+    [
+      "1. AI sinh unit test",
+      "AI",
+      "Sinh test từ Acceptance Criteria (Gherkin), không sinh từ code.",
+      "—",
+      "—"
+    ],
+    [
+      "2. AI tự kiểm",
+      "AI",
+      "Tự kiểm bằng rules/test-rules.md trước khi đưa vào PR.",
+      "—",
+      "PL 3.13",
+      {
+        "links": [
+          {
+            "id": "test-rules",
+            "label": "3.13 test-rules"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Dev đọc assert",
+      "Dev",
+      "Đọc lại từng assert, xác nhận đúng ý nghĩa nghiệp vụ.",
+      "Không chỉ kiểm tra \"chạy được\".",
+      "—"
+    ],
+    [
+      "4. CI chạy test",
+      "CI (tự động)",
+      "Chạy toàn bộ test suite, đo coverage.",
+      "Fail pipeline nếu dưới ngưỡng 80%/100%.",
+      "—"
+    ],
+    [
+      "5. Bổ sung edge case",
+      "Dev",
+      "Thêm test cho edge case mà AI bỏ sót.",
+      "—",
+      "—"
+    ]
+  ],
+  "B10": [
+    [
+      "1. Kích hoạt AI review",
+      "CI (tự động)",
+      "Kích hoạt AI review tầng 1 dựa trên code-review-rules.md, song song SAST/secret scan.",
+      "—",
+      "PL 3.14",
+      {
+        "links": [
+          {
+            "id": "code-review-rules",
+            "label": "3.14 code-review-rules"
+          }
+        ]
+      }
+    ],
+    [
+      "2. AI comment finding",
+      "AI",
+      "Comment trực tiếp trên PR các finding phát hiện được.",
+      "—",
+      "—"
+    ],
+    [
+      "3. Dev sửa finding",
+      "Dev",
+      "Sửa toàn bộ finding mức High/Critical trước khi mời review.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Mời Human reviewer",
+      "Dev",
+      "Mời tối thiểu 1 reviewer khác tác giả (2 nếu module lõi/bảo mật).",
+      "—",
+      "—"
+    ],
+    [
+      "5. Reviewer dùng checklist",
+      "Reviewer",
+      "Review nghiệp vụ, kiến trúc, khả năng bảo trì, tác động chéo.",
+      "—",
+      "Chưa có checklist riêng",
+      {
+        "links": [
+          {
+            "id": "code-review-human",
+            "label": "Checklist tầng 2"
+          }
+        ]
+      }
+    ],
+    [
+      "6. Approve PR",
+      "Reviewer",
+      "Approve khi đạt yêu cầu; branch protection chặn merge nếu thiếu review/CI chưa xanh.",
+      "—",
+      "—"
+    ],
+    [
+      "7. Merge — Gate 3",
+      "Tech Lead/Reviewer",
+      "Merge PR chính thức.",
+      "—",
+      "—"
+    ]
+  ],
+  "B11": [
+    [
+      "1. Sinh Test Plan/Case",
+      "Test Lead + AI",
+      "Sinh từ Acceptance Criteria bằng prompt tương ứng trong prompts.md.",
+      "—",
+      "Chưa có mẫu chuẩn",
+      {
+        "links": [
+          {
+            "id": "test-plan",
+            "label": "Test Plan (29119)"
+          },
+          {
+            "id": "test-case-rtm",
+            "label": "Test Case + RTM"
+          }
+        ]
+      }
+    ],
+    [
+      "2. Ánh xạ RTM",
+      "Tester",
+      "Ánh xạ Test Case vào RTM, đảm bảo phủ 100% Acceptance Criteria.",
+      "—",
+      "—"
+    ],
+    [
+      "3. Viết automation",
+      "Tester + AI",
+      "Viết automation script (Playwright codegen) cho các luồng chính.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Duyệt Test Plan/Case",
+      "Test Lead",
+      "Review & duyệt chính thức.",
+      "Human Gate nhẹ.",
+      "—"
+    ]
+  ],
+  "B12": [
+    [
+      "1. Deploy Staging",
+      "DevOps",
+      "Deploy build qua CI/CD, dùng đúng artifact đã build ở B10 (build- once).",
+      "—",
+      "—"
+    ],
+    [
+      "2. Chạy Regression + SIT",
+      "Tester",
+      "Chạy regression tự động + SIT thủ công cho luồng phức tạp.",
+      "Bug phát hiện dùng mẫu Bug Report.",
+      "Bug Report — PL 5",
+      {
+        "links": [
+          {
+            "id": "pl5-bug-report",
+            "label": "PL5"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Ký Gate 4a",
+      "Test Lead",
+      "Ký khi Regression xanh 100% và RTM phủ đủ AC.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Chạy ATTT, ký Gate 4b",
+      "Security Lead/pentest",
+      "DAST + Pentest + kiểm PAM/MFA; ký khi hết lỗ hổng Critical/High.",
+      "—",
+      "—"
+    ],
+    [
+      "5. Load test, ký Gate 4c",
+      "Tech Lead + DevOps",
+      "Chạy JMeter/k6; ký khi đạt SLA hiệu năng cam kết.",
+      "—",
+      "—"
+    ],
+    [
+      "6. Deploy UAT",
+      "DevOps",
+      "Deploy cùng artifact (không rebuild) sau khi 4a+4b+4c đã đạt.",
+      "—",
+      "—"
+    ],
+    [
+      "7. Chạy kịch bản UAT",
+      "PO/khách hàng",
+      "Chạy cùng BA/Tester hỗ trợ giải thích nghiệp vụ.",
+      "—",
+      "—"
+    ],
+    [
+      "8. Ký UAT Sign- off — Gate 4",
+      "PO",
+      "Ký Biên bản UAT Sign-off chính thức.",
+      "—",
+      "UAT Sign-off — PL 6",
+      {
+        "links": [
+          {
+            "id": "pl6-uat-go-no-go",
+            "label": "PL6"
+          }
+        ]
+      }
+    ]
+  ],
+  "B13": [
+    [
+      "1. Họp Go/No-Go",
+      "PM",
+      "Chủ trì họp, rà soát checklist cùng Tech Lead, Test Lead, Security Lead, PO.",
+      "—",
+      "Go/No-Go Checklist — PL 6",
+      {
+        "links": [
+          {
+            "id": "pl6-uat-go-no-go",
+            "label": "PL6"
+          }
+        ]
+      }
+    ],
+    [
+      "2. Xác nhận Rollback & IaC",
+      "DevOps",
+      "Xác nhận Rollback Plan đã diễn tập, IaC đã review, dashboard sẵn sàng.",
+      "—",
+      "Chưa có mẫu Rollback Plan",
+      {
+        "links": [
+          {
+            "id": "runbook",
+            "label": "Runbook"
+          },
+          {
+            "id": "changelog",
+            "label": "CHANGELOG"
+          }
+        ]
+      }
+    ],
+    [
+      "3. Quyết định GO/NO-GO — Gate 5",
+      "PM",
+      "Ra quyết định chính thức; nếu NO-GO nêu lý do và dời lịch.",
+      "—",
+      "—"
+    ],
+    [
+      "4. Deploy Production",
+      "DevOps",
+      "Deploy đúng artifact đã qua UAT theo blue-green/canary.",
+      "Chỉ khi GO.",
+      "—"
+    ],
+    [
+      "5. Trực Hypercare",
+      "Dev + DevOps",
+      "Trực 1-2 tuần, giám sát tăng cường, SLA rút ngắn.",
+      "—",
+      "—"
+    ],
+    [
+      "6. Thông báo go-live",
+      "PM",
+      "Thông báo cho stakeholder theo Communication Plan.",
+      "—",
+      "Communication Plan — PL 1",
+      {
+        "links": [
+          {
+            "id": "pl1-project-charter",
+            "label": "PL1"
+          }
+        ]
+      }
+    ]
+  ],
+  "B14": [
+    [
+      "1. Vận hành theo Runbook",
+      "DevOps/Ops",
+      "AI hỗ trợ giám sát log/alert, đề xuất xử lý (SRE agent).",
+      "—",
+      "Chưa có mẫu Runbook",
+      {
+        "links": [
+          {
+            "id": "runbook",
+            "label": "Runbook"
+          }
+        ]
+      }
+    ],
+    [
+      "2. Xử lý Hotfix",
+      "Đội trực",
+      "Theo quy trình Hotfix Production (mục 3) nếu Severity 1 phát sinh.",
+      "—",
+      "—"
+    ],
+    [
+      "3. Retrospective/Post- mortem",
+      "PM",
+      "Tổ chức cuối sprint hoặc sau sự cố lớn, có người chủ trì.",
+      "—",
+      "Chưa có mẫu Post- mortem",
+      {
+        "links": [
+          {
+            "id": "postmortem",
+            "label": "Post-mortem"
+          }
+        ]
+      }
+    ],
+    [
+      "4. Cập nhật constitution.md",
+      "Tech Lead",
+      "Đưa bài học vào constitution.md/rules/ — khép vòng lặp cải tiến.",
+      "—",
+      "constitution.md — PL 3.1",
+      {
+        "links": [
+          {
+            "id": "constitution",
+            "label": "3.1 constitution"
+          }
+        ]
+      }
+    ]
+  ]
+}
