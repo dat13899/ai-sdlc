@@ -1,6 +1,6 @@
 # AI-SDLC site — ai.btdat.io.vn
 
-Web hoá quy trình **AI-SDLC v5.9** (Quy trình phát triển phần mềm tích hợp AI) — 14 bước, 5 giai đoạn, 8 gate, 17 file luật cho AI.
+Web hoá quy trình **AI-SDLC v5.9** (Quy trình phát triển phần mềm tích hợp AI) — 14 bước, 5 giai đoạn, 8 gate, 17 file luật/template cho AI (thực tế 43 file mẫu).
 
 Nội dung **trích tự động từ PDF gốc**, không gõ lại tay: 82 hàng bảng chi tiết (5 cột) + 14 lưu đồ PNG.
 
