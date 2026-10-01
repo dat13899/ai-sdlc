@@ -57,6 +57,17 @@ code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;f
 .tree a .tg{flex:none;font-size:10px}
 .tree-sep{height:1px;background:var(--line);margin:12px 0}
 
+/* ◆ = bước/file mẫu đã có bản điền thật từ dự án INS Platform.
+   Dùng chung ký hiệu cho cả cây 14 bước (trái) và danh sách mẫu (phải). */
+.ti-ins{color:var(--green);font-size:10px;line-height:1}
+.tree a .ti-ins{flex:none;margin-top:3px}
+.legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--dim-2);padding:5px 8px;margin-bottom:10px;
+  background:rgba(66,211,146,.07);border:1px solid rgba(66,211,146,.2);border-radius:9px}
+.legend a{margin-left:auto;color:var(--accent-2);font-size:11px}
+.legend .note{margin-left:auto}
+.legend a+.note,.legend .note:first-child{margin-left:auto}
+
 .side-actions{display:flex;gap:8px;margin-bottom:12px}
 .btn{flex:1;text-align:center;padding:8px 10px;border-radius:9px;font-size:12.8px;font-weight:600;
   background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;white-space:nowrap}
@@ -73,6 +84,20 @@ code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;f
 .side-list .fl{display:block;font-size:13px;color:var(--text);line-height:1.35}
 .side-list .fm{display:block;font-size:11.5px;color:var(--dim-2);margin-top:2px}
 .pending{color:var(--amber)}
+
+/* nút nhỏ "◆ điền thật" dưới mỗi mẫu có bản thật — bấm sang trang /ins/ */
+.side-list li{position:relative}
+.side-ins{display:inline-flex;align-items:center;gap:4px;margin:0 0 4px 8px;padding:2px 7px;
+  border-radius:999px;font-size:10.5px;line-height:1.5;
+  background:rgba(66,211,146,.11);border:1px solid rgba(66,211,146,.26);color:#8ff0c4}
+.side-ins:hover{background:rgba(66,211,146,.2);color:#b6f7da;text-decoration:none}
+.side-ins .ti-ins{font-size:9px}
+
+/* nút trên trang mẫu trỏ sang bản điền thật */
+.btn-ins{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;
+  font-size:12.3px;font-weight:600;
+  background:rgba(66,211,146,.11);border:1px solid rgba(66,211,146,.28);color:#8ff0c4}
+.btn-ins:hover{background:rgba(66,211,146,.2);color:#b6f7da;text-decoration:none}
 
 /* ---------- trang file mẫu ---------- */
 .tpl-head{padding:4px 0 18px;border-bottom:1px solid var(--line);margin-bottom:20px}

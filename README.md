@@ -128,6 +128,15 @@ public/assets/ins/AI-SDLC-vi-du-INS-Platform.zip
   `SECTION_IDS` trong script scroll-spy. Link sidebar phải + header: `/ins/index.html`.
 - Quy ước trong nội dung ví dụ: `> TODO` = dự án chưa có dữ liệu, `⚠️` = tài liệu lệch code
   — cố ý giữ nguyên, không bịa cho đủ.
+- **Ký hiệu ◆ = "đã có bản điền thật"**, hiện ở 3 nơi: cây 14 bước (menu trái), danh sách
+  file mẫu (menu phải, nút pill "◆ điền thật"), và nút trên trang mẫu `/mau/<id>.html`.
+  Ánh xạ 2 chiều do `build.js` tự suy ra, không hard-code:
+  - `insByStep` — từ trường `for` của file ví dụ, **chỉ lấy bước đầu tiên**
+    (`/^\s*(B\d{1,2})\b/`) vì `dor-dod.md` ghi "B2 … áp dụng mọi sprint từ B7 trở đi" —
+    lấy mọi match sẽ gắn nhầm ◆ cho B7.
+  - `insByOrigin` — từ `insOriginTemplate()` (khớp basename file ví dụ ↔ mẫu gốc).
+  Thêm file ví dụ mới thì chỉ cần copy `.md` vào `vi-du-ins/` + khai báo trong
+  `src/ins-examples.json` (nếu `for` không bắt đầu bằng `Bx` thì sửa `for` cho đúng bước).
 
 ## Public qua Cloudflare Tunnel
 

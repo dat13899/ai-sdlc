@@ -65,6 +65,17 @@ code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;f
 .tree a .tg{flex:none;font-size:10px}
 .tree-sep{height:1px;background:var(--line);margin:12px 0}
 
+/* ◆ = bước/file mẫu đã có bản điền thật từ dự án INS Platform.
+   Dùng chung ký hiệu cho cả cây 14 bước (trái) và danh sách mẫu (phải). */
+.ti-ins{color:var(--green);font-size:10px;line-height:1}
+.tree a .ti-ins{flex:none;margin-top:3px}
+.legend{display:flex;align-items:center;gap:6px;flex-wrap:wrap;
+  font-size:11.5px;color:var(--dim-2);padding:5px 8px;margin-bottom:10px;
+  background:rgba(66,211,146,.07);border:1px solid rgba(66,211,146,.2);border-radius:9px}
+.legend a{margin-left:auto;color:var(--accent-2);font-size:11px}
+.legend .note{margin-left:auto}
+.legend a+.note,.legend .note:first-child{margin-left:auto}
+
 .side-actions{display:flex;gap:8px;margin-bottom:12px}
 .btn{flex:1;text-align:center;padding:8px 10px;border-radius:9px;font-size:12.8px;font-weight:600;
   background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;white-space:nowrap}
@@ -81,6 +92,20 @@ code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;f
 .side-list .fl{display:block;font-size:13px;color:var(--text);line-height:1.35}
 .side-list .fm{display:block;font-size:11.5px;color:var(--dim-2);margin-top:2px}
 .pending{color:var(--amber)}
+
+/* nút nhỏ "◆ điền thật" dưới mỗi mẫu có bản thật — bấm sang trang /ins/ */
+.side-list li{position:relative}
+.side-ins{display:inline-flex;align-items:center;gap:4px;margin:0 0 4px 8px;padding:2px 7px;
+  border-radius:999px;font-size:10.5px;line-height:1.5;
+  background:rgba(66,211,146,.11);border:1px solid rgba(66,211,146,.26);color:#8ff0c4}
+.side-ins:hover{background:rgba(66,211,146,.2);color:#b6f7da;text-decoration:none}
+.side-ins .ti-ins{font-size:9px}
+
+/* nút trên trang mẫu trỏ sang bản điền thật */
+.btn-ins{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:999px;
+  font-size:12.3px;font-weight:600;
+  background:rgba(66,211,146,.11);border:1px solid rgba(66,211,146,.28);color:#8ff0c4}
+.btn-ins:hover{background:rgba(66,211,146,.2);color:#b6f7da;text-decoration:none}
 
 /* ---------- trang file mẫu ---------- */
 .tpl-head{padding:4px 0 18px;border-bottom:1px solid var(--line);margin-bottom:20px}
@@ -364,6 +389,10 @@ footer a{color:var(--dim)}
   <details class="side-box" open>
     <summary><span class="side-t">Quy trình 14 bước</span></summary>
     <nav class="tree">
+      <div class="legend" title="Mỗi file mẫu ở bước này đã có bản điền thật từ dự án INS Platform">
+        <span class="ti-ins">◆</span> đã có ví dụ điền thật
+        <a href="/ins/index.html">xem 21 ví dụ →</a>
+      </div>
       
       <div class="tree-g">
         <div class="tree-gt">GĐ 0 · Khởi tạo</div>
@@ -374,12 +403,14 @@ footer a{color:var(--dim)}
               <span class="tb">B1</span>
               <span class="tn">Project Charter &amp; Kick-off</span>
               
+              
             </a>
           </li>
           <li data-step="b2">
             <a href="/index.html#b2">
               <span class="tb">B2</span>
               <span class="tn">Constitution &amp; skill.md</span>
+              <span class="ti ti-ins" title="đã có 11 file mẫu điền thật — xem /ins/agents.html">◆</span>
               
             </a>
           </li>
@@ -394,6 +425,7 @@ footer a{color:var(--dim)}
               <span class="tb">B3</span>
               <span class="tn">Thu thập yêu cầu</span>
               
+              
             </a>
           </li>
           <li data-step="b4">
@@ -401,12 +433,14 @@ footer a{color:var(--dim)}
               <span class="tb">B4</span>
               <span class="tn">Viết Spec (Specify)</span>
               
+              
             </a>
           </li>
           <li data-step="b5">
             <a href="/index.html#b5">
               <span class="tb">B5</span>
               <span class="tn">Làm rõ &amp; chốt Spec</span>
+              
               <span class="tg" title="Human Gate">⛔</span>
             </a>
           </li>
@@ -420,6 +454,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b6">
               <span class="tb">B6</span>
               <span class="tn">Technical Plan &amp; Kiến trúc</span>
+              <span class="ti ti-ins" title="đã có 3 file mẫu điền thật — xem /ins/adr-template.html">◆</span>
               <span class="tg" title="Human Gate">⛔</span>
             </a>
           </li>
@@ -427,6 +462,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b7">
               <span class="tb">B7</span>
               <span class="tn">Phân rã Task &amp; sprint planning</span>
+              
               
             </a>
           </li>
@@ -440,6 +476,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b8">
               <span class="tb">B8</span>
               <span class="tn">Coding</span>
+              <span class="ti ti-ins" title="đã có 1 file mẫu điền thật — xem /ins/conventional-commits.html">◆</span>
               
             </a>
           </li>
@@ -447,6 +484,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b9">
               <span class="tb">B9</span>
               <span class="tn">Unit Test</span>
+              <span class="ti ti-ins" title="đã có 1 file mẫu điền thật — xem /ins/test-rules.html">◆</span>
               
             </a>
           </li>
@@ -454,6 +492,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b10">
               <span class="tb">B10</span>
               <span class="tn">Code Review 2 tầng</span>
+              <span class="ti ti-ins" title="đã có 2 file mẫu điền thật — xem /ins/code-review-rules.html">◆</span>
               <span class="tg" title="Human Gate">⛔</span>
             </a>
           </li>
@@ -468,12 +507,14 @@ footer a{color:var(--dim)}
               <span class="tb">B11</span>
               <span class="tn">Test Plan &amp; Test Case</span>
               
+              
             </a>
           </li>
           <li data-step="b12">
             <a href="/index.html#b12">
               <span class="tb">B12</span>
               <span class="tn">SIT/Regression/UAT</span>
+              
               <span class="tg" title="Human Gate">⛔</span>
             </a>
           </li>
@@ -487,6 +528,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b13">
               <span class="tb">B13</span>
               <span class="tn">Release &amp; triển khai môi trường</span>
+              
               <span class="tg" title="Human Gate">⛔</span>
             </a>
           </li>
@@ -494,6 +536,7 @@ footer a{color:var(--dim)}
             <a href="/index.html#b14">
               <span class="tb">B14</span>
               <span class="tn">Vận hành &amp; cải tiến</span>
+              <span class="ti ti-ins" title="đã có 2 file mẫu điền thật — xem /ins/postmortem.html">◆</span>
               
             </a>
           </li>
@@ -625,6 +668,10 @@ footer a{color:var(--dim)}
       <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
       <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
     </div>
+    <div class="legend" title="Mẫu nào đã có bản điền thật — bấm để xem">
+      <span class="ti-ins">◆</span> điền thật
+      <span class="note">21/44 mẫu</span>
+    </div>
     
     <div class="side-g">
       <div class="side-gt">Phụ lục biểu mẫu (PL1–PL6)</div>
@@ -635,36 +682,42 @@ footer a{color:var(--dim)}
             <span class="fl">PL1 — Project Charter &amp; Kick-off</span>
             <span class="fm">B1 · 153 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/pl2-change-request.html" title="Mọi thay đổi phạm vi/thiết kế sau khi Spec đã chốt — PM + PO duyệt trước khi làm.">
             <span class="fl">PL2 — Change Request Form</span>
             <span class="fm">Sau Gate 1 · 141 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/pl3-bo-tai-lieu-b2.html" title="Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules.">
             <span class="fl">PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</span>
             <span class="fm">B2 · 111 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/pl4-bo-bieu-mau-b3.html" title="Interview Guide, Biên bản họp, BRD, Process Flow/User Journey, Q&amp;A Log — ánh xạ sang nhóm B3.">
             <span class="fl">PL4 — Bộ biểu mẫu B3 (chỉ mục 5 mẫu)</span>
             <span class="fm">B3 · 101 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/pl5-bug-report.html" title="Steps to reproduce, expected vs actual, evidence, liên kết AC/Test Case, Severity + Priority.">
             <span class="fl">PL5 — Bug Report</span>
             <span class="fm">Vận hành · 150 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/pl6-uat-go-no-go.html" title="Phần 1 biên bản UAT (Test Lead, Security Lead, PO ký). Phần 2 checklist Go/No-Go trước go-live.">
             <span class="fl">PL6 — UAT Sign-off &amp; Go/No-Go Checklist</span>
             <span class="fm">Gate 4 &amp; 5 · 207 dòng</span>
           </a>
+          
         </li>
       </ul>
     </div>
@@ -677,72 +730,84 @@ footer a{color:var(--dim)}
             <span class="fl">constitution.md — Hiến pháp dự án</span>
             <span class="fm">B2 · PL 3.1 · 226 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/constitution.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/coding-convention.html" title="Naming, formatting, cấu trúc thư mục, docstring; ánh xạ formatter/linter theo ngôn ngữ.">
             <span class="fl">CODING_CONVENTION.md</span>
             <span class="fm">B2 · PL 3.2 · 162 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/coding-convention.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/adr-template.html" title="Khuôn Architecture Decision Record (MADR): Context, Decision Drivers, Options, Outcome, Consequences.">
             <span class="fl">adr-template.md — ADR theo MADR</span>
             <span class="fm">B2 · PL 3.3 · 211 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/adr-template.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/skill.html" title="Identity, thứ tự đọc file, phạm vi quyền hạn, xử lý khi không chắc chắn, workflow coding, Tầng 1/2.">
             <span class="fl">SKILL.md — luật điều khiển AI Agent</span>
             <span class="fm">B2 · PL 3.4 · 152 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/skill.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/agents.html" title="Chuẩn file chỉ dẫn agent dùng chung cho nhiều công cụ (de-facto 2026); SKILL.md có thể include file này.">
             <span class="fl">AGENTS.md — chuẩn liên-công-cụ</span>
             <span class="fm">B2 · 161 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/agents.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/tool-permissions.html" title="Least-privilege: bảng hành động được/không được tự chạy; mức tự chủ theo môi trường.">
             <span class="fl">tool-permissions.md — quyền hạn AI</span>
             <span class="fm">B2 · PL 3.5 · 134 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/tool-permissions.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/data-classification.html" title="Public / Internal / Confidential / Restricted — loại nào được đưa vào prompt AI (tham chiếu NIST/ISO 27001).">
             <span class="fl">data-classification.md — phân loại dữ liệu</span>
             <span class="fm">B2 · PL 3.6 · 114 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/data-classification.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/ai-tool-scope.html" title="Danh mục tool theo dự án + trạng thái Zero Data Retention + điều kiện phê duyệt tool ngoài danh sách.">
             <span class="fl">ai-tool-scope.md — tool AI được duyệt</span>
             <span class="fm">B2 · PL 3.7 · 123 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/prompts.html" title="System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay.">
             <span class="fl">prompts.md — thư viện prompt</span>
             <span class="fm">B2 · PL 3.8 · 332 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/prompts.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/docs-index.html" title="Danh mục tài liệu + thứ tự đọc cho AI; ai sở hữu, cập nhật khi nào.">
             <span class="fl">docs-index.md — bản đồ tài liệu</span>
             <span class="fm">B2 · PL 3.15 · 123 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/docs-index.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/glossary.html" title="Thuật ngữ nghiệp vụ + kỹ thuật, quy tắc: từ nào phải vào glossary.">
             <span class="fl">glossary.md — từ điển thuật ngữ</span>
             <span class="fm">B2 · PL 3.16 · 106 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/glossary.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/dor-dod.html" title="Tiêu chí khách quan cho mọi gate (tham chiếu Scrum.org), tách DoR sprint / DoD task.">
             <span class="fl">dor-dod.md — Definition of Ready / Done</span>
             <span class="fm">B2 · PL 3.17 · 184 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/dor-dod.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
       </ul>
     </div>
@@ -755,42 +820,49 @@ footer a{color:var(--dim)}
             <span class="fl">rules/brd-rules.md</span>
             <span class="fm">B3 · PL 3.9 · 104 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/bpm-rules.html" title="Linter BPMN: không nhánh cụt, mọi gateway có nhãn, actor nhất quán, ký hiệu đúng BPMN 2.0.">
             <span class="fl">rules/bpm-rules.md</span>
             <span class="fm">B3/B4 · PL 3.10 · 122 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/adr-rules.html" title="Checklist tự kiểm ADR theo MADR trước khi trình Tech Lead.">
             <span class="fl">rules/adr-rules.md</span>
             <span class="fm">B6 · PL 3.11 · 100 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/api-rules.html" title="Checklist OpenAPI 3.x: naming, versioning, lỗi, bảo mật, ví dụ request/response.">
             <span class="fl">rules/api-rules.md</span>
             <span class="fm">B6 · PL 3.12 · 133 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/api-rules.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/test-rules.html" title="Checklist unit test AI sinh: assert thật, một hành vi/test, bao phủ edge case, không test giả.">
             <span class="fl">rules/test-rules.md</span>
             <span class="fm">B9 · PL 3.13 · 146 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/test-rules.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/testcase-rules.html" title="Checklist AI tự kiểm Test Case: bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM, không chứa PII.">
             <span class="fl">rules/testcase-rules.md</span>
             <span class="fm">B11 · PL 3.14 · 127 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/code-review-rules.html" title="Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST.">
             <span class="fl">rules/code-review-rules.md</span>
             <span class="fm">B10 · PL 3.15 · 234 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/code-review-rules.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
       </ul>
     </div>
@@ -803,30 +875,35 @@ footer a{color:var(--dim)}
             <span class="fl">4.1 Interview Guide</span>
             <span class="fm">B3 b.1 · 146 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/meeting-minutes.html" title="Ghi rõ phát biểu gốc vs phần AI diễn giải; ai xác nhận, khi nào.">
             <span class="fl">4.2 Biên bản họp / Workshop</span>
             <span class="fm">B3 b.2 · 127 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/brd.html" title="Business context, stakeholder, FR/NFR có số, User Story chuẩn, MoSCoW, giả định &amp; rủi ro.">
             <span class="fl">4.3 BRD theo BABOK v3</span>
             <span class="fm">B3 b.3 · 212 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/process-flow.html" title="As-is/To-be, ký hiệu BPMN 2.0, User Journey Map rút gọn.">
             <span class="fl">4.4 Process Flow / User Journey</span>
             <span class="fm">B3 b.4 · 116 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/qa-log.html" title="Nguồn chính thức duy nhất trả lời 'ai quyết định gì, khi nào' — dùng tới khi chốt Spec.">
             <span class="fl">4.5 Q&amp;A Log</span>
             <span class="fm">B3 → B5 · 100 dòng</span>
           </a>
+          
         </li>
       </ul>
     </div>
@@ -839,66 +916,77 @@ footer a{color:var(--dim)}
             <span class="fl">spec.md + User Story &amp; AC</span>
             <span class="fm">B4 · 198 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/plan.html" title="Technical plan: bối cảnh, container, dữ liệu, API, rủi ro; C4 có thể vẽ bằng Mermaid/Structurizr.">
             <span class="fl">plan.md + C4 Model</span>
             <span class="fm">B6 · 226 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/plan.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/tasks.html" title="Danh sách task ≤1 ngày công, mỗi task có AC riêng, thứ tự phụ thuộc.">
             <span class="fl">tasks.md</span>
             <span class="fm">B7 · 157 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/test-plan.html" title="Phạm vi, mục tiêu, hạng mục test, cách tiếp cận, tiêu chí dừng, môi trường, rủi ro.">
             <span class="fl">Test Plan theo ISO/IEC/IEEE 29119-3</span>
             <span class="fm">B11 · 170 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/test-case-rtm.html" title="Mẫu test case (Given-When-Then, dữ liệu, kết quả mong đợi) và RTM phủ 100% AC.">
             <span class="fl">Test Case + RTM</span>
             <span class="fm">B11 · 195 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/code-review-human.html" title="Nghiệp vụ, kiến trúc, khả năng bảo trì, tác động chéo — theo Google eng-practices.">
             <span class="fl">Checklist review tầng 2 (người)</span>
             <span class="fm">B10 · 156 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/code-review-checklist-nguoi.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/runbook.html" title="Sự cố thường gặp, cách kiểm tra, lệnh xử lý, escalation, đầu mối liên hệ.">
             <span class="fl">Runbook vận hành</span>
             <span class="fm">B14 · 132 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/runbook.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/postmortem.html" title="Theo Google SRE: timeline, tác động, nguyên nhân gốc, hành động khắc phục có owner + hạn.">
             <span class="fl">Post-mortem (blameless)</span>
             <span class="fm">B14 · 134 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/postmortem.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/changelog.html" title="Added/Changed/Deprecated/Removed/Fixed/Security + Semantic Versioning.">
             <span class="fl">CHANGELOG theo Keep a Changelog</span>
             <span class="fm">B13 · 161 dòng</span>
           </a>
+          
         </li>
         <li>
           <a href="/mau/conventional-commits.html" title="Định dạng commit, type/scope/breaking change, cách nối với CHANGELOG và semver.">
             <span class="fl">Conventional Commits 1.0</span>
             <span class="fm">B8 · 182 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/conventional-commits.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/threat-model.html" title="Bảng đe dọa/đối sách theo STRIDE + OWASP LLM Top 10 cho tính năng có AI.">
             <span class="fl">Threat Model theo STRIDE</span>
             <span class="fm">B6/B12 · 99 dòng</span>
           </a>
+          
         </li>
       </ul>
     </div>
@@ -911,18 +999,21 @@ footer a{color:var(--dim)}
             <span class="fl">Chỉ mục chuẩn đang áp dụng</span>
             <span class="fm">Toàn quy trình · 75 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/standards-index.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/ai-governance.html" title="OWASP LLM Top 10, NIST AI RMF, ISO/IEC 42001 — áp vào chính sách tool/prompt của dự án.">
             <span class="fl">Quản trị rủi ro AI</span>
             <span class="fm">Mục 5 &amp; 7 · 115 dòng</span>
           </a>
+          <a class="side-ins" href="/ins/ai-governance.html" title="Xem bản điền thật của mẫu này (1 file ví dụ)">◆<span>điền thật</span></a>
         </li>
         <li>
           <a href="/mau/dora-metrics.html" title="4 chỉ số DORA + escaped defects + mutation score: cách đo, ngưỡng tốt, cách thu thập.">
             <span class="fl">Chỉ số DORA &amp; KPI chất lượng</span>
             <span class="fm">Mục 8 · 156 dòng</span>
           </a>
+          
         </li>
       </ul>
     </div>

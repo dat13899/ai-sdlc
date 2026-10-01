@@ -65,6 +65,21 @@ insGroups = insReg.groups.map((g) => ({
 insAll = insGroups.flatMap((g) => g.files);
 insById = Object.fromEntries(insAll.map((f) => [f.slug, f]));
 
+/* map bước Bx -> các file ví dụ điền thật áp dụng cho bước đó.
+   Chỉ lấy bước ĐẦU TIÊN của trường "for" — ví dụ dor-dod.md ghi "B2 — ... áp dụng mọi
+   sprint từ B7 trở đi", nhưng file đó là của B2, không phải của B7. */
+const insByStep = {};
+for (const f of insAll) {
+  const m = /^\s*(B\d{1,2})\b/.exec(String(f.for));
+  if (m) (insByStep[m[1]] = insByStep[m[1]] || []).push(f);
+}
+/* slug ví dụ -> file mẫu gốc, để menu phải gắn icon từ hướng ngược lại */
+const insByOrigin = {};
+for (const f of insAll) if (f.origin) (insByOrigin[f.origin] = insByOrigin[f.origin] || []).push(f);
+
+/* Icon "đã điền thật" dùng ở cả menu trái (bước) và menu phải (file mẫu) — ký hiệu ◆ */
+const insOf = (templateId) => insByOrigin[templateId] || null;
+
 /* ---------- NAV ---------- */
 const NAV = [
   ['#quy-trinh', '14 bước'],
@@ -87,6 +102,10 @@ function treeNav(activeStep) {
   <details class="side-box" open>
     <summary><span class="side-t">Quy trình 14 bước</span></summary>
     <nav class="tree">
+      <div class="legend" title="Mỗi file mẫu ở bước này đã có bản điền thật từ dự án INS Platform">
+        <span class="ti-ins">◆</span> đã có ví dụ điền thật
+        <a href="/ins/index.html">xem ${insAll.length} ví dụ →</a>
+      </div>
       ${d.phases.map((p) => `
       <div class="tree-g">
         <div class="tree-gt">${esc(p.id)} · ${esc(p.name)}</div>
@@ -96,6 +115,7 @@ function treeNav(activeStep) {
             <a href="/index.html#${s.code.toLowerCase()}">
               <span class="tb">${esc(s.code)}</span>
               <span class="tn">${esc(shortName(s.name))}</span>
+              ${insByStep[s.code] ? `<span class="ti ti-ins" title="đã có ${insByStep[s.code].length} file mẫu điền thật — xem /ins/${esc(insByStep[s.code][0].slug)}.html">◆</span>` : ''}
               ${s.gate && /Gate/.test(s.gate) ? '<span class="tg" title="Human Gate">⛔</span>' : ''}
             </a>
           </li>`).join('')}
@@ -139,19 +159,27 @@ function sideFiles(activeId) {
       <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
       <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
     </div>
+    <div class="legend" title="Mẫu nào đã có bản điền thật — bấm để xem">
+      <span class="ti-ins">◆</span> điền thật
+      <span class="note">${Object.keys(insByOrigin).length}/${present.length} mẫu</span>
+    </div>
     ${registry.groups.map((g) => {
       const items = g.files.map((f) => fileById[f.id]).filter((f) => f);
       return `
     <div class="side-g">
       <div class="side-gt">${esc(g.title)}</div>
       <ul class="side-list">
-        ${items.map((f) => `
+        ${items.map((f) => {
+          const ins = insByOrigin[f.id];
+          return `
         <li${activeId === f.id ? ' class="on"' : ''}>
           <a href="/mau/${f.id}.html" title="${esc(f.desc)}">
             <span class="fl">${esc(f.title)}</span>
             <span class="fm">${esc(f.for)}${f.missing ? ' · <span class="pending">đang cập nhật</span>' : ` · ${f.lines} dòng`}</span>
           </a>
-        </li>`).join('')}
+          ${ins ? `<a class="side-ins" href="/ins/${esc(ins[0].slug)}.html" title="Xem bản điền thật của mẫu này (${ins.length} file ví dụ)">◆<span>điền thật</span></a>` : ''}
+        </li>`;
+        }).join('')}
       </ul>
     </div>`;
     }).join('')}
@@ -814,6 +842,7 @@ function templatePage(f) {
       <a href="/mau/raw/${esc(f.file)}" download>⬇ Tải file .md</a>
       <a href="/mau/raw/${esc(f.file)}" target="_blank" rel="noopener">Xem raw</a>
       <a href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Cả bộ .zip</a>
+      ${insOf(f.id) ? `<a class="btn-ins" href="/ins/${esc(insOf(f.id)[0].slug)}.html">◆ Xem bản điền thật (INS Platform)</a>` : ''}
     </div>
   </div>
   <article class="md">${html}</article>
