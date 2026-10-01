@@ -77,6 +77,35 @@ Link ở cột "Biểu mẫu" (bảng chi tiết 14 bước) mở **popup** thay
 CSS của popup nằm ở cuối khối "tables" trong `src/styles.css` (`.mm`, `.mm-win`,
 `.mm-b`…); `body.mm-lock` khoá cuộn nền.
 
+## Bản v5.9 cập nhật (song song bản gốc)
+
+`public/assets/AI-SDLC_V5_9_updated.pdf` + `.txt` là bản cập nhật, đặt **cạnh bản gốc**
+(`quy-trinh-...-v5.9.pdf/.txt` không đổi). Cập nhật đã áp vào nội dung biên tập:
+
+- **B11 bước 1**: nguồn sinh Test Case ghi rõ "(Tài liệu nghiệp vụ / yêu cầu, Tài liệu
+  thiết kế, Tài liệu dự án,..)"; biểu mẫu → "Biểu mẫu do đối tác yêu cầu/Test Plan theo
+  chuẩn ISTQB".
+- **B11 bước 2**: thêm yêu cầu gắn nhãn nguồn gốc `AI-generated`/`Manual` cho từng Test Case.
+- **B11 bước 3**: Lưu ý "Script AI sinh phải qua `rules/code-review-rules.md` trước khi merge".
+- **B11 bước 4**: `4. Duyệt Test Plan/ Test Case`, Lưu ý `Human Gate.`
+- **`rules/testcase-rules.md`** — mẫu mới (mục 3.14), đặt giữa `test-rules.md` (3.13) và
+  `code-review-rules.md`. Đánh số lại: code-review 3.15, docs-index 3.16, glossary 3.17,
+  dor-dod 3.18 → **18 file** thay vì 17.
+- **`b2/prompts.md`** — thêm 2 prompt `P-B11-01` (AC → Test Case) và `P-B11-02` (tự kiểm
+  Test Case trước bàn giao). Thư viện prompt nay phủ B3/B4/B6/B9/B10/B11/B13.
+
+Sau khi đổi đánh số PL, phải cập nhật **cả 4 nơi**, nếu không sẽ lệch:
+
+| Nơi | Cái gì |
+|---|---|
+| `src/templates.json` | `for` của từng file rules/ + insert `testcase-rules` giữa `test-rules` và `code-review-rules` |
+| `src/md.js` | thêm `'rules/testcase-rules.md': 'testcase-rules'` vào `MD_LINK_MAP` |
+| `src/data.js` | `b2Groups` (số `n`) + `steps.out` B2 + `appendices` (3.1–3.18) + `assets` + `gaps` B11 |
+| `src/steps-detail.json` | nhãn `"3.x …"` trong cột Biểu mẫu + các chuỗi `"PL 3.x"` |
+
+Template `.md` cũng phải sửa: `phu-luc/PL3-bo-tai-lieu-b2.md`, `b2/dor-dod.md`
+(3.17→3.18), `b2/docs-index.md` (3.15→3.16).
+
 ## Ví dụ điền thật — INS Platform (`/ins/`)
 
 21 template của bộ mẫu đã được điền bằng dữ liệu thật của một dự án nền tảng bảo hiểm

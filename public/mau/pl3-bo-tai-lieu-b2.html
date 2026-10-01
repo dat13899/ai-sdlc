@@ -510,18 +510,18 @@ footer a{color:var(--dim)}
   <main class="main"><div class="tpl-head">
     <div class="crumb"><a href="/index.html">Trang chủ</a> / <a href="/mau/index.html">File mẫu</a> / PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</div>
     <h1>PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</h1>
-    <div class="tpl-meta"><span class="chip">Dùng ở: <b>B2. Constitution &amp; skill.md (Giai đoạn 0 — Khởi tạo)</b></span><span class="chip">Chủ sở hữu: <b>Tech Lead (A/R) · PM (C) · BA (R một phần)</b></span><span class="chip">110 dòng</span></div>
+    <div class="tpl-meta"><span class="chip">Dùng ở: <b>B2. Constitution &amp; skill.md (Giai đoạn 0 — Khởi tạo)</b></span><span class="chip">Chủ sở hữu: <b>Tech Lead (A/R) · PM (C) · BA (R một phần)</b></span><span class="chip">111 dòng</span></div>
     <div class="links" style="margin-top:14px">
       <a href="/mau/raw/phu-luc/PL3-bo-tai-lieu-b2.md" download>⬇ Tải file .md</a>
       <a href="/mau/raw/phu-luc/PL3-bo-tai-lieu-b2.md" target="_blank" rel="noopener">Xem raw</a>
       <a href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Cả bộ .zip</a>
     </div>
   </div>
-  <article class="md"><h2>PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</h2>
+  <article class="md"><h2>PL3 — Bộ tài liệu B2 (chỉ mục 18 file)</h2>
 <blockquote><p><strong>Cách dựng:</strong> Tech Lead chạy <code>/speckit.constitution</code> ngay sau khi khởi tạo repo (trước khi viết bất kỳ tính năng nào), sau đó tạo 4 nhóm tài liệu dưới đây. Đây là <strong>&quot;bộ não&quot; điều khiển AI Agent</strong> và tiêu chuẩn hoá cách làm việc của đội — mọi lệnh <code>/speckit.specify</code>, <code>/speckit.plan</code>, <code>/speckit.tasks</code> sau đó đều đối chiếu ngược lại các file này.</p>
 <p>Bảng dưới ánh xạ từng mục của tài liệu gốc sang <strong>file mẫu .md đã tổng hợp sẵn</strong> trong bộ mẫu này — copy vào thư mục gốc repo dự án là dùng được.</p></blockquote>
 <h3>Cách kiểm tra đã dựng đủ bộ</h3>
-<ul><li class="task"><span class="cb">☐</span> Đã có đủ 17 file (hoặc có ghi rõ lý do bỏ file nào)</li><li class="task"><span class="cb">☐</span> Mọi file đã điền placeholder <code>[Tên dự án]</code>, không còn placeholder trống</li><li class="task"><span class="cb">☐</span> <code>docs-index.md</code> liệt kê đúng các file thực có trong repo</li><li class="task"><span class="cb">☐</span> <code>constitution.md</code> đã được commit <strong>trước</strong> commit code tính năng đầu tiên</li><li class="task"><span class="cb">☐</span> Bổ sung/sửa file luôn qua Pull Request; chỉ Tech Lead được duyệt thay đổi <code>constitution.md</code></li></ul>
+<ul><li class="task"><span class="cb">☐</span> Đã có đủ 18 file (hoặc có ghi rõ lý do bỏ file nào)</li><li class="task"><span class="cb">☐</span> Mọi file đã điền placeholder <code>[Tên dự án]</code>, không còn placeholder trống</li><li class="task"><span class="cb">☐</span> <code>docs-index.md</code> liệt kê đúng các file thực có trong repo</li><li class="task"><span class="cb">☐</span> <code>constitution.md</code> đã được commit <strong>trước</strong> commit code tính năng đầu tiên</li><li class="task"><span class="cb">☐</span> Bổ sung/sửa file luôn qua Pull Request; chỉ Tech Lead được duyệt thay đổi <code>constitution.md</code></li></ul>
 <hr>
 <h3>NHÓM 1 — Quy định kỹ thuật</h3>
 <div class="tw"><table>
@@ -548,14 +548,14 @@ footer a{color:var(--dim)}
 <p>Đây là <strong>linter để AI tự kiểm trước khi con người review</strong> — phủ mọi giai đoạn AI tự sinh nội dung, không chỉ BA.</p>
 <div class="tw"><table>
 <thead><tr><th>Mục</th><th>File mẫu</th><th>Áp ở bước</th><th>Nội dung</th><th>Ai dựng</th></tr></thead>
-<tbody><tr><td>3.9</td><td><a href="/mau/brd-rules.html"><code>rules/brd-rules.md</code></a></td><td>B3</td><td>Linter BRD: yêu cầu đo lường được, FR vs NFR, truy vết mục tiêu kinh doanh</td><td>BA</td></tr><tr><td>3.10</td><td><a href="/mau/bpm-rules.html"><code>rules/bpm-rules.md</code></a></td><td>B3/B4</td><td>Linter BPMN: không nhánh cụt, gateway có nhãn, actor nhất quán</td><td>BA</td></tr><tr><td>3.11</td><td><a href="/mau/adr-rules.html"><code>rules/adr-rules.md</code></a></td><td>B6</td><td>Checklist tự kiểm ADR theo MADR (≥ 2 phương án, có cả mặt xấu)</td><td>Tech Lead</td></tr><tr><td>3.12</td><td><a href="/mau/api-rules.html"><code>rules/api-rules.md</code></a></td><td>B6</td><td>Checklist OpenAPI: naming, versioning, error model, bảo mật, ví dụ</td><td>Tech Lead</td></tr><tr><td>3.13</td><td><a href="/mau/test-rules.html"><code>rules/test-rules.md</code></a></td><td>B9</td><td>Checklist unit test: assert thật, một hành vi/test, edge case, chống test giả</td><td>Dev + Tester</td></tr><tr><td>3.14</td><td><a href="/mau/code-review-rules.html"><code>rules/code-review-rules.md</code></a></td><td>B10</td><td>Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret scan</td><td>Security + Tech Lead</td></tr></tbody>
+<tbody><tr><td>3.9</td><td><a href="/mau/brd-rules.html"><code>rules/brd-rules.md</code></a></td><td>B3</td><td>Linter BRD: yêu cầu đo lường được, FR vs NFR, truy vết mục tiêu kinh doanh</td><td>BA</td></tr><tr><td>3.10</td><td><a href="/mau/bpm-rules.html"><code>rules/bpm-rules.md</code></a></td><td>B3/B4</td><td>Linter BPMN: không nhánh cụt, gateway có nhãn, actor nhất quán</td><td>BA</td></tr><tr><td>3.11</td><td><a href="/mau/adr-rules.html"><code>rules/adr-rules.md</code></a></td><td>B6</td><td>Checklist tự kiểm ADR theo MADR (≥ 2 phương án, có cả mặt xấu)</td><td>Tech Lead</td></tr><tr><td>3.12</td><td><a href="/mau/api-rules.html"><code>rules/api-rules.md</code></a></td><td>B6</td><td>Checklist OpenAPI: naming, versioning, error model, bảo mật, ví dụ</td><td>Tech Lead</td></tr><tr><td>3.13</td><td><a href="/mau/test-rules.html"><code>rules/test-rules.md</code></a></td><td>B9</td><td>Checklist unit test: assert thật, một hành vi/test, edge case, chống test giả</td><td>Dev + Tester</td></tr><tr><td>3.14</td><td><a href="/mau/testcase-rules.html"><code>rules/testcase-rules.md</code></a></td><td>B11</td><td>Checklist Test Case AI sinh: bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM, không chứa PII</td><td>Test Lead + Tester</td></tr><tr><td>3.15</td><td><a href="/mau/code-review-rules.html"><code>rules/code-review-rules.md</code></a></td><td>B10</td><td>Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret scan</td><td>Security + Tech Lead</td></tr></tbody>
 </table></div>
 <p><strong>Điều kiện hoàn thành nhóm 4:</strong> mỗi linter có câu hỏi kiểm chứng được, có ví dụ viết đúng/sai, và có mục &quot;điều kiện chặn cứng&quot;.</p>
 <hr>
 <h3>CHỈ MỤC &amp; DÙNG CHUNG</h3>
 <div class="tw"><table>
 <thead><tr><th>Mục</th><th>File mẫu</th><th>Nội dung</th><th>Ai dựng</th><th>Khi nào cập nhật</th></tr></thead>
-<tbody><tr><td>3.15</td><td><a href="/mau/docs-index.html"><code>b2/docs-index.md</code></a></td><td>Bản đồ tài liệu dự án: file nào là nguồn sự thật cho thông tin gì, thứ tự AI nên đọc</td><td>Tech Lead</td><td>Mỗi khi thêm/bớt file tài liệu</td></tr><tr><td>3.16</td><td><a href="/mau/glossary.html"><code>b2/glossary.md</code></a></td><td>Từ điển thuật ngữ nghiệp vụ + kỹ thuật</td><td>BA (khởi tạo)</td><td>Liên tục từ B3 trở đi</td></tr><tr><td>3.17</td><td><a href="/mau/dor-dod.html"><code>b2/dor-dod.md</code></a></td><td>Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate</td><td>PM + Tech Lead</td><td>Khi tiêu chí không còn phù hợp thực tế</td></tr></tbody>
+<tbody><tr><td>3.16</td><td><a href="/mau/docs-index.html"><code>b2/docs-index.md</code></a></td><td>Bản đồ tài liệu dự án: file nào là nguồn sự thật cho thông tin gì, thứ tự AI nên đọc</td><td>Tech Lead</td><td>Mỗi khi thêm/bớt file tài liệu</td></tr><tr><td>3.17</td><td><a href="/mau/glossary.html"><code>b2/glossary.md</code></a></td><td>Từ điển thuật ngữ nghiệp vụ + kỹ thuật</td><td>BA (khởi tạo)</td><td>Liên tục từ B3 trở đi</td></tr><tr><td>3.18</td><td><a href="/mau/dor-dod.html"><code>b2/dor-dod.md</code></a></td><td>Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate</td><td>PM + Tech Lead</td><td>Khi tiêu chí không còn phù hợp thực tế</td></tr></tbody>
 </table></div>
 <hr>
 <h3>Quy tắc 2 tầng <code>skill.md</code> (mục 7 tài liệu gốc)</h3>
@@ -567,7 +567,7 @@ footer a{color:var(--dim)}
 <p>File chỉ dẫn AI agent (<code>skill.md</code>, system prompt do đối tác cung cấp) là <strong>một vector prompt injection tiềm ẩn</strong> — có thể chứa chỉ dẫn ẩn khiến agent gửi code/secret ra ngoài.</p>
 <ul><li class="task"><span class="cb">☐</span> Tech Lead <strong>bắt buộc đọc toàn bộ</strong> nội dung <code>skill.md</code>/tài liệu chỉ dẫn của đối tác trước khi nạp vào ngữ cảnh AI agent</li><li class="task"><span class="cb">☐</span> Không đưa bí mật công ty (API key, tên khách hàng khác, know-how định giá…) vào <code>skill.md</code> dùng chung với môi trường đối tác</li><li class="task"><span class="cb">☐</span> Nếu phát hiện chỉ dẫn đáng ngờ → dừng, báo Security Lead, ghi vào Q&amp;A Log</li></ul>
 <h3>Nguồn tham chiếu</h3>
-<ul><li>AI-SDLC v5.9, Phụ lục 3 (17 mục 3.1–3.17) và mục 2 B2, mục 7 — tài liệu gốc nội bộ</li><li>GitHub Spec Kit — https://github.com/github/spec-kit</li><li>Spec-Driven Development — https://github.com/github/spec-kit/blob/main/spec-driven.md</li><li>AGENTS.md — https://agents.md/</li><li>MADR — https://adr.github.io/madr/</li><li>OWASP ASVS — https://owasp.org/www-project-application-security-verification-standard/</li></ul></article>
+<ul><li>AI-SDLC v5.9, Phụ lục 3 (18 mục 3.1–3.18) và mục 2 B2, mục 7 — tài liệu gốc nội bộ</li><li>GitHub Spec Kit — https://github.com/github/spec-kit</li><li>Spec-Driven Development — https://github.com/github/spec-kit/blob/main/spec-driven.md</li><li>AGENTS.md — https://agents.md/</li><li>MADR — https://adr.github.io/madr/</li><li>OWASP ASVS — https://owasp.org/www-project-application-security-verification-standard/</li></ul></article>
   <nav class="pager">
     <a class="pg prev" href="/mau/pl2-change-request.html"><span>← Trước</span><b>PL2 — Change Request Form</b></a>
     <a class="pg next" href="/mau/pl4-bo-bieu-mau-b3.html"><span>Sau →</span><b>PL4 — Bộ biểu mẫu B3 (chỉ mục 5 mẫu)</b></a>
@@ -575,7 +575,7 @@ footer a{color:var(--dim)}
   
 <aside class="side side-r">
   <details class="side-box" open>
-    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">43/43</span></summary>
+    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">44/44</span></summary>
     <div class="side-actions">
       <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
       <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
@@ -604,7 +604,7 @@ footer a{color:var(--dim)}
         <li class="on">
           <a href="/mau/pl3-bo-tai-lieu-b2.html" title="Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules.">
             <span class="fl">PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</span>
-            <span class="fm">B2 · 110 dòng</span>
+            <span class="fm">B2 · 111 dòng</span>
           </a>
         </li>
         <li>
@@ -682,7 +682,7 @@ footer a{color:var(--dim)}
         <li>
           <a href="/mau/prompts.html" title="System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay.">
             <span class="fl">prompts.md — thư viện prompt</span>
-            <span class="fm">B2 · PL 3.8 · 281 dòng</span>
+            <span class="fm">B2 · PL 3.8 · 332 dòng</span>
           </a>
         </li>
         <li>
@@ -740,9 +740,15 @@ footer a{color:var(--dim)}
           </a>
         </li>
         <li>
+          <a href="/mau/testcase-rules.html" title="Checklist AI tự kiểm Test Case: bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM, không chứa PII.">
+            <span class="fl">rules/testcase-rules.md</span>
+            <span class="fm">B11 · PL 3.14 · 127 dòng</span>
+          </a>
+        </li>
+        <li>
           <a href="/mau/code-review-rules.html" title="Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST.">
             <span class="fl">rules/code-review-rules.md</span>
-            <span class="fm">B10 · PL 3.14 · 234 dòng</span>
+            <span class="fm">B10 · PL 3.15 · 234 dòng</span>
           </a>
         </li>
       </ul>

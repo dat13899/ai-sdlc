@@ -24,7 +24,7 @@ const phases = [
         out: 'Project Charter, Stakeholder Register, Communication Plan',
         ai: 'Claude/ChatGPT draft Charter; Fireflies/Otter ghi biên bản kick-off' },
       { code: 'B2', name: 'Constitution & skill.md', gate: 'Tech Lead + PM duyệt', key: true,
-        out: '17 file: constitution, convention, SKILL.md, tool-permissions, data-classification, prompts, rules/…',
+        out: '18 file: constitution, convention, SKILL.md, tool-permissions, data-classification, prompts, rules/…',
         ai: 'Đây là "bộ não" điều khiển AI Agent — mọi lỗi ở B2 nhân bản ra 12 bước sau' },
     ],
   },
@@ -80,7 +80,7 @@ const phases = [
     steps: [
       { code: 'B11', name: 'Test Plan & Test Case', gate: 'Test Lead duyệt',
         out: 'Test Plan, Test Case, RTM, Automation script',
-        ai: 'AI sinh test case từ Acceptance Criteria; Playwright codegen — RTM phủ 100% AC' },
+        ai: 'AI sinh test case từ Acceptance Criteria, tự rà bằng rules/testcase-rules.md; RTM phủ 100% AC và gắn nhãn AI-generated/Manual; script automation phải qua code-review-rules.md' },
       { code: 'B12', name: 'SIT / Regression / UAT / ATTT & Hiệu năng', gate: '⛔ Gate 4a/4b/4c + Gate 4',
         out: 'Biên bản SIT, báo cáo ATTT, báo cáo hiệu năng, Biên bản UAT Sign-off',
         ai: 'DAST + pentest (4b), JMeter/k6 (4c); zero bug S1–S2 mới trình PO ký UAT' },
@@ -136,7 +136,7 @@ const b2Groups = [
     title: 'Nhóm 3 — Quy định & thư viện Prompt',
     note: 'Prompt tinh chỉnh theo từng giai đoạn',
     files: [
-      { n: '3.8', f: 'prompts.md', d: 'System prompt cho B3, B4, B6, B9, B10, B13' },
+      { n: '3.8', f: 'prompts.md', d: 'System prompt cho B3, B4, B6, B9, B10, B11, B13' },
     ],
   },
   {
@@ -148,16 +148,17 @@ const b2Groups = [
       { n: '3.11', f: 'rules/adr-rules.md', d: 'Checklist AI tự kiểm ADR (B6)', tag: 'mới V5.2' },
       { n: '3.12', f: 'rules/api-rules.md', d: 'Checklist AI tự kiểm OpenAPI Spec (B6)', tag: 'mới V5.2' },
       { n: '3.13', f: 'rules/test-rules.md', d: 'Checklist AI tự kiểm Unit Test (B9)', tag: 'mới V5.2' },
-      { n: '3.14', f: 'rules/code-review-rules.md', d: 'Checklist AI review tầng 1 — cụ thể hóa OWASP ASVS (B10)', tag: 'mới V5.2' },
+      { n: '3.14', f: 'rules/testcase-rules.md', d: 'Checklist AI tự kiểm Test Case (B11) — bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM', tag: 'mới' },
+      { n: '3.15', f: 'rules/code-review-rules.md', d: 'Checklist AI review tầng 1 — cụ thể hóa OWASP ASVS (B10)', tag: 'mới V5.2' },
     ],
   },
   {
     title: 'Chỉ mục & dùng chung',
     note: 'Đồng bộ tài liệu và thuật ngữ giữa người và AI',
     files: [
-      { n: '3.15', f: 'docs-index.md', d: 'Bản đồ tài liệu dự án — chống AI đọc sai file' },
-      { n: '3.16', f: 'glossary.md', d: 'Từ điển thuật ngữ nghiệp vụ (BA cập nhật ở B4)' },
-      { n: '3.17', f: 'dor-dod.md', d: 'Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate' },
+      { n: '3.16', f: 'docs-index.md', d: 'Bản đồ tài liệu dự án — chống AI đọc sai file' },
+      { n: '3.17', f: 'glossary.md', d: 'Từ điển thuật ngữ nghiệp vụ (BA cập nhật ở B4)' },
+      { n: '3.18', f: 'dor-dod.md', d: 'Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate' },
     ],
   },
 ];
@@ -165,7 +166,7 @@ const b2Groups = [
 const appendices = [
   { n: 1, t: 'Project Charter & Kick-off', for: 'B1', d: 'Charter (SMART, in/out-scope, ngân sách), milestones gắn Gate 1–5, Stakeholder Register, Comm Plan' },
   { n: 2, t: 'Change Request Form', for: 'Sau Gate 1', d: 'Mọi thay đổi phạm vi/thiết kế sau khi Spec đã chốt — PM + PO duyệt trước khi làm' },
-  { n: 3, t: 'Bộ tài liệu B2 (17 mục, 3.1–3.17)', for: 'B2', d: 'Mỗi mục có phần "Cách dựng" (ai dựng, dựa chuẩn nào, nạp vào AI ra sao) + nội dung mẫu copy dùng ngay' },
+  { n: 3, t: 'Bộ tài liệu B2 (18 mục, 3.1–3.18)', for: 'B2', d: 'Mỗi mục có phần "Cách dựng" (ai dựng, dựa chuẩn nào, nạp vào AI ra sao) + nội dung mẫu copy dùng ngay' },
   { n: 4, t: 'Bộ biểu mẫu B3 (4.1–4.5)', for: 'B3', d: 'Interview Guide · Biên bản họp (phân biệt phát biểu gốc vs AI diễn giải) · BRD theo BABOK v3 · Process Flow/User Journey (BPMN 2.0) · Q&A Log' },
   { n: 5, t: 'Bug Report', for: 'Vận hành', d: 'Steps to reproduce, expected vs actual, evidence, link AC/Test Case, Severity + Priority' },
   { n: 6, t: 'UAT Sign-off & Go/No-Go Checklist', for: 'Gate 4 & 5', d: 'Phần 1: biên bản UAT (Test Lead, Security Lead, PO ký). Phần 2: checklist Go/No-Go trước go-live' },
@@ -243,11 +244,13 @@ const gaps = [
   { at: 'B4', what: 'spec.md / User Story + Acceptance Criteria', note: 'Tài liệu tự ghi "chưa có biểu mẫu chuẩn riêng — đề xuất bổ sung ở bản cập nhật kế tiếp"' },
   { at: 'B6', what: 'plan.md / C4 Model', note: 'Bảng bước 5 ghi "Chưa có mẫu plan.md/C4"' },
   { at: 'B10', what: 'Checklist riêng cho human reviewer tầng 2', note: 'Bảng bước 5 ghi "Chưa có checklist riêng"' },
-  { at: 'B11', what: 'Test Plan / Test Case / RTM', note: 'Ghi "Chưa có mẫu"' },
+  { at: 'B11', what: 'Test Plan / Test Case / RTM', note: 'Đã bổ sung mẫu theo ISO 29119 + ISTQB (bo-sung/test-plan.md, test-case-rtm.md) và rules/testcase-rules.md' },
   { at: 'B14', what: 'Runbook và Post-mortem template', note: 'Ghi "Chưa có mẫu" cho cả hai' },
 ];
 
 const assets = [
+  { f: 'AI-SDLC_V5_9_updated.pdf', d: 'Bản v5.9 cập nhật — thêm rules/testcase-rules.md, prompt B11, đánh số lại 3.1–3.18', size: '1,6 MB' },
+  { f: 'AI-SDLC_V5_9_updated.txt', d: 'Text trích từ bản cập nhật, để tra cứu/tìm kiếm', size: '83 KB' },
   { f: 'quy-trinh-phat-trien-phan-mem-tich-hop-ai-v5.9.pdf', d: 'Bản gốc 47 trang (nguyên bản, không sửa)', size: '2,3 MB' },
   { f: 'quy-trinh-phat-trien-phan-mem-tich-hop-ai-v5.9.txt', d: 'Text trích từ PDF, để tra cứu/tìm kiếm', size: '89 KB' },
   { f: 'luu-do/', d: '14 lưu đồ PNG của B1–B14 (bước Human Gate tô vàng)', size: '644 KB' },

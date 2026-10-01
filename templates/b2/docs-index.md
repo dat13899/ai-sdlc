@@ -2,7 +2,7 @@
 title: docs-index.md — Bản đồ tài liệu dự án
 for: B2 — dựng sau constitution.md; AI đọc ở bước 4 của thứ tự đọc file (SKILL.md)
 owner: Tech Lead (A/R) · PM (C)
-nguồn: AI-SDLC v5.9 Phụ lục 3 mục 3.15; GitHub Spec Kit (docs structure)
+nguồn: AI-SDLC v5.9 Phụ lục 3 mục 3.16; GitHub Spec Kit (docs structure)
 ---
 
 # docs-index.md — Bản đồ tài liệu dự án
@@ -116,7 +116,7 @@ repo/
 
 ## Nguồn tham chiếu
 
-- AI-SDLC v5.9, Phụ lục 3 mục 3.15 — tài liệu gốc nội bộ
+- AI-SDLC v5.9, Phụ lục 3 mục 3.16 — tài liệu gốc nội bộ
 - GitHub Spec Kit — cấu trúc tài liệu spec-driven — https://github.com/github/spec-kit
 - AGENTS.md — https://agents.md/
 - Diátaxis — cấu trúc tài liệu kỹ thuật (tutorial/how-to/reference/explanation) — https://diataxis.fr/

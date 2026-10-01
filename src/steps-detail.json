@@ -113,16 +113,16 @@
       "BA",
       "Điền khung ban đầu với vài thuật ngữ cốt lõi đã biết trước.",
       "Sẽ hoàn thiện dần từ B3, không chờ xong hết mới bắt đầu.",
-      "PL 3.16",
+      "PL 3.17",
       {
         "links": [
           {
             "id": "glossary",
-            "label": "3.16 glossary"
+            "label": "3.17 glossary"
           },
           {
             "id": "docs-index",
-            "label": "3.15 docs-index"
+            "label": "3.16 docs-index"
           }
         ]
       }
@@ -132,7 +132,7 @@
       "PM + Tech Lead",
       "Copy mẫu dor-dod.md, tool- permissions.md, data- classification.md, ai-tool- scope.md, tùy biến theo dự án.",
       "—",
-      "PL 3.5, 3.6, 3.7, 3.17",
+      "PL 3.5, 3.6, 3.7, 3.18",
       {
         "links": [
           {
@@ -149,7 +149,7 @@
           },
           {
             "id": "dor-dod",
-            "label": "3.17 dor-dod"
+            "label": "3.18 dor-dod"
           }
         ]
       }
@@ -157,9 +157,9 @@
     [
       "6. Thiết lập rules/",
       "Tech Lead",
-      "Copy 6 file rules/ (brd, bpm, adr, api, test, code-review) từ mẫu có sẵn.",
+      "Copy 7 file rules/ (brd, bpm, adr, api, test, testcase, code-review) từ mẫu có sẵn.",
       "—",
-      "PL 3.9–3.14",
+      "PL 3.9–3.15",
       {
         "links": [
           {
@@ -183,8 +183,12 @@
             "label": "3.13 test-rules"
           },
           {
+            "id": "testcase-rules",
+            "label": "3.14 testcase-rules"
+          },
+          {
             "id": "code-review-rules",
-            "label": "3.14 code-review-rules"
+            "label": "3.15 code-review-rules"
           }
         ]
       }
@@ -194,12 +198,12 @@
       "Tech Lead",
       "Liệt kê toàn bộ tài liệu B2; đồng bộ SKILL.md ra AGENTS.md ở gốc repo.",
       "—",
-      "PL 3.15",
+      "PL 3.16",
       {
         "links": [
           {
             "id": "docs-index",
-            "label": "3.15 docs-index"
+            "label": "3.16 docs-index"
           }
         ]
       }
@@ -286,12 +290,12 @@
       "BA",
       "Thêm vào glossary.md nếu từ: lặp lại nhiều lần, có nghĩa riêng khác thông thường, hoặc dễ nhầm với từ khác.",
       "Cập nhật liên tục ngay trong B3, không chờ gom hết mới cập nhật 1 lần.",
-      "glossary.md — PL 3.16",
+      "glossary.md — PL 3.17",
       {
         "links": [
           {
             "id": "glossary",
-            "label": "3.16 glossary"
+            "label": "3.17 glossary"
           }
         ]
       }
@@ -362,12 +366,12 @@
       "BA",
       "Bổ sung thuật ngữ kỹ thuật mới phát sinh.",
       "—",
-      "PL 3.16",
+      "PL 3.17",
       {
         "links": [
           {
             "id": "glossary",
-            "label": "3.16 glossary"
+            "label": "3.17 glossary"
           }
         ]
       }
@@ -408,12 +412,12 @@
       "PM",
       "Tổ chức họp với PO/Sponsor, đối chiếu dor-dod.md (mục DoR).",
       "—",
-      "dor-dod.md — PL 3.17",
+      "dor-dod.md — PL 3.18",
       {
         "links": [
           {
             "id": "dor-dod",
-            "label": "3.17 dor-dod"
+            "label": "3.18 dor-dod"
           }
         ]
       }
@@ -763,9 +767,9 @@
     [
       "1. Sinh Test Plan/Case",
       "Test Lead + AI",
-      "Sinh từ Acceptance Criteria bằng prompt tương ứng trong prompts.md.",
+      "Sinh từ Acceptance Criteria/ (Tài liệu nghiệp vụ / yêu cầu, Tài liệu thiết kế, Tài liệu dự án,..) bằng prompt tương ứng trong prompts.md.",
       "—",
-      "Chưa có mẫu chuẩn",
+      "Biểu mẫu do đối tác yêu cầu/Test Plan theo chuẩn ISTQB",
       {
         "links": [
           {
@@ -777,12 +781,28 @@
             "label": "Test Case + RTM"
           }
         ]
+      },
+      {
+        "links": [
+          {
+            "id": "test-plan",
+            "label": "Test Plan (29119)"
+          },
+          {
+            "id": "test-case-rtm",
+            "label": "Test Case + RTM"
+          },
+          {
+            "id": "testcase-rules",
+            "label": "rules/testcase-rules"
+          }
+        ]
       }
     ],
     [
       "2. Ánh xạ RTM",
       "Tester",
-      "Ánh xạ Test Case vào RTM, đảm bảo phủ 100% Acceptance Criteria.",
+      "Ánh xạ Test Case vào RTM (Requirement Traceability Matrix ), đảm bảo phủ 100% Acceptance Criteria; gắn nhãn nguồn gốc (AI-generated/Manual) cho từng Test Case.",
       "—",
       "—"
     ],
@@ -790,14 +810,14 @@
       "3. Viết automation",
       "Tester + AI",
       "Viết automation script (Playwright codegen) cho các luồng chính.",
-      "—",
+      "Script AI sinh phải qua rules/code-review-rules.md trước khi merge.",
       "—"
     ],
     [
-      "4. Duyệt Test Plan/Case",
+      "4. Duyệt Test Plan/ Test Case",
       "Test Lead",
       "Review & duyệt chính thức.",
-      "Human Gate nhẹ.",
+      "Human Gate.",
       "—"
     ]
   ],

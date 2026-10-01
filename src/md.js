@@ -37,6 +37,7 @@ const MD_LINK_MAP = {
   'rules/adr-rules.md': 'adr-rules',
   'rules/api-rules.md': 'api-rules',
   'rules/test-rules.md': 'test-rules',
+  'rules/testcase-rules.md': 'testcase-rules',
   'rules/code-review-rules.md': 'code-review-rules',
   'b3/4.3-brd.md': 'brd',
   'b3/4.4-process-flow-user-journey.md': 'process-flow',

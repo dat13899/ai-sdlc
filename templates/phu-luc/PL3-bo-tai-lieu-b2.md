@@ -1,11 +1,11 @@
 ---
-title: "PL3 — Bộ tài liệu B2: chỉ mục 17 file"
+title: "PL3 — Bộ tài liệu B2: chỉ mục 18 file"
 for: "B2. Constitution & skill.md (Giai đoạn 0 — Khởi tạo)"
 owner: "Tech Lead (A/R) · PM (C) · BA (R một phần)"
-nguồn: "AI-SDLC v5.9 Phụ lục 3 (17 mục 3.1–3.17); GitHub Spec Kit; AGENTS.md; MADR"
+nguồn: "AI-SDLC v5.9 Phụ lục 3 (18 mục 3.1–3.18); GitHub Spec Kit; AGENTS.md; MADR"
 ---
 
-# PL3 — Bộ tài liệu B2 (chỉ mục 17 file)
+# PL3 — Bộ tài liệu B2 (chỉ mục 18 file)
 
 > **Cách dựng:** Tech Lead chạy `/speckit.constitution` ngay sau khi khởi tạo repo (trước khi viết bất kỳ tính năng nào), sau đó tạo 4 nhóm tài liệu dưới đây. Đây là **"bộ não" điều khiển AI Agent** và tiêu chuẩn hoá cách làm việc của đội — mọi lệnh `/speckit.specify`, `/speckit.plan`, `/speckit.tasks` sau đó đều đối chiếu ngược lại các file này.
 >
@@ -13,7 +13,7 @@ nguồn: "AI-SDLC v5.9 Phụ lục 3 (17 mục 3.1–3.17); GitHub Spec Kit; AGE
 
 ## Cách kiểm tra đã dựng đủ bộ
 
-- [ ] Đã có đủ 17 file (hoặc có ghi rõ lý do bỏ file nào)
+- [ ] Đã có đủ 18 file (hoặc có ghi rõ lý do bỏ file nào)
 - [ ] Mọi file đã điền placeholder `[Tên dự án]`, không còn placeholder trống
 - [ ] `docs-index.md` liệt kê đúng các file thực có trong repo
 - [ ] `constitution.md` đã được commit **trước** commit code tính năng đầu tiên
@@ -68,7 +68,8 @@ nguồn: "AI-SDLC v5.9 Phụ lục 3 (17 mục 3.1–3.17); GitHub Spec Kit; AGE
 | 3.11 | [`rules/adr-rules.md`](rules/adr-rules.md) | B6 | Checklist tự kiểm ADR theo MADR (≥ 2 phương án, có cả mặt xấu) | Tech Lead |
 | 3.12 | [`rules/api-rules.md`](rules/api-rules.md) | B6 | Checklist OpenAPI: naming, versioning, error model, bảo mật, ví dụ | Tech Lead |
 | 3.13 | [`rules/test-rules.md`](rules/test-rules.md) | B9 | Checklist unit test: assert thật, một hành vi/test, edge case, chống test giả | Dev + Tester |
-| 3.14 | [`rules/code-review-rules.md`](rules/code-review-rules.md) | B10 | Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret scan | Security + Tech Lead |
+| 3.14 | [`rules/testcase-rules.md`](rules/testcase-rules.md) | B11 | Checklist Test Case AI sinh: bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM, không chứa PII | Test Lead + Tester |
+| 3.15 | [`rules/code-review-rules.md`](rules/code-review-rules.md) | B10 | Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret scan | Security + Tech Lead |
 
 **Điều kiện hoàn thành nhóm 4:** mỗi linter có câu hỏi kiểm chứng được, có ví dụ viết đúng/sai, và có mục "điều kiện chặn cứng".
 
@@ -78,9 +79,9 @@ nguồn: "AI-SDLC v5.9 Phụ lục 3 (17 mục 3.1–3.17); GitHub Spec Kit; AGE
 
 | Mục | File mẫu | Nội dung | Ai dựng | Khi nào cập nhật |
 |---|---|---|---|---|
-| 3.15 | [`b2/docs-index.md`](b2/docs-index.md) | Bản đồ tài liệu dự án: file nào là nguồn sự thật cho thông tin gì, thứ tự AI nên đọc | Tech Lead | Mỗi khi thêm/bớt file tài liệu |
-| 3.16 | [`b2/glossary.md`](b2/glossary.md) | Từ điển thuật ngữ nghiệp vụ + kỹ thuật | BA (khởi tạo) | Liên tục từ B3 trở đi |
-| 3.17 | [`b2/dor-dod.md`](b2/dor-dod.md) | Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate | PM + Tech Lead | Khi tiêu chí không còn phù hợp thực tế |
+| 3.16 | [`b2/docs-index.md`](b2/docs-index.md) | Bản đồ tài liệu dự án: file nào là nguồn sự thật cho thông tin gì, thứ tự AI nên đọc | Tech Lead | Mỗi khi thêm/bớt file tài liệu |
+| 3.17 | [`b2/glossary.md`](b2/glossary.md) | Từ điển thuật ngữ nghiệp vụ + kỹ thuật | BA (khởi tạo) | Liên tục từ B3 trở đi |
+| 3.18 | [`b2/dor-dod.md`](b2/dor-dod.md) | Definition of Ready / Definition of Done — tiêu chí khách quan cho mọi gate | PM + Tech Lead | Khi tiêu chí không còn phù hợp thực tế |
 
 ---
 
@@ -101,7 +102,7 @@ File chỉ dẫn AI agent (`skill.md`, system prompt do đối tác cung cấp) 
 
 ## Nguồn tham chiếu
 
-- AI-SDLC v5.9, Phụ lục 3 (17 mục 3.1–3.17) và mục 2 B2, mục 7 — tài liệu gốc nội bộ
+- AI-SDLC v5.9, Phụ lục 3 (18 mục 3.1–3.18) và mục 2 B2, mục 7 — tài liệu gốc nội bộ
 - GitHub Spec Kit — https://github.com/github/spec-kit
 - Spec-Driven Development — https://github.com/github/spec-kit/blob/main/spec-driven.md
 - AGENTS.md — https://agents.md/

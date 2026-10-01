@@ -510,7 +510,7 @@ footer a{color:var(--dim)}
   <main class="main"><div class="tpl-head">
     <div class="crumb"><a href="/index.html">Trang chủ</a> / <a href="/mau/index.html">File mẫu</a> / prompts.md — thư viện prompt</div>
     <h1>prompts.md — thư viện prompt</h1>
-    <div class="tpl-meta"><span class="chip">Dùng ở: <b>B2 — dựng sau khi có constitution.md; dùng xuyên suốt B3–B14</b></span><span class="chip">Chủ sở hữu: <b>Tech Lead (A) · BA (R cho prompt nghiệp vụ) · AI (draft)</b></span><span class="chip">281 dòng</span></div>
+    <div class="tpl-meta"><span class="chip">Dùng ở: <b>B2 — dựng sau khi có constitution.md; dùng xuyên suốt B3–B14</b></span><span class="chip">Chủ sở hữu: <b>Tech Lead (A) · BA (R cho prompt nghiệp vụ) · AI (draft)</b></span><span class="chip">332 dòng</span></div>
     <div class="links" style="margin-top:14px">
       <a href="/mau/raw/b2/prompts.md" download>⬇ Tải file .md</a>
       <a href="/mau/raw/b2/prompts.md" target="_blank" rel="noopener">Xem raw</a>
@@ -693,6 +693,47 @@ Mô tả vấn đề | Vì sao nguy hiểm | Cách sửa đề xuất
 - Không báo &quot;không có vấn đề gì&quot; mà không nêu những gì đã kiểm
 - Không nêu finding chung chung không kèm vị trí cụ thể</code></pre>
 <hr>
+<h3>B11 — Test Plan &amp; Test Case</h3>
+<h4>P-B11-01 · AC → Test Case</h4>
+<pre class="code lang-text"><code>Vai trò: Bạn là một Test Lead giàu kinh nghiệm.
+
+INPUT:
+- Acceptance Criteria (dạng Gherkin): [DÁN AC]
+- Tài liệu nghiệp vụ / yêu cầu: [TÀI LIỆU]
+- Mẫu Test Case của dự án: [MẪU]
+
+YÊU CẦU: Sinh Test Case đầy đủ theo mẫu chuẩn của dự án, gồm cả:
+1. Positive (happy path)
+2. Negative (sai định dạng, thiếu quyền, dữ liệu không tồn tại)
+3. Edge case (biên giá trị, dữ liệu rỗng, ký tự đặc biệt/Unicode)
+
+Mỗi Test Case phải gắn ID tham chiếu đúng AC nguồn (để ánh xạ RTM ở B11 bước 2).
+
+ĐỊNH DẠNG OUTPUT: bảng markdown — ID | Tham chiếu AC | Loại |
+Precondition | Dữ liệu đầu vào | Steps | Expected Result | Nguồn gốc (AI-generated)
+
+ĐIỀU KHÔNG ĐƯỢC LÀM:
+- TUYỆT ĐỐI không tự suy diễn thêm nghiệp vụ ngoài phạm vi AC đã cho;
+  thiếu thông tin thì ghi [CẦN LÀM RÕ] thay vì đoán
+- Không dùng dữ liệu cá nhân/nhạy cảm thật — chỉ dùng dữ liệu giả lập
+- Không gộp hành động và kết quả mong đợi vào cùng một ô</code></pre>
+<h4>P-B11-02 · Tự kiểm Test Case trước khi bàn giao</h4>
+<pre class="code lang-text"><code>Vai trò: Bạn là QA reviewer độc lập, không ai khác đọc bản nháp này.
+
+INPUT:
+- Test Case vừa sinh: [DANH SÁCH TEST CASE]
+- Acceptance Criteria nguồn: [DANH SÁCH AC]
+
+YÊU CẦU: Rà theo checklist [rules/testcase-rules.md] và trả lời Đạt/Không đạt
+từng câu, kèm danh sách case bị vi phạm.
+
+ĐỊNH DẠNG OUTPUT: bảng — Câu hỏi | Đạt/Không đạt | Case vi phạm (ID) | Ghi chú
+
+ĐIỀU KHÔNG ĐƯỢC LÀM:
+- Không tự sửa Test Case — chỉ chỉ ra, để AI sinh sửa lại rồi rà lại
+- Không báo &quot;đạt&quot; khi chỉ đọc lại chính nội dung AI vừa sinh mà không đối chiếu với AC
+- Không bỏ qua nhóm negative/edge nếu không ghi rõ lý do không thể có</code></pre>
+<hr>
 <h3>B13 — Release</h3>
 <h4>P-B13-01 · Sinh CHANGELOG &amp; Release Note</h4>
 <pre class="code lang-text"><code>Vai trò: Bạn là người phụ trách phát hành.
@@ -717,7 +758,7 @@ YÊU CẦU:
 <tbody><tr><td>[YYYY-MM-DD]</td><td>P-B3-01</td><td>[Thêm yêu cầu &quot;liệt kê điểm cần làm rõ&quot;]</td><td>[AI bịa số NFR khi transcript không nêu]</td><td>[Tên]</td></tr></tbody>
 </table></div>
 <h3>Checklist dựng prompts.md</h3>
-<ul><li class="task"><span class="cb">☐</span> Có prompt cho mọi giai đoạn AI tham gia: B3, B4, B6, B9, B10, B13</li><li class="task"><span class="cb">☐</span> Mỗi prompt ghi rõ Input / Yêu cầu / Định dạng output / Điều KHÔNG được làm</li><li class="task"><span class="cb">☐</span> Mỗi prompt có yêu cầu &quot;nêu chỗ chưa chắc&quot; hoặc &quot;không bịa&quot;</li><li class="task"><span class="cb">☐</span> Có neo &quot;chỉ dùng thông tin trong nguồn&quot; chống bịa</li><li class="task"><span class="cb">☐</span> Có ghi chú kiểm <code>data-classification.md</code> trước khi dán dữ liệu</li><li class="task"><span class="cb">☐</span> Có phần lịch sử thay đổi và đang được dùng thực tế</li></ul>
+<ul><li class="task"><span class="cb">☐</span> Có prompt cho mọi giai đoạn AI tham gia: B3, B4, B6, B9, B10, B11, B13</li><li class="task"><span class="cb">☐</span> Mỗi prompt ghi rõ Input / Yêu cầu / Định dạng output / Điều KHÔNG được làm</li><li class="task"><span class="cb">☐</span> Mỗi prompt có yêu cầu &quot;nêu chỗ chưa chắc&quot; hoặc &quot;không bịa&quot;</li><li class="task"><span class="cb">☐</span> Có neo &quot;chỉ dùng thông tin trong nguồn&quot; chống bịa</li><li class="task"><span class="cb">☐</span> Có ghi chú kiểm <code>data-classification.md</code> trước khi dán dữ liệu</li><li class="task"><span class="cb">☐</span> Có phần lịch sử thay đổi và đang được dùng thực tế</li></ul>
 <h3>Nguồn tham chiếu</h3>
 <ul><li>AI-SDLC v5.9, Phụ lục 3 mục 3.8 — tài liệu gốc nội bộ</li><li>OpenAI — Prompt engineering best practices — https://platform.openai.com/docs/guides/prompt-engineering</li><li>Anthropic — Prompt engineering overview — https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview</li><li>OWASP LLM Top 10 — LLM01 Prompt Injection — https://genai.owasp.org/llm-top-10/</li></ul></article>
   <nav class="pager">
@@ -727,7 +768,7 @@ YÊU CẦU:
   
 <aside class="side side-r">
   <details class="side-box" open>
-    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">43/43</span></summary>
+    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">44/44</span></summary>
     <div class="side-actions">
       <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
       <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
@@ -756,7 +797,7 @@ YÊU CẦU:
         <li>
           <a href="/mau/pl3-bo-tai-lieu-b2.html" title="Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules.">
             <span class="fl">PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</span>
-            <span class="fm">B2 · 110 dòng</span>
+            <span class="fm">B2 · 111 dòng</span>
           </a>
         </li>
         <li>
@@ -834,7 +875,7 @@ YÊU CẦU:
         <li class="on">
           <a href="/mau/prompts.html" title="System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay.">
             <span class="fl">prompts.md — thư viện prompt</span>
-            <span class="fm">B2 · PL 3.8 · 281 dòng</span>
+            <span class="fm">B2 · PL 3.8 · 332 dòng</span>
           </a>
         </li>
         <li>
@@ -892,9 +933,15 @@ YÊU CẦU:
           </a>
         </li>
         <li>
+          <a href="/mau/testcase-rules.html" title="Checklist AI tự kiểm Test Case: bám sát AC, đủ positive/negative/edge, gắn ID AC cho RTM, không chứa PII.">
+            <span class="fl">rules/testcase-rules.md</span>
+            <span class="fm">B11 · PL 3.14 · 127 dòng</span>
+          </a>
+        </li>
+        <li>
           <a href="/mau/code-review-rules.html" title="Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST.">
             <span class="fl">rules/code-review-rules.md</span>
-            <span class="fm">B10 · PL 3.14 · 234 dòng</span>
+            <span class="fm">B10 · PL 3.15 · 234 dòng</span>
           </a>
         </li>
       </ul>

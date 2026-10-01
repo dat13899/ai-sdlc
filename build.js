@@ -384,7 +384,7 @@ function hero() {
       <div class="stat"><b>14</b><span>Bước B1–B14</span></div>
       <div class="stat"><b>5</b><span>Giai đoạn</span></div>
       <div class="stat"><b>8</b><span>Gate kiểm soát</span></div>
-      <div class="stat"><b>17</b><span>File luật ở B2</span></div>
+      <div class="stat"><b>18</b><span>File luật ở B2</span></div>
     </div>
   </div>
 </section>`;
@@ -530,7 +530,7 @@ function aiLaw() {
 function b2() {
   return `
 <section id="bo-tai-lieu-b2">
-  <h2>Bộ tài liệu B2 — 17 file điều khiển AI</h2>
+  <h2>Bộ tài liệu B2 — 18 file điều khiển AI</h2>
   <p class="sub">Đây là "bộ não" của dự án: nạp vào repo ngay từ B2, sau đó mọi prompt đều đối chiếu ngược lại các file này. Bấm vào từng file để xem mẫu .md đầy đủ.</p>
   ${d.b2Groups.map((g) => `
   <div class="card" style="margin-bottom:12px">
@@ -746,6 +746,8 @@ function assets() {
       <h3>Tài liệu gốc</h3>
       <ul>${d.assets.map((a) => `<li><b>${esc(a.f)}</b> — ${esc(a.d)} (${esc(a.size)})</li>`).join('')}</ul>
       <div class="links">
+        <a href="/assets/AI-SDLC_V5_9_updated.pdf" download>⬇ Tải bản v5.9 cập nhật (PDF)</a>
+        <a href="/assets/AI-SDLC_V5_9_updated.txt" target="_blank" rel="noopener">Xem bản text (cập nhật)</a>
         <a href="/assets/quy-trinh-phat-trien-phan-mem-tich-hop-ai-v5.9.pdf" download>⬇ Tải PDF gốc (${d.meta.pages} trang)</a>
         <a href="/assets/quy-trinh-phat-trien-phan-mem-tich-hop-ai-v5.9.txt" target="_blank" rel="noopener">Xem bản text</a>
       </div>

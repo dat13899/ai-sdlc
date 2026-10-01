@@ -2,7 +2,7 @@
 title: dor-dod.md — Definition of Ready / Definition of Done
 for: B2 — dựng cùng constitution.md; áp dụng mọi sprint từ B7 trở đi
 owner: PM + Tech Lead (A/R) · PO (C) · Toàn đội (R)
-nguồn: AI-SDLC v5.9 Phụ lục 3 mục 3.17 + mục 2 B7; Scrum Guide (scrum.org)
+nguồn: AI-SDLC v5.9 Phụ lục 3 mục 3.18 + mục 2 B7; Scrum Guide (scrum.org)
 ---
 
 # dor-dod.md — Definition of Ready / Definition of Done
@@ -176,7 +176,7 @@ Bảng dưới đây là **bản có cột "Cách kiểm chứng"** — dùng kh
 
 ## Nguồn tham chiếu
 
-- AI-SDLC v5.9, Phụ lục 3 mục 3.17 và mục 2 B7 — tài liệu gốc nội bộ
+- AI-SDLC v5.9, Phụ lục 3 mục 3.18 và mục 2 B7 — tài liệu gốc nội bộ
 - Scrum Guide — Definition of Done — https://scrumguides.org/
 - Scrum.org — Definition of Done và Definition of Ready — https://www.scrum.org/resources/what-definition-done
 - Agile Alliance — INVEST, Definition of Ready — https://www.agilealliance.org/glossary/invest/

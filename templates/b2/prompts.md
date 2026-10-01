@@ -233,6 +233,57 @@ Mô tả vấn đề | Vì sao nguy hiểm | Cách sửa đề xuất
 
 ---
 
+## B11 — Test Plan & Test Case
+
+### P-B11-01 · AC → Test Case
+
+```text
+Vai trò: Bạn là một Test Lead giàu kinh nghiệm.
+
+INPUT:
+- Acceptance Criteria (dạng Gherkin): [DÁN AC]
+- Tài liệu nghiệp vụ / yêu cầu: [TÀI LIỆU]
+- Mẫu Test Case của dự án: [MẪU]
+
+YÊU CẦU: Sinh Test Case đầy đủ theo mẫu chuẩn của dự án, gồm cả:
+1. Positive (happy path)
+2. Negative (sai định dạng, thiếu quyền, dữ liệu không tồn tại)
+3. Edge case (biên giá trị, dữ liệu rỗng, ký tự đặc biệt/Unicode)
+
+Mỗi Test Case phải gắn ID tham chiếu đúng AC nguồn (để ánh xạ RTM ở B11 bước 2).
+
+ĐỊNH DẠNG OUTPUT: bảng markdown — ID | Tham chiếu AC | Loại |
+Precondition | Dữ liệu đầu vào | Steps | Expected Result | Nguồn gốc (AI-generated)
+
+ĐIỀU KHÔNG ĐƯỢC LÀM:
+- TUYỆT ĐỐI không tự suy diễn thêm nghiệp vụ ngoài phạm vi AC đã cho;
+  thiếu thông tin thì ghi [CẦN LÀM RÕ] thay vì đoán
+- Không dùng dữ liệu cá nhân/nhạy cảm thật — chỉ dùng dữ liệu giả lập
+- Không gộp hành động và kết quả mong đợi vào cùng một ô
+```
+
+### P-B11-02 · Tự kiểm Test Case trước khi bàn giao
+
+```text
+Vai trò: Bạn là QA reviewer độc lập, không ai khác đọc bản nháp này.
+
+INPUT:
+- Test Case vừa sinh: [DANH SÁCH TEST CASE]
+- Acceptance Criteria nguồn: [DANH SÁCH AC]
+
+YÊU CẦU: Rà theo checklist [rules/testcase-rules.md] và trả lời Đạt/Không đạt
+từng câu, kèm danh sách case bị vi phạm.
+
+ĐỊNH DẠNG OUTPUT: bảng — Câu hỏi | Đạt/Không đạt | Case vi phạm (ID) | Ghi chú
+
+ĐIỀU KHÔNG ĐƯỢC LÀM:
+- Không tự sửa Test Case — chỉ chỉ ra, để AI sinh sửa lại rồi rà lại
+- Không báo "đạt" khi chỉ đọc lại chính nội dung AI vừa sinh mà không đối chiếu với AC
+- Không bỏ qua nhóm negative/edge nếu không ghi rõ lý do không thể có
+```
+
+---
+
 ## B13 — Release
 
 ### P-B13-01 · Sinh CHANGELOG & Release Note
@@ -265,7 +316,7 @@ YÊU CẦU:
 
 ## Checklist dựng prompts.md
 
-- [ ] Có prompt cho mọi giai đoạn AI tham gia: B3, B4, B6, B9, B10, B13
+- [ ] Có prompt cho mọi giai đoạn AI tham gia: B3, B4, B6, B9, B10, B11, B13
 - [ ] Mỗi prompt ghi rõ Input / Yêu cầu / Định dạng output / Điều KHÔNG được làm
 - [ ] Mỗi prompt có yêu cầu "nêu chỗ chưa chắc" hoặc "không bịa"
 - [ ] Có neo "chỉ dùng thông tin trong nguồn" chống bịa
