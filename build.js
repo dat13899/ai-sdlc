@@ -173,11 +173,11 @@ function sideFiles(activeId) {
           const ins = insByOrigin[f.id];
           return `
         <li${activeId === f.id ? ' class="on"' : ''}>
-          <a href="/mau/${f.id}.html" title="${esc(f.desc)}">
-            <span class="fl">${esc(f.title)}</span>
-            <span class="fm">${esc(f.for)}${f.missing ? ' · <span class="pending">đang cập nhật</span>' : ` · ${f.lines} dòng`}</span>
+          <a href="/mau/${f.id}.html" title="${esc(f.desc)}${ins ? ` — đã có bản điền thật, xem /ins/${esc(ins[0].slug)}.html` : ''}">
+            <span class="fl-wrap"><span class="fl">${esc(f.title)}</span>
+            <span class="fm">${esc(f.for)}${f.missing ? ' · <span class="pending">đang cập nhật</span>' : ` · ${f.lines} dòng`}</span></span>
+            ${ins ? `<span class="ti-ins" title="đã có bản điền thật từ dự án INS Platform">◆</span>` : ''}
           </a>
-          ${ins ? `<a class="side-ins" href="/ins/${esc(ins[0].slug)}.html" title="Xem bản điền thật của mẫu này (${ins.length} file ví dụ)">◆<span>điền thật</span></a>` : ''}
         </li>`;
         }).join('')}
       </ul>

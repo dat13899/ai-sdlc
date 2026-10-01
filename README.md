@@ -128,8 +128,9 @@ public/assets/ins/AI-SDLC-vi-du-INS-Platform.zip
   `SECTION_IDS` trong script scroll-spy. Link sidebar phải + header: `/ins/index.html`.
 - Quy ước trong nội dung ví dụ: `> TODO` = dự án chưa có dữ liệu, `⚠️` = tài liệu lệch code
   — cố ý giữ nguyên, không bịa cho đủ.
-- **Ký hiệu ◆ = "đã có bản điền thật"**, hiện ở 3 nơi: cây 14 bước (menu trái), danh sách
-  file mẫu (menu phải, nút pill "◆ điền thật"), và nút trên trang mẫu `/mau/<id>.html`.
+- **Ký hiệu ◆ = "đã có bản điền thật"**, hiện ở 3 nơi: cây 14 bước (menu trái), cuối
+  mỗi dòng trong danh sách file mẫu (menu phải — icon nằm trong cùng hàng, không phải
+  dòng riêng), và nút pill trên trang mẫu `/mau/<id>.html`.
   Ánh xạ 2 chiều do `build.js` tự suy ra, không hard-code:
   - `insByStep` — từ trường `for` của file ví dụ, **chỉ lấy bước đầu tiên**
     (`/^\s*(B\d{1,2})\b/`) vì `dor-dod.md` ghi "B2 … áp dụng mọi sprint từ B7 trở đi" —
