@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CODING_CONVENTION.md — Quy chuẩn viết code (INS Platform) — Ví dụ INS Platform | AI-SDLC v5.9</title>
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c6cf0'/%3E%3Ctext x='16' y='22' font-size='15' font-family='system-ui' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<style>/* AI-SDLC site — dark premium (Linear/Stripe mood) */
+:root{
+  --bg:#0a0a0f; --bg-2:#12121a; --bg-3:#171722;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#e9e9f2; --dim:#a0a0b8; --dim-2:#7d7d96;
+  --accent:#7c6cf0; --accent-2:#5b8def; --amber:#f5b942; --green:#42d392; --pink:#ef6ca8;
+  --radius:14px; --radius-sm:9px;
+  --nav-h:60px;
+  --maxw:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* Neo (#b3, #quy-trinh…) không bị header sticky che */
+[id]{scroll-margin-top:calc(var(--nav-h) + 14px)}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-2);text-decoration:none}
+a:hover{color:#8fb6ff;text-decoration:underline}
+code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;font-size:.88em;
+  background:rgba(124,108,240,.13);border:1px solid rgba(124,108,240,.22);border-radius:6px;padding:.1em .42em;color:#cfc6ff}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* ---------- layout 3 cột ---------- */
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr) 290px;gap:22px;
+  max-width:1560px;margin:0 auto;padding:26px 20px 40px;align-items:start}
+.main{min-width:0}
+.side{position:sticky;top:calc(var(--nav-h) + 16px);max-height:calc(100vh - var(--nav-h) - 32px);
+  overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.side::-webkit-scrollbar{width:8px}
+.side::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:8px}
+.side-box{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
+.side-box>summary{display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none;
+  padding:2px 2px 10px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.side-box>summary::-webkit-details-marker{display:none}
+.side-box>summary:before{content:"▾";color:var(--dim-2);font-size:11px;transition:transform .15s}
+.side-box:not([open])>summary:before{transform:rotate(-90deg)}
+.side-t{font-size:13.5px;font-weight:650;letter-spacing:.01em}
+.side-n{margin-left:auto;font-size:11.5px;color:var(--dim-2);background:rgba(255,255,255,.05);
+  border-radius:999px;padding:2px 8px}
+
+/* tree điều hướng */
+.tree-g{margin-bottom:10px}
+.tree-gt{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim-2);
+  font-weight:600;margin:0 0 5px 4px}
+.tree ul{list-style:none;margin:0;padding:0}
+.tree li{margin:1px 0}
+.tree a{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;
+  color:var(--dim);font-size:13.3px;line-height:1.4}
+.tree a:hover{background:rgba(255,255,255,.055);color:var(--text);text-decoration:none}
+.tree li.on>a{background:rgba(124,108,240,.17);color:var(--text)}
+.tree a .tb{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;font-weight:700;
+  color:var(--accent);flex:none;min-width:22px;padding-top:1px}
+.tree a .tn{flex:1;min-width:0}
+.tree a .tg{flex:none;font-size:10px}
+.tree-sep{height:1px;background:var(--line);margin:12px 0}
+
+.side-actions{display:flex;gap:8px;margin-bottom:12px}
+.btn{flex:1;text-align:center;padding:8px 10px;border-radius:9px;font-size:12.8px;font-weight:600;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;white-space:nowrap}
+.btn:hover{color:#fff;text-decoration:none;filter:brightness(1.08)}
+.btn.ghost{background:transparent;border:1px solid var(--line-2);color:var(--dim)}
+.btn.ghost:hover{color:var(--text)}
+.side-g{margin-bottom:11px}
+.side-gt{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--dim-2);
+  font-weight:600;margin:0 0 5px 4px}
+.side-list{list-style:none;margin:0;padding:0}
+.side-list a{display:block;padding:6px 8px;border-radius:8px}
+.side-list a:hover{background:rgba(255,255,255,.055);text-decoration:none}
+.side-list li.on a{background:rgba(124,108,240,.16)}
+.side-list .fl{display:block;font-size:13px;color:var(--text);line-height:1.35}
+.side-list .fm{display:block;font-size:11.5px;color:var(--dim-2);margin-top:2px}
+.pending{color:var(--amber)}
+
+/* ---------- trang file mẫu ---------- */
+.tpl-head{padding:4px 0 18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.crumb{font-size:12.8px;color:var(--dim-2);margin-bottom:10px}
+.crumb a{color:var(--dim)}
+.tpl-head h1{font-size:clamp(1.5rem,3vw,2.05rem);margin:0 0 12px;letter-spacing:-.02em}
+.tpl-meta{display:flex;flex-wrap:wrap;gap:8px}
+.md{font-size:15.4px;line-height:1.72;max-width:900px}
+.md h2{font-size:1.34rem;margin:34px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line);letter-spacing:-.015em}
+.md h3{font-size:1.11rem;margin:26px 0 8px}
+.md h4{font-size:1rem;margin:20px 0 6px;color:var(--dim)}
+.md p{margin:10px 0;color:#dcdcea}
+.md ul,.md ol{margin:10px 0;padding-left:22px;color:#dcdcea}
+.md li{margin:5px 0}
+.md li::marker{color:var(--accent)}
+.md li.task{list-style:none;margin-left:-20px}
+.md .cb{color:var(--accent-2);font-weight:700;margin-right:6px}
+.md li.task.done{color:var(--dim-2)}
+.md li.task.done .cb{color:var(--green)}
+.md blockquote{margin:14px 0;padding:12px 15px;border-left:3px solid var(--accent);
+  background:rgba(124,108,240,.08);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--dim)}
+.md blockquote p{margin:0;color:var(--dim)}
+.md hr{margin:26px 0;border:0;border-top:1px solid var(--line)}
+.md .code{margin:14px 0;padding:14px 16px;background:#0d0d13;border:1px solid var(--line);
+  border-radius:var(--radius-sm);overflow-x:auto;font-size:13.2px;line-height:1.6}
+.md .code code{background:none;border:0;padding:0;color:#c9d5ff;font-size:inherit}
+.md .tw{margin:14px 0}
+.md .tw table{min-width:520px}
+.md a{overflow-wrap:anywhere}
+.pager{display:flex;gap:14px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line)}
+.pg{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--bg-2);color:var(--text)}
+.pg:hover{border-color:var(--line-2);text-decoration:none;color:var(--text)}
+.pg span{display:block;font-size:12px;color:var(--dim-2);margin-bottom:3px}
+.pg b{font-size:13.6px;font-weight:600;line-height:1.35}
+.pg.next{text-align:right}
+
+@media (max-width:1180px){
+  .layout{grid-template-columns:230px minmax(0,1fr);}
+  .side-r{display:none}
+}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr);padding:18px 14px 32px}
+  .side-l{position:static;max-height:none;overflow:visible}
+  .side-r{display:block;position:static;max-height:none}
+  .side-l .side-box>summary{position:sticky;top:var(--nav-h);background:var(--bg-2);z-index:2;border-radius:8px}
+}
+
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
+  background:rgba(10,10,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:100%;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.01em;color:var(--text);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--text)}
+.logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;flex:none}
+.brand small{color:var(--dim-2);font-weight:500;font-size:12.5px}
+.nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{display:flex;align-items:center;min-height:40px;padding:0 12px;border-radius:9px;
+  color:var(--dim);font-size:14.5px;font-weight:500;white-space:nowrap}
+.nav-links a:hover{background:rgba(255,255,255,.06);color:var(--text);text-decoration:none}
+.nav-links a.on{color:var(--text);background:rgba(124,108,240,.16)}
+.nav-links a.ext{color:var(--dim-2)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:76px 0 54px;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;inset:-40% 0 auto 0;height:620px;
+  background:radial-gradient(600px 300px at 22% 32%,rgba(124,108,240,.30),transparent 70%),
+             radial-gradient(520px 280px at 78% 12%,rgba(91,141,239,.22),transparent 70%);
+  filter:blur(6px);pointer-events:none}
+.hero-in{position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(124,108,240,.35);background:rgba(124,108,240,.12);color:#c8bdff;
+  font-size:12.5px;font-weight:600;letter-spacing:.02em}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+h1{margin:20px 0 14px;font-size:clamp(2rem,5.2vw,3.3rem);line-height:1.1;letter-spacing:-.03em;font-weight:700}
+h1 .g{background:linear-gradient(100deg,#a99cff 0%,#7c6cf0 42%,#5b8def 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:730px;color:var(--dim);font-size:clamp(1rem,1.6vw,1.12rem)}
+.hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border:1px solid var(--line);
+  background:var(--bg-2);border-radius:999px;font-size:13px;color:var(--dim)}
+.chip b{color:var(--text);font-weight:600}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.stat{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px 16px}
+.stat b{display:block;font-size:29px;line-height:1.1;letter-spacing:-.02em;
+  background:linear-gradient(120deg,#fff,#b9aaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;margin-top:5px;color:var(--dim-2);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- sections ---------- */
+section{padding:56px 0}
+section+section{border-top:1px solid var(--line)}
+h2{font-size:clamp(1.35rem,2.6vw,1.75rem);letter-spacing:-.02em;margin:0 0 8px;font-weight:650}
+.sub{color:var(--dim);margin:0 0 26px;max-width:820px}
+h3{font-size:1.05rem;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.note{color:var(--dim-2);font-size:13.5px}
+
+/* ---------- phase / step cards ---------- */
+.phase{margin-bottom:30px}
+.phase-h{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;padding-left:12px;border-left:3px solid var(--accent)}
+.phase-h .pid{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--dim-2);text-transform:uppercase}
+.phase-h .pname{font-size:1.12rem;font-weight:650;letter-spacing:-.01em}
+[data-tint=violet]{--accent:#7c6cf0}
+[data-tint=blue]{--accent:#5b8def}
+[data-tint=cyan]{--accent:#40c8d8}
+[data-tint=green]{--accent:#42d392}
+[data-tint=amber]{--accent:#f5b942}
+[data-tint=pink]{--accent:#ef6ca8}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.step{position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 16px 15px;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.step:hover{transform:translateY(-2px);border-color:var(--line-2);background:var(--bg-3)}
+.step.key{border-color:rgba(124,108,240,.5);background:linear-gradient(180deg,rgba(124,108,240,.13),var(--bg-2))}
+.step-top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.bcode{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;font-weight:700;color:var(--accent);
+  border:1px solid currentColor;border-radius:7px;padding:2px 7px;flex:none}
+.gatechip{font-size:11.5px;font-weight:600;color:var(--amber);background:rgba(245,185,66,.12);
+  border:1px solid rgba(245,185,66,.3);border-radius:7px;padding:2px 7px;margin-left:auto;text-align:right}
+.step h4{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.step p{margin:8px 0 0;font-size:13.2px;color:var(--dim)}
+.step p b{color:var(--dim);font-weight:600}
+.step .more{margin-top:10px;font-size:13px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);max-width:100%}
+table{width:100%;border-collapse:collapse;min-width:620px;font-size:14px;max-width:100%}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim-2);font-weight:600;background:rgba(255,255,255,.02)}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.022)}
+td b{color:var(--text)}
+/* Cột "Biểu mẫu": các link mẫu xếp dọc, gọn trong ô hẹp */
+td.fc{line-height:1.5}
+td.fc a.mlink{display:inline-block;padding:2px 0;color:#8fb6ff;font-weight:500;
+  border-bottom:1px solid rgba(91,141,239,.35)}
+td.fc a.mlink:hover{color:#c3d8ff;border-bottom-color:#c3d8ff;text-decoration:none}
+td.fc .mlink-sep{color:var(--dim-2);padding:0 5px}
+
+/* ---------- popup xem biểu mẫu (bảng chi tiết 14 bước) ---------- */
+body.mm-lock{overflow:hidden}
+.mm{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px}
+.mm[hidden]{display:none}
+.mm-bd{position:absolute;inset:0;background:rgba(6,6,12,.74);backdrop-filter:blur(3px)}
+.mm-win{position:relative;display:flex;flex-direction:column;width:100%;max-width:920px;max-height:86vh;
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:18px;overflow:hidden;
+  box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 0 1px rgba(124,108,240,.18)}
+.mm-h{display:flex;align-items:flex-start;gap:16px;padding:15px 16px 14px 20px;
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(124,108,240,.10),rgba(124,108,240,0))}
+.mm-ht{min-width:0}
+.mm-k{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.mm-h h3{margin:4px 0 0;font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.35}
+.mm-acts{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none}
+.mm-btn{font-size:13px;font-weight:500;padding:7px 12px;border:1px solid var(--line-2);border-radius:9px;
+  color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap}
+.mm-btn:hover{border-color:var(--accent);color:#fff;text-decoration:none;background:rgba(124,108,240,.18)}
+.mm-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
+.mm-btn.primary:hover{filter:brightness(1.1)}
+.mm-x{width:34px;height:34px;flex:none;border:1px solid var(--line-2);border-radius:9px;background:rgba(255,255,255,.03);
+  color:var(--dim);font-size:14px;cursor:pointer;line-height:1}
+.mm-x:hover{color:#fff;border-color:var(--accent);background:rgba(124,108,240,.18)}
+.mm-b{overflow-y:auto;overscroll-behavior:contain;padding:16px 22px 30px;scrollbar-width:thin}
+.mm-b::-webkit-scrollbar{width:9px}
+.mm-b::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:9px}
+.mm-meta{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.mm-md h2{font-size:1.2rem;margin:6px 0 10px;padding:0;border:0}
+.mm-md h3{font-size:1.04rem;margin:20px 0 7px}
+.mm-md h4{font-size:.96rem}
+@media (max-width:760px){
+  .mm{padding:0}
+  .mm-win{max-width:none;max-height:none;height:100%;border-radius:0;border:0}
+  .mm-h{padding:12px;flex-wrap:wrap}
+  .mm-ht{width:100%}
+  .mm-h h3{font-size:15.5px}
+  .mm-acts{margin-left:0;width:100%;gap:6px}
+  .mm-btn{flex:1;text-align:center;padding:9px 8px}
+  .mm-b{padding:14px 14px 40px}
+}
+
+/* ---------- generic blocks ---------- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}
+/* chặn bảng rộng kéo giãn grid gây tràn ngang trên mobile */
+.grid2>*,.grid3>*,.steps>*,.phase,.step,.step-big,.card,.filelist,.file{min-width:0}
+.card{overflow-wrap:anywhere}
+.tw{max-width:100%}
+table{max-width:100%}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:17px}
+.card.amber{border-color:rgba(245,185,66,.28);background:linear-gradient(180deg,rgba(245,185,66,.07),var(--bg-2))}
+.card h3{margin-bottom:7px}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--dim);font-size:13.6px}
+.card li{margin:5px 0}
+.card li::marker{color:var(--accent)}
+.card p{margin:0;color:var(--dim);font-size:13.6px}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;color:#c8bdff;
+  background:rgba(124,108,240,.14);border:1px solid rgba(124,108,240,.28);border-radius:999px;padding:2px 8px;margin-left:6px}
+.filelist{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:10px;margin-top:10px}
+.file{display:flex;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg)}
+.file .n{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--accent);flex:none;padding-top:2px}
+.file b{display:block;font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.file span{display:block;color:var(--dim-2);font-size:12.8px;margin-top:3px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.flow .env{padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg-3);font-size:13px;font-weight:600}
+.flow .arw{color:var(--dim-2)}
+.flow .env.gate{border-color:rgba(245,185,66,.32);color:#f7cf82}
+.kv{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.kv:last-child{border-bottom:0}
+.kv b{flex:none;min-width:112px;color:var(--text);font-weight:600}
+.kv span{color:var(--dim)}
+.lifecycle{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.lifecycle span{padding:7px 11px;border-radius:999px;background:rgba(66,211,146,.1);
+  border:1px solid rgba(66,211,146,.26);color:#9fe8c6;font-size:13px}
+.shot{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-3);padding:10px;margin-top:12px}
+.shot img{display:block;width:100%;height:auto;border-radius:var(--radius-sm);background:#fff}
+.shot figcaption{color:var(--dim-2);font-size:12.5px;margin-top:8px}
+.step-big{margin:0 0 26px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2)}
+.step-big.gated{border-color:rgba(245,185,66,.26);background:linear-gradient(180deg,rgba(245,185,66,.06),var(--bg-2))}
+.step-big-h{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.step-big-h h3{margin:0;font-size:1.14rem}
+.links{margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:30px 0 46px;color:var(--dim-2);font-size:13.5px}
+footer a{color:var(--dim)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.toc a{padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg-2);
+  color:var(--dim);font-size:13.5px;font-weight:500}
+.toc a:hover{border-color:var(--line-2);color:var(--text);text-decoration:none}
+.warn{border-left:3px solid var(--amber);padding:12px 14px;background:rgba(245,185,66,.07);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--dim);font-size:14px}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:52px 0 38px}
+  section{padding:42px 0}
+  .brand small{display:none}
+  .nav-in{gap:6px}
+  .nav-links{-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .nav-links a{padding:0 10px;font-size:13.5px}
+  .kv{flex-direction:column;gap:2px}
+  .kv b{min-width:0}
+  .gatechip{margin-left:0;flex-basis:100%}
+  .step-top{flex-wrap:wrap}
+  .step-big{padding:15px}
+  h1{margin:16px 0 12px}
+  .grid2,.grid3{gap:12px}
+  .toc{gap:7px}
+  .toc a{font-size:12.8px;padding:6px 10px}
+  .shot{padding:7px}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/index.html"><span class="logo">AI</span> AI-SDLC <small>v5.9 · ai.btdat.io.vn</small></a>
+    <nav class="nav-links">
+      <a href="/index.html#quy-trinh" data-sec="quy-trinh">14 bước</a>
+      <a href="/index.html#gate" data-sec="gate">8 Gate</a>
+      <a href="/index.html#luat-ai" data-sec="luat-ai">Luật cho AI</a>
+      <a href="/index.html#bo-tai-lieu-b2" data-sec="bo-tai-lieu-b2">Bộ tài liệu B2</a>
+      <a href="/index.html#bug" data-sec="bug">Quản lý bug</a>
+      <a href="/index.html#release" data-sec="release">Release</a>
+      <a href="/index.html#bieu-mau" data-sec="bieu-mau">Biểu mẫu</a>
+      <a href="/index.html#kpi" data-sec="kpi">KPI &amp; chuẩn</a>
+      <a href="/index.html#thieu" data-sec="thieu">Còn thiếu</a>
+      <a href="/index.html#vi-du-ins" data-sec="vi-du-ins">Ví dụ INS</a>
+      <a href="/index.html#tai-lieu" data-sec="tai-lieu">Tài liệu gốc</a>
+      <a class="ext" href="/mau/index.html">File mẫu ↗</a>
+      <a class="ext" href="/ins/index.html">Ví dụ INS ↗</a>
+      <a class="ext" href="https://btdat.io.vn" target="_blank" rel="noopener">btdat.io.vn ↗</a>
+    </nav>
+  </div>
+</header>
+<div class="layout">
+  
+<aside class="side side-l">
+  <details class="side-box" open>
+    <summary><span class="side-t">Quy trình 14 bước</span></summary>
+    <nav class="tree">
+      
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 0 · Khởi tạo</div>
+        <ul>
+          
+          <li data-step="b1">
+            <a href="/index.html#b1">
+              <span class="tb">B1</span>
+              <span class="tn">Project Charter &amp; Kick-off</span>
+              
+            </a>
+          </li>
+          <li data-step="b2">
+            <a href="/index.html#b2">
+              <span class="tb">B2</span>
+              <span class="tn">Constitution &amp; skill.md</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 1 · Yêu cầu</div>
+        <ul>
+          
+          <li data-step="b3">
+            <a href="/index.html#b3">
+              <span class="tb">B3</span>
+              <span class="tn">Thu thập yêu cầu</span>
+              
+            </a>
+          </li>
+          <li data-step="b4">
+            <a href="/index.html#b4">
+              <span class="tb">B4</span>
+              <span class="tn">Viết Spec (Specify)</span>
+              
+            </a>
+          </li>
+          <li data-step="b5">
+            <a href="/index.html#b5">
+              <span class="tb">B5</span>
+              <span class="tn">Làm rõ &amp; chốt Spec</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 2 · Thiết kế</div>
+        <ul>
+          
+          <li data-step="b6">
+            <a href="/index.html#b6">
+              <span class="tb">B6</span>
+              <span class="tn">Technical Plan &amp; Kiến trúc</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+          <li data-step="b7">
+            <a href="/index.html#b7">
+              <span class="tb">B7</span>
+              <span class="tn">Phân rã Task &amp; sprint planning</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 3 · Lập trình</div>
+        <ul>
+          
+          <li data-step="b8">
+            <a href="/index.html#b8">
+              <span class="tb">B8</span>
+              <span class="tn">Coding</span>
+              
+            </a>
+          </li>
+          <li data-step="b9">
+            <a href="/index.html#b9">
+              <span class="tb">B9</span>
+              <span class="tn">Unit Test</span>
+              
+            </a>
+          </li>
+          <li data-step="b10">
+            <a href="/index.html#b10">
+              <span class="tb">B10</span>
+              <span class="tn">Code Review 2 tầng</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 4 · Kiểm thử</div>
+        <ul>
+          
+          <li data-step="b11">
+            <a href="/index.html#b11">
+              <span class="tb">B11</span>
+              <span class="tn">Test Plan &amp; Test Case</span>
+              
+            </a>
+          </li>
+          <li data-step="b12">
+            <a href="/index.html#b12">
+              <span class="tb">B12</span>
+              <span class="tn">SIT/Regression/UAT</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 5 · Phát hành &amp; Vận hành</div>
+        <ul>
+          
+          <li data-step="b13">
+            <a href="/index.html#b13">
+              <span class="tb">B13</span>
+              <span class="tn">Release &amp; triển khai môi trường</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+          <li data-step="b14">
+            <a href="/index.html#b14">
+              <span class="tb">B14</span>
+              <span class="tn">Vận hành &amp; cải tiến</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="tree-sep"></div>
+    <nav class="tree tree-flat">
+      <div class="tree-gt">Mục khác</div>
+      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="vi-du-ins"><a href="/index.html#vi-du-ins"><span class="tn">Ví dụ INS</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
+    </nav>
+  </details>
+</aside>
+  <main class="main">
+<div class="tpl-head">
+  <div class="crumb"><a href="/index.html">Trang chủ</a> / <a href="/ins/index.html">Ví dụ INS</a> / CODING_CONVENTION.md — Quy chuẩn viết code (INS Platform)</div>
+  <h1>CODING_CONVENTION.md — Quy chuẩn viết code (INS Platform)</h1>
+  <div class="tpl-meta"><span class="chip">Dùng ở: <b>B2 bước 2 — Soạn cùng constitution.md (Tech Lead + AI); áp dụng mọi giai đoạn từ B6 trở đi</b></span><span class="chip">Chủ sở hữu: <b>Tech Lead</b></span><span class="chip">Nhóm: <b>B2 — Quy định &amp; luật cho AI</b></span><span class="chip">274 dòng</span></div>
+  <div class="warn" style="margin-top:14px">
+    <b>Ví dụ điền thật — INS Platform (đã ẩn danh).</b> Chỗ ghi <code>&gt; TODO</code> là dự án chưa có dữ liệu,
+    chỗ ghi <code>⚠️</code> là tài liệu lệch code — giữ nguyên để thấy đúng thực tế.
+    Mẫu trống tương ứng: <a href="/mau/coding-convention.html">CODING_CONVENTION.md</a>.
+  </div>
+  <div class="links" style="margin-top:12px">
+    <a href="/ins/raw/b2/CODING_CONVENTION.md" download>⬇ Tải file .md</a>
+    <a href="/ins/raw/b2/CODING_CONVENTION.md" target="_blank" rel="noopener">Xem raw</a>
+    <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Cả bộ .zip</a>
+    <a href="/mau/coding-convention.html">→ Mẫu gốc (trống)</a>
+  </div>
+</div>
+<article class="md"><blockquote><p>Ví dụ điền thật từ dự án INS Platform (đã ẩn danh). Template gốc: templates/b2/CODING_CONVENTION.md</p></blockquote>
+<h2>CODING_CONVENTION.md — Quy chuẩn viết code</h2>
+<blockquote><p>Dự án không viết lại style guide: nền là <strong>Oracle Code Conventions + google-java-format</strong> (Java) và <strong>Angular Style Guide + Prettier mặc định + ESLint</strong> (TypeScript). File này chỉ ghi phần <strong>siết chặt</strong>. Chi tiết gốc nằm ở <code>RULES.md</code> (Java), <code>RULES_ANGULAR.md</code> (Angular), <code>SonarClean.md</code> (Sonar) trong repo <code>ins-infrastructure</code> — mục 10 tóm lược từng rule 1 dòng, giữ nguyên mã rule.</p></blockquote>
+<h3>1. Phạm vi áp dụng</h3>
+<div class="tw"><table>
+<thead><tr><th>Hạng mục</th><th>Nội dung</th></tr></thead>
+<tbody><tr><td>Áp dụng cho</td><td>15 microservice Java 21 + Spring Boot 3.5 và thư viện chung <code>ins-common</code> (repo <code>ins-infrastructure</code>); 2 app Angular 20: <code>ins-cms-fe</code> (admin), <code>ins-miniapp-fe</code> (khách hàng)</td></tr><tr><td>Đối tượng tuân thủ</td><td>Dev, mọi AI agent sinh code, người review — &quot;vi phạm là lý do REJECT trong code review&quot; (RULES.md)</td></tr><tr><td>Quan hệ với chuẩn gốc</td><td>Mọi rule trong RULES.md / RULES_ANGULAR.md mức <strong>Bắt buộc</strong></td></tr><tr><td>Thứ tự ưu tiên khi rule mâu thuẫn</td><td>Java: <code>Architecture.md §2</code> &gt; security &gt; performance &gt; style. Angular: security &gt; architecture (Presentation/Business/Data) &gt; performance &gt; style</td></tr><tr><td>Cơ chế thực thi</td><td>BE: ArchUnit test mỗi service (build fail nếu vi phạm tầng), SonarQube, spotless (chạy tay). FE: husky <code>pre-commit</code> → lint-staged (<code>eslint --fix</code> + <code>prettier --write</code>)</td></tr><tr><td>Ngoại lệ</td><td>Sonar: chỉ <strong>S4502</strong> (CSRF) ở endpoint đối tác, kèm comment giải thích. Ngoài ra không có cơ chế ngoại lệ được ghi</td></tr><tr><td>Liên quan</td><td><code>LESSONS.md</code> (lỗi đã thực sự xảy ra), <code>rules/code-review-rules.md</code>, <code>bo-sung/code-review-checklist-nguoi.md</code>, <code>b2/dor-dod.md</code></td></tr></tbody>
+</table></div>
+<h3>2. Naming convention</h3>
+<p>Nguồn: RULES.md G2 + Naming Standards v1.4.1 (trạng thái REVIEW, 2026-06-05) — code hiện tại đã theo chuẩn path mới của Naming Standards.</p>
+<div class="tw"><table>
+<thead><tr><th>Đối tượng</th><th>Quy tắc</th><th>Ví dụ</th></tr></thead>
+<tbody><tr><td>Class / Interface Java</td><td><code>PascalCase</code> (Oracle Code Conventions)</td><td><code>SaveOrderDraftUseCaseImpl</code>, <code>PurchaseExceptionHandler</code></td></tr><tr><td>Method / field / biến</td><td><code>camelCase</code></td><td><code>createPolicyFromOrder</code>, <code>markPaid</code></td></tr><tr><td>Constant</td><td><code>static final</code> <code>UPPER_SNAKE_CASE</code></td><td><code>KEY_ORDER_ID</code>, <code>FIELD_PRODUCT_CODE</code></td></tr><tr><td>Package</td><td>lowercase, <code>com.example.platform.ins.&lt;service&gt;.&lt;layer&gt;</code></td><td><code>com.example.platform.ins.purchase.domain</code></td></tr><tr><td>JPA entity / Domain event / Param-object</td><td><code>Jpa&lt;Xxx&gt;</code> tách khỏi aggregate; event thì quá khứ; record <code>&lt;Name&gt;Cmd/Spec/State/Input</code> (S107)</td><td><code>JpaOrder</code>, <code>OrderConfirmedEvent</code>, <code>PolicyResultCmd</code></td></tr><tr><td>File Angular</td><td>Angular Style Guide: <code>feature.component.ts</code>, <code>feature.service.ts</code>; hằng/enum ở <code>*.constants.ts</code>, <code>*.enums.ts</code></td><td><code>customer-order.service.ts</code>, <code>api.constants.ts</code></td></tr><tr><td>Component selector</td><td>ESLint: <code>cms-</code> (CMS) / <code>app-</code> (miniapp), element <code>kebab-case</code>; directive attribute <code>camelCase</code></td><td><code>&lt;cms-page-header&gt;</code></td></tr><tr><td>REST path</td><td>`/ins/&lt;service&gt;/&lt;public\</td><td>private&gt;/v&lt;n&gt;/&lt;resource&gt;<code>; CMS thêm </code>cms/<code> sau </code>v1<code>; resource số nhiều </code>kebab-case<code>; path var / query / JSON DTO </code>camelCase`</td></tr><tr><td>DB schema / table / column</td><td>schema <code>ins_&lt;service&gt;_db</code>; table <code>snake_case</code> số nhiều; column <code>snake_case</code> số ít; PK <code>id</code>, FK <code>&lt;ref_table_singular&gt;_id</code></td><td><code>ins_purchase_db</code>, <code>orders</code>, <code>tenant_id</code></td></tr><tr><td>Index / Unique / FK</td><td><code>idx_&lt;table&gt;_&lt;cols&gt;</code> / <code>uk_&lt;table&gt;_&lt;cols&gt;</code> / <code>fk_&lt;table&gt;_&lt;ref_table&gt;</code></td><td><code>idx_orders_tenant_id_status</code></td></tr><tr><td>Kafka topic / consumer-group</td><td>lowercase + <code>-</code>, không dùng <code>.</code>, không version trong tên</td><td><code>ins-purchase-events</code>, <code>ins-purchase-dlq</code>, <code>ins-purchase-events-consumer</code></td></tr><tr><td><code>event_type</code> / envelope</td><td><code>&lt;Domain&gt;.&lt;Aggregate&gt;.&lt;Event&gt;</code> PascalCase + dấu chấm; field envelope <code>snake_case</code></td><td><code>Order.Issuance.OrderIssued</code>, <code>event_id</code>, <code>tenant_id</code></td></tr><tr><td>Redis key</td><td><code>ins:&lt;service&gt;:&lt;entity&gt;:&lt;id&gt;[:&lt;attr&gt;]</code>, lowercase + <code>:</code>; <strong>TTL bắt buộc</strong></td><td><code>ins:payment:idem:&lt;idempotency_key&gt;</code> (TTL 48h)</td></tr><tr><td>Keycloak</td><td>realm không prefix (<code>customer</code>, <code>tenant-admin</code>, <code>internal</code>); client-id <code>ins-&lt;service&gt;-service</code></td><td></td></tr><tr><td>Nhánh Git</td><td>Chuẩn: <code>feature-&lt;JIRA&gt;-&lt;slug&gt;</code>, <code>feature-&lt;JIRA&gt;-hotfix-&lt;slug&gt;</code>; tag <code>v&lt;M&gt;.&lt;m&gt;.&lt;p&gt;</code></td><td><code>feature-INS-1234-add-order-api</code></td></tr><tr><td>Biến môi trường</td><td><code>INS_&lt;NHÓM&gt;_*</code></td><td><code>INS_PURCHASE_DB_*</code>, <code>INS_REDIS_*</code></td></tr></tbody>
+</table></div>
+<p><strong>Ghi chú siết chặt / mâu thuẫn cần biết:</strong></p>
+<ul><li class="task"><span class="cb">☐</span> Tên có nghĩa, tránh viết tắt mơ hồ (G2). Tránh reserved keyword khi đặt bảng (<code>order</code> → <code>orders</code>, <code>user</code> → <code>users</code>).</li><li class="task"><span class="cb">☐</span> Status trong DB: <code>TINYINT</code> + bảng ref, <strong>không</strong> <code>ENUM</code> (Naming §2).</li><li class="task"><span class="cb">☐</span> ⚠️ Timestamp: Naming Standards ghi <code>created_time/updated_time/deleted_time</code> (UTC); RULES.md ghi <code>created_at/updated_at/deleted_at</code> và <code>+07:00</code> qua <code>DTime</code>. Theo cột đang có của bảng đang sửa.</li><li class="task"><span class="cb">☐</span> ⚠️ Tiền: Java dùng <code>Long</code> (đồng), cấm <code>BigDecimal</code> (AR10); Naming Standards ghi cột DB <code>DECIMAL(18,4)</code>.</li><li class="task"><span class="cb">☐</span> ⚠️ RULES.md G10/AR13 vẫn ghi path <code>/api/v1/{resource}</code> — đã bị Naming Standards thay (gateway không hỗ trợ URL rewrite nên controller phải khai full path).</li><li class="task"><span class="cb">☐</span> ⚠️ Nhánh thực tế chưa theo chuẩn: có <code>develop</code>, <code>release</code>, <code>goliveV1</code>, <code>main</code> và nhánh kiểu <code>feature/...</code>, <code>fix/...</code>, <code>feat/...</code>, nhánh theo tên người.</li></ul>
+<h3>3. Formatting &amp; Linting — công cụ bắt buộc theo ngôn ngữ</h3>
+<div class="tw"><table>
+<thead><tr><th>Ngôn ngữ</th><th>Formatter</th><th>Linter</th><th>Config file</th><th>Phiên bản ghim</th></tr></thead>
+<tbody><tr><td>Java 21</td><td>spotless-maven-plugin + <code>googleJavaFormat</code>, <code>removeUnusedImports</code>, <code>trimTrailingWhitespace</code>, <code>endWithNewline</code></td><td>SonarQube (+ SpotBugs theo G1); ArchUnit cho ranh giới tầng</td><td><code>pom.xml</code> gốc mỗi service (<code>pluginManagement</code>)</td><td>spotless <code>2.44.4</code>, ArchUnit <code>1.3.0</code></td></tr><tr><td>TypeScript (Angular 20)</td><td>Prettier (không có <code>.prettierrc</code> → cấu hình mặc định)</td><td>ESLint 9 flat config: <code>@eslint/js</code> recommended, <code>typescript-eslint</code> recommended + stylistic, <code>angular-eslint</code> tsRecommended, template recommended + accessibility, <code>eslint-config-prettier</code></td><td><code>eslint.config.js</code>, <code>tsconfig.json</code> (<code>strict</code>, <code>strictTemplates</code>, <code>noImplicitReturns</code>…)</td><td>Prettier <code>^3.8.3</code>, ESLint <code>^9.39.4</code>, TypeScript <code>~5.9.2</code>, theo <code>package-lock.json</code></td></tr><tr><td>SCSS / JSON</td><td>Prettier</td><td>—</td><td>lint-staged trong <code>package.json</code></td><td></td></tr></tbody>
+</table></div>
+<p><strong>Rule ESLint dự án tự thêm (cả hai app):</strong> <code>eqeqeq: always</code> (error) · <code>@typescript-eslint/no-explicit-any</code> (error) · <code>consistent-type-definitions: interface</code> (error) · <code>no-var</code>, <code>prefer-const</code>, <code>no-debugger</code> (error) · <code>no-console</code> chỉ cho <code>warn</code>/<code>error</code> (warn) · <code>no-restricted-globals</code> chặn <code>localStorage</code>/<code>sessionStorage</code> ngoài <code>TokenStorageService</code> (error) · <code>prefer-on-push-component-change-detection</code> (warn) · <code>no-floating-promises</code> (warn) · <code>explicit-function-return-type</code> (warn). Khác nhau: <code>prettier/prettier</code> là <code>warn</code> ở CMS, <code>off</code> ở miniapp.</p>
+<p><strong>Lệnh:</strong></p>
+<pre class="code lang-bash"><code># FE (trong thư mục app)
+npm run lint          # ng lint
+npm run lint:fix
+npm run format        # prettier --write &quot;src/**/*.{ts,html,scss}&quot;
+npm run format:check
+# BE (trong ins-&lt;service&gt;/)
+./mvnw spotless:apply   # CHỈ trên file mình sửa — xem quy tắc dưới</code></pre>
+<p><strong>Quy tắc:</strong></p>
+<ul><li class="task"><span class="cb">☐</span> Format theo formatter, không tùy chỉnh tay (G11 Java, G12 Angular).</li><li class="task"><span class="cb">☐</span> <strong>CẤM <code>./mvnw spotless:apply</code> không giới hạn phạm vi</strong> — một lần chạy đã reflow javadoc 120 file không liên quan (LESSONS §6.3). spotless không gắn vào lifecycle build, phải chạy tay.</li><li class="task"><span class="cb">☐</span> Code sạch Sonar <strong>trước</strong> khi commit, không đợi pipeline báo (SO1). Cấm <code>@SuppressWarnings(&quot;java:S…&quot;)</code>, <code>&quot;unchecked&quot;</code>, <code>// NOSONAR</code> (SO2).</li><li class="task"><span class="cb">☐</span> FE: kiểm CRLF sau khi AI/Edit tool ghi file — prettier báo `<code>Delete </code>␍<code> </code><code> mọi dòng; </code>grep -c $'\r$' file` phải = 0 (LESSONS §9).</li><li class="task"><span class="cb">☐</span> Không format lại file không liên quan trong cùng commit.</li></ul>
+<h3>4. Cấu trúc thư mục chuẩn</h3>
+<p><strong>Backend — mỗi service là Maven 3 module (<code>domain</code> ← <code>application</code> ← <code>adapter</code>):</strong></p>
+<pre class="code lang-text"><code>ins-&lt;service&gt;/
+├── pom.xml                  # parent (packaging=pom), repo vendored libs/ (platform-libs)
+├── domain/                  # Pure Java — KHÔNG Spring/JPA/Hibernate/Temporal
+│   └── .../domain/{aggregate,value,event,repository,criteria}/
+├── application/             # UseCase + Port + Command/Query/Result (record)
+│   └── .../application/{usecase,port/{inbound,outbound},dto}/
+├── adapter/                 # Spring Boot runtime
+│   └── .../adapter/
+│       ├── configuration/   # KafkaConfig, RedisConfig, TemporalConfig, UseCaseConfig, SecurityConfig
+│       ├── inbound/{restful,messaging,scheduler,temporal,facade}/
+│       └── outbound/{persistence,messaging}/
+│   └── src/test/.../ArchitectureTest.java
+├── docker/docker-compose.yml
+└── mvnw, libs/</code></pre>
+<p><strong>Frontend — <code>ins-cms-fe</code> / <code>ins-miniapp-fe</code> (standalone bootstrap):</strong></p>
+<pre class="code lang-text"><code>src/app/
+├── components/              # component dùng chung (toast, pagination, date-picker…)
+│   └── api/{constants,guards,interceptors,models,services,utils,i18n}/
+│                            # tầng Data: *.service.ts gọi HTTP, api.constants.ts khai endpoint
+├── showcase/{layout,pages,pipes}/   # màn hình theo feature (pages/&lt;feature&gt;/…)
+└── styles/</code></pre>
+<p><strong>Quy tắc ranh giới (đo lường được):</strong></p>
+<ul><li class="task"><span class="cb">☐</span> <code>adapter → application → domain</code>, không chiều ngược; <code>adapter.inbound..</code> không import <code>adapter.outbound..</code> — ArchUnit enforce (AR1).</li><li class="task"><span class="cb">☐</span> Controller / Scheduler / Kafka consumer / Temporal activity → <strong>Facade</strong> → Port → UseCase → Repository; không bypass (AR4). Mốc hiện tại <code>ArchitectureTest#controller_should_go_through_facade</code> đỏ <strong>3 vi phạm</strong> — nhiều hơn là hồi quy (LESSONS §5.4).</li><li class="task"><span class="cb">☐</span> UseCase không là Spring bean — wire bằng <code>@Bean</code> trong <code>UseCaseConfig</code> (AR3); chỉ orchestration + transaction, logic ở aggregate.</li><li class="task"><span class="cb">☐</span> Facade <code>@Component @Transactional</code> chỉ map DTO ↔ Command/Result + delegate, không gọi JPA/outbound trực tiếp (AR5).</li><li class="task"><span class="cb">☐</span> <code>@WorkflowInterface</code>/<code>@ActivityInterface</code> chỉ ở <code>adapter/inbound/temporal/</code> (AR14).</li><li class="task"><span class="cb">☐</span> FE: Component (presentation) → Service (business) → ApiClient/Store (data); component <strong>không</strong> gọi HTTP trực tiếp (Angular G3). Hằng/enum ở file <code>*.constants.ts</code>/<code>*.enums.ts</code> của feature (G5).</li><li class="task"><span class="cb">☐</span> Chỉ sửa ở repo thật: <code>ins-infrastructure</code>, <code>ins-cms-fe</code>, <code>ins-miniapp-fe</code>. <code>ins-client</code> (stale, untracked) và <code>ins-bit</code> (clone cũ nhánh staging) <strong>không sửa, không đọc để kết luận</strong> (LESSONS §6.1, §9).</li></ul>
+<h3>5. Error handling</h3>
+<div class="tw"><table>
+<thead><tr><th>Quy tắc</th><th>Mức</th><th>Ghi chú</th></tr></thead>
+<tbody><tr><td>Không <code>throw</code> exception thẳng từ Controller — map sang response lỗi (J18)</td><td>MUST</td><td></td></tr><tr><td>Catch phải log/forward exception gốc: <code>log.error(msg, e)</code> hoặc <code>throw new XxxException(msg, e)</code> (J33, S1166)</td><td>MUST</td><td>Cấm <code>catch (Exception e) {}</code></td></tr><tr><td>Không vừa log vừa rethrow (S2139)</td><td>MUST NOT</td><td>Nhét context vào message exception, bỏ log</td></tr><tr><td>Catch đúng loại — không catch <code>Exception</code>/<code>Throwable</code> trừ ranh giới hệ thống (SC2)</td><td>MUST</td><td></td></tr><tr><td>Không <code>throw new RuntimeException(...)</code> chung — dùng exception chuyên biệt (S112)</td><td>MUST NOT</td><td>vd <code>PurchaseApplicationException</code></td></tr><tr><td>Domain: <code>AssertionConcern.assertArgument…</code>; vi phạm nghiệp vụ → <code>BusinessRuleViolationException</code>; không thấy → <code>ResourceNotFoundException</code></td><td>MUST</td><td>Architecture §2.1</td></tr><tr><td>Fail-fast: validate đầu method, <code>@Valid @RequestBody</code> (SC8)</td><td>MUST</td><td></td></tr><tr><td>Không <code>printStackTrace()</code> / <code>System.out</code> (J32, ML6)</td><td>MUST NOT</td><td></td></tr><tr><td>Không log PII raw (CCCD, SĐT, mật khẩu, token) — phải mask</td><td>MUST NOT</td><td></td></tr><tr><td><strong>Handler <code>Exception.class</code> nuốt lỗi validation → 400 thành 500</strong></td><td>Đã xảy ra</td><td>LESSONS §4.2: handler không <code>extends ResponseEntityExceptionHandler</code> mà có <code>@ExceptionHandler(Exception.class)</code>. Mỗi service chỉ giữ <strong>một</strong> <code>@RestControllerAdvice</code> <code>@Order(HIGHEST_PRECEDENCE)</code> — advice thứ hai sẽ cướp exception</td></tr><tr><td><strong>Hàm <code>*BestEffort</code> log <code>warn</code> rồi đi tiếp</strong></td><td>Đã xảy ra</td><td>LESSONS §4.3: SMS thiếu <code>Idempotency-Key</code> → 400 bị nuốt, SMS không tới khách, endpoint vẫn 200; <code>createPolicyFromOrder</code> trả <code>null</code> mà luồng vẫn báo thành công. Kết quả best-effort phải được kiểm, không mặc định là thành công</td></tr><tr><td>Fallback im lặng (LESSONS §4.7)</td><td>SHOULD NOT</td><td>Biến lỗi thành &quot;chạy đúng nhờ đoán trúng&quot;</td></tr></tbody>
+</table></div>
+<p><strong>Mẫu body lỗi thống nhất (shape thật của purchase-service):</strong></p>
+<pre class="code lang-json"><code>{ &quot;success&quot;: false, &quot;errorCode&quot;: &quot;&lt;mã trong bảng mã của service&gt;&quot;, &quot;message&quot;: &quot;&lt;thông điệp đã phân giải&gt;&quot;, &quot;timestamp&quot;: &quot;...&quot; }</code></pre>
+<ul><li>Message của exception <strong>không</strong> ra client, chỉ vào log; nội dung hiển thị phân giải theo thứ tự: hệ thống thông điệp lỗi tập trung → default của backend → lỗi hệ thống.</li><li>⚠️ Naming Standards ghi chuẩn lỗi là <strong>RFC 7807 Problem Details</strong> — code hiện tại đã bỏ <code>ProblemDetail</code> vì trước đây <code>detail = ex.getMessage()</code> lộ chuỗi kỹ thuật ra FE. Cần Tech Lead chốt một chuẩn.</li><li>FE: dùng util <code>api-error.util.ts</code> và <code>error.constants.ts</code> của app; text lỗi qua <code>translate</code> (G13).</li></ul>
+<h3>6. Documentation</h3>
+<ul><li class="task"><span class="cb">☐</span> Mọi <code>public</code> class/method/field Java có <strong>Javadoc</strong> (G3) — đặc biệt module shared <code>ins-common</code> và port interface.</li><li class="task"><span class="cb">☐</span> Mọi <code>public</code> class/method/<code>@Input</code>/<code>@Output</code> Angular có <strong>JSDoc</strong> (G11).</li><li class="task"><span class="cb">☐</span> Comment đồng bộ với code; sửa code thì sửa comment (G7/G8). Ca thật: commit đổi hành vi <code>RESUMABLE</code> mà không sửa test lẫn javadoc → assertion sai nằm im nhiều tuần (LESSONS §5.3).</li><li class="task"><span class="cb">☐</span> Không để code bị comment-out (S125) và không viết comment <strong>trông giống code</strong> (tránh <code>=</code>, <code>;</code> cuối dòng, <code>()</code>, <code>→</code>, <code>obj.field</code>) (LESSONS §8).</li><li class="task"><span class="cb">☐</span> <code>TODO</code> phải có ticket và việc cụ thể: <code>// TODO(JIRA-123): &lt;việc&gt;</code> (S1135); method rỗng ghi <code>// no-op: &lt;lý do&gt;</code> (S1186).</li><li class="task"><span class="cb">☐</span> Tài liệu thiết kế kỹ thuật (TSD) nằm trong repo (<code>TSD/</code>), cập nhật bằng commit <code>docs(tsd-&lt;service&gt;)</code>. DDL trong <code>TSD/sql_scripts/</code> <strong>không</strong> phải nguồn sự thật — entity + DB thật mới là (LESSONS §7.2).</li></ul>
+<h3>7. Git &amp; Commit</h3>
+<div class="tw"><table>
+<thead><tr><th>Hạng mục</th><th>Quy tắc</th></tr></thead>
+<tbody><tr><td>Nhánh</td><td>Tích hợp trên <code>develop</code>; merge <code>develop → release</code>. Chuẩn đặt tên nhánh: <code>feature-&lt;JIRA&gt;-&lt;slug&gt;</code> (chưa tuân thủ đều — xem mục 2)</td></tr><tr><td>Commit message</td><td>Conventional Commits <code>&lt;type&gt;(&lt;scope&gt;): &lt;mô tả&gt;</code> — chi tiết ở <code>bo-sung/conventional-commits.md</code></td></tr><tr><td>Stage</td><td><strong>CẤM <code>git add -A</code></strong> — worktree dùng chung, đã gộp nhầm việc người khác và push không rút lại được (LESSONS §6.2). Stage theo từng file, kiểm <code>git diff --cached --name-only</code></td></tr><tr><td>Merge develop → release</td><td><code>git stash push -u -- &lt;file cụ thể&gt;</code> → merge → <code>git stash pop</code> → <strong>kiểm lại <code>git status</code></strong>; báo cho người liên quan nếu merge kéo theo commit của người khác</td></tr><tr><td>Library mới</td><td>Tech Lead approve, sửa <code>pom.xml</code>/<code>package.json</code> qua <strong>MR riêng</strong> (TP1); chỉ MIT/Apache-2.0/BSD, tránh GPL (TP2); commit <code>package-lock.json</code> (TP4)</td></tr><tr><td>Kích thước PR</td><td>&gt; TODO: dự án chưa có — cần Tech Lead bổ sung</td></tr><tr><td>Nội dung PR</td><td>&gt; TODO: dự án chưa có template PR — cần Tech Lead bổ sung (commit body hiện đang gánh: &quot;Test:&quot;, &quot;Deploy TRƯỚC/SAU …&quot;)</td></tr><tr><td>File sinh tự động</td><td>Không sửa file manifest generated — sửa <code>deployment-template.yaml</code> rồi chạy <code>generate-manifests.sh [TAG]</code> (LESSONS §7.3)</td></tr></tbody>
+</table></div>
+<h3>8. Ranh giới khi AI agent sinh code</h3>
+<ul><li class="task"><span class="cb">☐</span> <strong>Bắt buộc đọc</strong> <code>RULES.md</code> (Java) / <code>RULES_ANGULAR.md</code> (Angular) và <code>SonarClean.md</code> trước khi sinh/sửa code; không sinh code vi phạm rule Bắt buộc kể cả khi user không nhắc; rule mâu thuẫn yêu cầu → ưu tiên rule hoặc hỏi lại (RULES §G, RULES_ANGULAR §K).</li><li class="task"><span class="cb">☐</span> <strong>Không né Sonar</strong>: cấm <code>@SuppressWarnings(&quot;java:S…&quot;)</code>/<code>&quot;unchecked&quot;</code>/<code>// NOSONAR</code>; gặp suppress cũ trong file đang sửa → gỡ và fix thật (SonarClean POLICY).</li><li class="task"><span class="cb">☐</span> <strong>Chỉ sửa đúng issue Sonar được giao</strong> — không tự grep quét thêm rồi sửa: tự tách hằng <code>fallbackMethod</code> đã đẻ ra S1144 đòi xoá fallback circuit-breaker; tên method trong annotation phải để literal (LESSONS §8).</li><li class="task"><span class="cb">☐</span> Review code có sẵn thấy vi phạm → cảnh báo và đề xuất, không tự ý lờ đi.</li><li class="task"><span class="cb">☐</span> Trước khi kết luận &quot;code chết&quot; và xoá → chứng minh đủ (truy theo <strong>port/interface</strong> chứ không theo class impl; grep FE <code>-i</code>; tách &quot;khai hằng&quot; với &quot;call site&quot;; kiểm route k8s, <code>@KafkaListener</code>, seed SQL). Java bị <code>.gitignore</code> nên Grep tool mù — dùng <code>rg --no-ignore -g '*.java'</code> (LESSONS §3).</li><li class="task"><span class="cb">☐</span> Trước khi làm lại việc đã từng revert (<code>signalWithStart</code>, cột <code>usage_count</code>, throw <code>TENANT_MISMATCH</code> ở payment initiate) → đọc lý do lần trước hỏng (LESSONS §10).</li><li class="task"><span class="cb">☐</span> Không chạy <code>spotless:apply</code> toàn service; không <code>git add -A</code>; kiểm CRLF sau khi ghi file FE.</li></ul>
+<h3>9. Checklist trước khi mở PR</h3>
+<ul><li class="task"><span class="cb">☐</span> BE: <code>./mvnw test -pl domain,application</code> pass; <code>./mvnw test -pl adapter -Dtest='ArchitectureTest'</code> pass (không thêm vi phạm so với mốc).</li><li class="task"><span class="cb">☐</span> BE: chạy <strong>riêng</strong> lớp test của use case vừa sửa, so theo <strong>danh tính</strong> test fail chứ không theo tổng số (LESSONS §5).</li><li class="task"><span class="cb">☐</span> FE: <code>ng lint</code> pass, <code>ng test</code> pass (Karma cần <code>CHROME_BIN</code>), Prettier sạch.</li><li class="task"><span class="cb">☐</span> Checklist Sonar (mục 10.3) đạt; không <code>System.out</code>, <code>printStackTrace</code>, <code>console.log</code>, <code>debugger</code>.</li><li class="task"><span class="cb">☐</span> Không magic string/number; không import/biến/method thừa; public API có Javadoc/JSDoc.</li><li class="task"><span class="cb">☐</span> Guard đứng trước side-effect; không viết nhánh thứ hai làm mất guard (LESSONS §1, §2).</li><li class="task"><span class="cb">☐</span> Đụng <code>@Entity</code>/DDL → đã kiểm <code>ddl-auto</code> của service đó và thứ tự deploy (LESSONS §7.1, §11).</li><li class="task"><span class="cb">☐</span> <code>git status</code> trước khi stage; commit đúng Conventional Commits.</li></ul>
+<h3>10. Phụ lục — tóm lược rule bắt buộc (giữ mã rule)</h3>
+<h4>10.1 Java — RULES.md (PL03 + PL04)</h4>
+<div class="tw"><table>
+<thead><tr><th>Nhóm</th><th>Mã — tóm tắt</th></tr></thead>
+<tbody><tr><td>General</td><td><strong>G1</strong> pass SonarQube/SpotBugs · <strong>G2</strong> naming Oracle · <strong>G3</strong> Javadoc public · <strong>G4</strong> cấm magic string/number → constant/enum · <strong>G5</strong> xoá code chết/import thừa · <strong>G6</strong> tái dùng thư viện sẵn (<code>platform-libs</code>, <code>ins-common</code>, Commons, Guava) · <strong>G7</strong> comment đồng bộ code · <strong>G8</strong> SRP · <strong>G9</strong> DRY · <strong>G10</strong> RESTful + <code>ApiResponse.of(...)</code> · <strong>G11</strong> format google-java-format/spotless</td></tr><tr><td>Security</td><td><strong>S1</strong> encode input chống XSS · <strong>S2</strong> chỉ JPA/JPQL/parameterized, cấm concat SQL · <strong>S3</strong> cấm hard-code secret · <strong>S4</strong> tính tiền/số dư/chiết khấu chỉ ở BE · <strong>S5</strong> CSRF hoặc JWT cho API đổi state · <strong>S6</strong> lọc path <code>/</code>, <code>\</code>, null + whitelist extension · <strong>S7</strong> mọi endpoint kiểm RBAC + tenant, mặc định deny · <strong>S8</strong> login fail message chung · <strong>S9</strong> cookie HttpOnly+Secure+SameSite · <strong>S10</strong> đổi session ID sau login · <strong>S11</strong> PII AES-256 at-rest, mask log · <strong>S12</strong> thẻ chỉ tokenization, không lưu PAN · <strong>S13</strong> TLS ≥ 1.2</td></tr><tr><td>Object &amp; equality</td><td><strong>J3</strong> equals ↔ hashCode · <strong>J4</strong> equals kiểm null + getClass trước cast · <strong>J11</strong> Cloneable phải override clone · <strong>J12</strong> equals ↔ compareTo · <strong>J36</strong> so kiểu bằng <code>instanceof</code>, không <code>getSimpleName()</code> · <strong>J39</strong> literal bên trái <code>equals</code></td></tr><tr><td>Null safety</td><td><strong>J8</strong> null-check trước truy cập · <strong>J10</strong> null-check ở vế đầu <code>&amp;&amp;</code>/`\</td></tr><tr><td>Control flow</td><td><strong>J5</strong> không <code>return</code> trong <code>finally</code> · <strong>J16</strong> block switch bắt đầu bằng <code>case</code> · <strong>J27</strong> bỏ nhánh không xảy ra · <strong>J28</strong> không bỏ giá trị trả về · <strong>J29</strong> dùng <code>&amp;&amp;</code>/`\</td></tr><tr><td>Numeric</td><td><strong>J1</strong> <code>longBitsToDouble</code> chỉ nhận <code>long</code> · <strong>J20</strong> không <code>==</code> với float/double · <strong>J25</strong> cẩn thận <code>Math.abs(MIN_VALUE)</code> · <strong>INS-extra/AR10</strong> tiền VND = <code>Long</code></td></tr><tr><td>Collection</td><td><strong>J17</strong> không truyền collection vào method của chính nó · <strong>J40/SC3</strong> đa luồng dùng <code>ConcurrentHashMap</code>/collection thread-safe</td></tr><tr><td>Resource &amp; exception</td><td><strong>J9/ML1/ML2</strong> đóng resource bằng try-with-resources · <strong>J18</strong> không throw từ Controller · <strong>J32</strong> không <code>printStackTrace</code> · <strong>J33</strong> log/forward cause · <strong>SC2</strong> catch đúng loại · <strong>SC8</strong> fail-fast</td></tr><tr><td>Concurrency</td><td><strong>J2</strong> không <code>synchronized</code> trên <code>Lock</code> · <strong>J6</strong> không gán lại obj đang lock · <strong>J7</strong> không wait/notify trên Thread · <strong>J22</strong> static init synchronized/volatile · <strong>J23</strong> unlock trong <code>finally</code> cùng method · <strong>J31</strong> không gọi <code>run()</code> trực tiếp · <strong>J35</strong> không static <code>SimpleDateFormat</code>/<code>Calendar</code>, dùng <code>java.time</code> · <strong>J43</strong> hạn chế synchronized, dùng Atomic* · <strong>P1</strong> dùng ExecutorService</td></tr><tr><td>Static &amp; encapsulation</td><td><strong>J15</strong> public static phải final · <strong>J21</strong> không sửa static từ instance method · <strong>J24</strong> không public static mutable · <strong>P3</strong> xoá static không dùng · <strong>SC1</strong> field private (aggregate dùng accessor <code>order.status()</code>)</td></tr><tr><td>Logging</td><td><strong>ML6</strong> không <code>System.out</code> · <strong>SC3</strong> log đủ ca lỗi/business event · <strong>SC4</strong> đúng log level · <strong>INS-extra</strong> không log PII raw</td></tr><tr><td>Cast / Misc</td><td><strong>SC7</strong> kiểm <code>instanceof</code> trước cast · <strong>J13/J14</strong> biến điều kiện <code>for</code> nhất quán, không đổi trong thân · <strong>J19</strong> không <code>System.gc()</code> · <strong>J26</strong> không serialize class không <code>Serializable</code></td></tr><tr><td>Third-party / Sonar</td><td><strong>TP1</strong> lib mới qua Tech Lead + MR riêng · <strong>TP2</strong> license MIT/Apache/BSD · <strong>SO1</strong> sạch Sonar trước commit · <strong>SO2</strong> cấm suppress (ngoại lệ S4502)</td></tr><tr><td>Performance</td><td><strong>P2</strong> <code>StringBuilder</code> khi concat trong loop · <strong>P4/J41</strong> connection pool (HikariCP, Lettuce, pooling HTTP) · <strong>P5</strong> đọc file lớn streaming · <strong>J42</strong> không <code>jedis.sync()</code> sau mỗi op</td></tr><tr><td>SQL</td><td><strong>SQ1</strong> không function trên cột có index trong WHERE · <strong>SQ2</strong> <code>COUNT(CASE WHEN…)</code> thay N câu COUNT · <strong>SQ3</strong> mọi SELECT có LIMIT/Pageable (mặc định 20) · <strong>SQ4</strong> đánh giá index khi thêm cột/bảng · <strong>SQ5</strong> bảng giao dịch có partition key trong WHERE · migration qua Flyway <code>V{n}__{desc}.sql</code>, prod <code>ddl-auto=validate</code> · mọi bảng có <code>tenant_id</code> + audit columns · soft delete <code>deleted_at</code></td></tr><tr><td>Kiến trúc</td><td><strong>AR1</strong> dependency direction · <strong>AR2</strong> domain thuần Java · <strong>AR3</strong> UseCase không là bean · <strong>AR4</strong> Controller→Facade→Port→UseCase · <strong>AR5</strong> Facade chỉ map + delegate · <strong>AR6</strong> 1 transaction = 1 aggregate, collection <code>unmodifiableList</code> · <strong>AR7</strong> domain event quá khứ, immutable, emit từ root · <strong>AR8</strong> UUID v7 · <strong>AR9</strong> <code>tenant_id</code> + <code>TenantContext.get()</code> · <strong>AR11</strong> <code>+07:00</code> qua <code>DTime</code> · <strong>AR12</strong> Transactional Outbox, không dual-write Kafka · <strong>AR13</strong> wrap <code>ApiResponse.of</code> · <strong>AR14</strong> annotation Temporal chỉ ở adapter</td></tr></tbody>
+</table></div>
+<blockquote><p>⚠️ RULES.md ghi migration &quot;phải qua Flyway&quot;, nhưng checkout hiện tại không có thư mục <code>db/migration</code> hay dependency Flyway; DDL nằm ở <code>sql/&lt;service&gt;.sql</code> và <code>TSD/sql_scripts/</code>, commit <code>sql(...)</code>. Cần Tech Lead xác nhận nguồn migration chính thức.</p></blockquote>
+<h4>10.2 Angular — RULES_ANGULAR.md (PL05)</h4>
+<div class="tw"><table>
+<thead><tr><th>Nhóm</th><th>Mã — tóm tắt</th></tr></thead>
+<tbody><tr><td>General</td><td><strong>G1</strong> pass ESLint/Prettier/Stylelint · <strong>G2</strong> đặt tên theo Style Guide · <strong>G3</strong> Component → Service → ApiClient/Store, không HTTP từ component · <strong>G4/G5</strong> không magic, hằng/enum ở <code>*.constants.ts</code>/<code>*.enums.ts</code> · <strong>G6</strong> xoá code chết · <strong>G7</strong> tái dùng RxJS/lodash-es/built-in · <strong>G8</strong> comment đồng bộ · <strong>G9</strong> cấm <code>var</code> · <strong>G10</strong> cấm <code>any</code> (<code>strict</code>) · <strong>G11</strong> JSDoc public/@Input/@Output · <strong>G12</strong> Prettier + ESLint · <strong>G13</strong> text qua <code>translate</code> pipe (<code>@ngx-translate/core</code>) · <strong>G14</strong> chỉ <code>===</code>/<code>!==</code>, kể cả check null</td></tr><tr><td>Module &amp; component</td><td><strong>M1</strong> <code>provideHttpClient()</code> 1 lần ở root · <strong>M2</strong> không khai component nhiều NgModule · <strong>M3</strong> lazy load feature (<code>loadChildren</code>/<code>loadComponent</code>) · <strong>M4</strong> dùng bộ component dùng chung của project · <strong>M5</strong> kiểm directive/pipe built-in trước khi tự viết</td></tr><tr><td>DOM &amp; template</td><td><strong>D1</strong> cấm thao tác DOM trực tiếp (<code>getElementById</code>, <code>innerHTML</code>…) → Renderer2/binding · <strong>D2</strong> không <code>[innerHTML]</code> với input chưa sanitize · <strong>D3</strong> không inline <code>&lt;script&gt;</code> · <strong>D4</strong> Reactive Forms cho form phức tạp</td></tr><tr><td>Security</td><td><strong>S1</strong> encode query param (dùng <code>HttpParams</code>) · <strong>S2</strong> cấm JWT/PII/OTP/thẻ trong localStorage/sessionStorage · <strong>S3</strong> không inline script · <strong>S4</strong> CSP ở gateway · <strong>S5</strong> không hard-code secret, dùng <code>environment.*</code> + CI inject · <strong>S6</strong> password <code>autocomplete=&quot;new-password&quot;</code>/<code>off</code> · <strong>S7</strong> route nhạy cảm có AuthGuard + role</td></tr><tr><td>Source code</td><td><strong>SC1</strong> field private khi không cần expose · <strong>SC2</strong> cấm <code>console.*</code> ở production · <strong>SC3</strong> = M5 · <strong>SC4</strong> <code>interface</code> cho data model · <strong>SC5</strong> <code>readonly</code> · <strong>SC6</strong> logic nặng tách sang Service/Pipe · <strong>SC7</strong> OnPush khi @Input immutable</td></tr><tr><td>Performance</td><td><strong>P1</strong> <code>trackBy</code> cho list lớn · <strong>P2</strong> OnPush · <strong>P3</strong> lazy load · <strong>P4</strong> <code>async</code> pipe thay subscribe tay · <strong>P5</strong> <code>@defer</code> cho component nặng · <strong>P6</strong> <code>loading=&quot;lazy&quot;</code> cho ảnh · <strong>P7</strong> kiểm bundle size định kỳ</td></tr><tr><td>RxJS &amp; memory</td><td><strong>R1</strong> unsubscribe ở <code>ngOnDestroy</code>/<code>takeUntilDestroyed()</code> · <strong>R2</strong> ưu tiên <code>async</code> pipe · <strong>R3</strong> <code>shareReplay({bufferSize:1, refCount:true})</code> · <strong>R4</strong> không nest subscribe, dùng <code>switchMap</code>/… · <strong>R5</strong> gỡ event listener · <strong>R6</strong> clear interval/timeout</td></tr><tr><td>NgRx</td><td><strong>ST1</strong> action qua <code>createAction</code>/class · <strong>ST2</strong> chỉ đưa vào store thứ share/persist/effect · <strong>ST3</strong> reducer pure · <strong>ST4</strong> side effect ở effects · <strong>ST5</strong> truy vấn qua selector · <strong>ST6</strong> collection lớn dùng <code>@ngrx/entity</code> · <strong>ST7</strong> state có interface</td></tr><tr><td>Third-party</td><td><strong>TP1</strong> Tech Lead approve · <strong>TP2</strong> license · <strong>TP3</strong> <code>npm audit</code> định kỳ · <strong>TP4</strong> commit <code>package-lock.json</code></td></tr><tr><td>Dự án (LESSONS §9)</td><td>Date picker <strong>lưu ISO</strong>, chỉ hiển thị <code>dd/MM/yyyy</code> — trộn hai dạng đã gửi sai ngày sinh cho NCC</td></tr></tbody>
+</table></div>
+<h4>10.3 Sonar — SonarClean.md</h4>
+<div class="tw"><table>
+<thead><tr><th>Rule</th><th>Tóm tắt cách viết đúng</th></tr></thead>
+<tbody><tr><td><strong>S1192</strong> (CRITICAL)</td><td>Literal lặp ≥ 3 lần/file → <code>static final</code>; <strong>và</strong> hằng đã có thì dùng ở MỌI chỗ (biến thể &quot;already-defined constant&quot; bị ngay từ 1 lần lặp, kể cả trong annotation và <code>Map.of</code>) — không tạo hằng thứ hai cùng giá trị</td></tr><tr><td><strong>S2139</strong> (MAJOR)</td><td>Không vừa log vừa rethrow trong catch</td></tr><tr><td><strong>S107</strong></td><td>Method/ctor &gt; 7 tham số → <code>record</code> param-object (canonical ctor được miễn)</td></tr><tr><td><strong>S2160</strong></td><td>Subclass thêm field → override <code>equals/hashCode</code> theo id</td></tr><tr><td><strong>S5738 / S1874</strong></td><td>Không gọi API deprecated (Spring Security 6 lambda DSL)</td></tr><tr><td>unchecked / rawtypes</td><td>Không <code>(Class) X.class</code>, không raw generic</td></tr><tr><td><strong>S1168</strong></td><td>Không <code>return null</code> cho collection/array</td></tr><tr><td><strong>S2065</strong></td><td>Bỏ <code>transient</code> thừa</td></tr><tr><td><strong>S2629</strong></td><td>Log dùng <code>{}</code>, không concat/method-call trong đối số</td></tr><tr><td>Dọn rác</td><td><strong>S1481</strong> biến local thừa · <strong>S1854</strong> dead store · <strong>S1144/S1068</strong> private method/field thừa · <strong>S1128</strong> import thừa · <strong>S125</strong> code comment-out · <strong>S1135</strong> TODO không ticket · <strong>S1186</strong> method rỗng không lý do · <strong>S1172</strong> tham số thừa (trừ fallback <code>@CircuitBreaker</code> phải khớp signature)</td></tr><tr><td>Logging / exception</td><td><strong>S106</strong> không <code>System.out</code> · <strong>S112</strong> không exception chung · <strong>S1166</strong> không nuốt exception</td></tr><tr><td>Cấu trúc</td><td><strong>S1118</strong> utility class có private ctor · <strong>S3776</strong> cognitive complexity cao → tách method · <strong>S1066</strong> gộp if lồng · <strong>S1126</strong> <code>return condition;</code> · <strong>S2589/S2583</strong> điều kiện/nhánh thừa</td></tr><tr><td>Idiom</td><td><strong>S1612</strong> method reference · <strong>S1602</strong> lambda bỏ <code>{}</code> · <strong>S2864</strong> <code>entrySet()</code> · <strong>S2095</strong> try-with-resources · <strong>S1149</strong> không <code>Vector</code>/<code>Hashtable</code>/<code>StringBuffer</code></td></tr><tr><td>Naming</td><td><strong>S00100/S00101/S00116/S00117</strong> camelCase / PascalCase / UPPER_SNAKE / lowercase package</td></tr></tbody>
+</table></div>
+<p>Verify nhanh (mỗi file):</p>
+<pre class="code lang-bash"><code>grep -nE '@SuppressWarnings\(&quot;(java:S|unchecked|rawtypes)|// *NOSONAR' &lt;file&gt;     # rỗng
+grep -nE 'log\.(trace|debug|info|warn|error)\([^)]*( \+ |\.[a-zA-Z]+\()' &lt;file&gt;   # rỗng (S2629)</code></pre>
+<h3>Nguồn tham chiếu</h3>
+<ul><li><code>RULES.md</code> v1.0 (2026-04-29) — PL03 (43 Java rule) + PL04 checklist review Java backend + Architecture rules</li><li><code>RULES_ANGULAR.md</code> v1.0 (2026-04-29) — PL05 checklist review Angular + Angular Style Guide</li><li><code>SonarClean.md</code>; <code>Architecture.md</code> v1.0; INS Naming Standards v1.4.1 (REVIEW)</li><li><code>LESSONS.md</code> §1–§11 (lỗi đã thực sự xảy ra)</li><li>Cấu hình thật: <code>eslint.config.js</code>, <code>package.json</code> (scripts, lint-staged), <code>.husky/pre-commit</code>, <code>tsconfig.json</code> của 2 app FE; <code>pom.xml</code> (spotless) của service BE</li><li>Angular Style Guide: https://angular.dev/style-guide · google-java-format: https://github.com/google/google-java-format · Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/</li></ul></article>
+<nav class="pager">
+  <a class="pg prev" href="/ins/agents.html"><span>← Trước</span><b>AGENTS.md — Chỉ dẫn liên công cụ, INS Platform</b></a>
+  <a class="pg next" href="/ins/skill.html"><span>Sau →</span><b>SKILL.md — Luật điều khiển AI Agent, INS Platform</b></a>
+</nav></main>
+  
+<aside class="side side-r">
+  <details class="side-box" open>
+    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">43/43</span></summary>
+    <div class="side-actions">
+      <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
+      <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
+    </div>
+    <div class="side-actions">
+      <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
+      <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
+    </div>
+    
+    <div class="side-g">
+      <div class="side-gt">Phụ lục biểu mẫu (PL1–PL6)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/pl1-project-charter.html" title="Charter (mục tiêu SMART, in/out-scope, ngân sách), milestones gắn Gate 1–5, Stakeholder Register, Communication Plan.">
+            <span class="fl">PL1 — Project Charter &amp; Kick-off</span>
+            <span class="fm">B1 · 153 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl2-change-request.html" title="Mọi thay đổi phạm vi/thiết kế sau khi Spec đã chốt — PM + PO duyệt trước khi làm.">
+            <span class="fl">PL2 — Change Request Form</span>
+            <span class="fm">Sau Gate 1 · 141 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl3-bo-tai-lieu-b2.html" title="Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules.">
+            <span class="fl">PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</span>
+            <span class="fm">B2 · 110 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl4-bo-bieu-mau-b3.html" title="Interview Guide, Biên bản họp, BRD, Process Flow/User Journey, Q&amp;A Log — ánh xạ sang nhóm B3.">
+            <span class="fl">PL4 — Bộ biểu mẫu B3 (chỉ mục 5 mẫu)</span>
+            <span class="fm">B3 · 101 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl5-bug-report.html" title="Steps to reproduce, expected vs actual, evidence, liên kết AC/Test Case, Severity + Priority.">
+            <span class="fl">PL5 — Bug Report</span>
+            <span class="fm">Vận hành · 150 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl6-uat-go-no-go.html" title="Phần 1 biên bản UAT (Test Lead, Security Lead, PO ký). Phần 2 checklist Go/No-Go trước go-live.">
+            <span class="fl">PL6 — UAT Sign-off &amp; Go/No-Go Checklist</span>
+            <span class="fm">Gate 4 &amp; 5 · 207 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Nhóm 1–3: quy định kỹ thuật &amp; vận hành AI</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/constitution.html" title="Nguyên tắc bất biến: mỗi Rule phải kèm Rationale + Application, có Governance.">
+            <span class="fl">constitution.md — Hiến pháp dự án</span>
+            <span class="fm">B2 · PL 3.1 · 226 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/coding-convention.html" title="Naming, formatting, cấu trúc thư mục, docstring; ánh xạ formatter/linter theo ngôn ngữ.">
+            <span class="fl">CODING_CONVENTION.md</span>
+            <span class="fm">B2 · PL 3.2 · 162 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/adr-template.html" title="Khuôn Architecture Decision Record (MADR): Context, Decision Drivers, Options, Outcome, Consequences.">
+            <span class="fl">adr-template.md — ADR theo MADR</span>
+            <span class="fm">B2 · PL 3.3 · 211 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/skill.html" title="Identity, thứ tự đọc file, phạm vi quyền hạn, xử lý khi không chắc chắn, workflow coding, Tầng 1/2.">
+            <span class="fl">SKILL.md — luật điều khiển AI Agent</span>
+            <span class="fm">B2 · PL 3.4 · 152 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/agents.html" title="Chuẩn file chỉ dẫn agent dùng chung cho nhiều công cụ (de-facto 2026); SKILL.md có thể include file này.">
+            <span class="fl">AGENTS.md — chuẩn liên-công-cụ</span>
+            <span class="fm">B2 · 161 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/tool-permissions.html" title="Least-privilege: bảng hành động được/không được tự chạy; mức tự chủ theo môi trường.">
+            <span class="fl">tool-permissions.md — quyền hạn AI</span>
+            <span class="fm">B2 · PL 3.5 · 134 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/data-classification.html" title="Public / Internal / Confidential / Restricted — loại nào được đưa vào prompt AI (tham chiếu NIST/ISO 27001).">
+            <span class="fl">data-classification.md — phân loại dữ liệu</span>
+            <span class="fm">B2 · PL 3.6 · 114 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/ai-tool-scope.html" title="Danh mục tool theo dự án + trạng thái Zero Data Retention + điều kiện phê duyệt tool ngoài danh sách.">
+            <span class="fl">ai-tool-scope.md — tool AI được duyệt</span>
+            <span class="fm">B2 · PL 3.7 · 123 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/prompts.html" title="System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay.">
+            <span class="fl">prompts.md — thư viện prompt</span>
+            <span class="fm">B2 · PL 3.8 · 281 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/docs-index.html" title="Danh mục tài liệu + thứ tự đọc cho AI; ai sở hữu, cập nhật khi nào.">
+            <span class="fl">docs-index.md — bản đồ tài liệu</span>
+            <span class="fm">B2 · PL 3.15 · 123 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/glossary.html" title="Thuật ngữ nghiệp vụ + kỹ thuật, quy tắc: từ nào phải vào glossary.">
+            <span class="fl">glossary.md — từ điển thuật ngữ</span>
+            <span class="fm">B2 · PL 3.16 · 106 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/dor-dod.html" title="Tiêu chí khách quan cho mọi gate (tham chiếu Scrum.org), tách DoR sprint / DoD task.">
+            <span class="fl">dor-dod.md — Definition of Ready / Done</span>
+            <span class="fm">B2 · PL 3.17 · 184 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Nhóm 4 (rules/): linter để AI tự kiểm</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/brd-rules.html" title="Linter BRD: yêu cầu đo lường được, phân biệt FR/NFR, truy vết mục tiêu kinh doanh.">
+            <span class="fl">rules/brd-rules.md</span>
+            <span class="fm">B3 · PL 3.9 · 104 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/bpm-rules.html" title="Linter BPMN: không nhánh cụt, mọi gateway có nhãn, actor nhất quán, ký hiệu đúng BPMN 2.0.">
+            <span class="fl">rules/bpm-rules.md</span>
+            <span class="fm">B3/B4 · PL 3.10 · 122 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/adr-rules.html" title="Checklist tự kiểm ADR theo MADR trước khi trình Tech Lead.">
+            <span class="fl">rules/adr-rules.md</span>
+            <span class="fm">B6 · PL 3.11 · 100 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/api-rules.html" title="Checklist OpenAPI 3.x: naming, versioning, lỗi, bảo mật, ví dụ request/response.">
+            <span class="fl">rules/api-rules.md</span>
+            <span class="fm">B6 · PL 3.12 · 133 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-rules.html" title="Checklist unit test AI sinh: assert thật, một hành vi/test, bao phủ edge case, không test giả.">
+            <span class="fl">rules/test-rules.md</span>
+            <span class="fm">B9 · PL 3.13 · 146 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/code-review-rules.html" title="Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST.">
+            <span class="fl">rules/code-review-rules.md</span>
+            <span class="fm">B10 · PL 3.14 · 234 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">B3 — phân tích yêu cầu (PL4)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/interview-guide.html" title="Chọn kỹ thuật theo tình huống + bộ câu hỏi mở, nguyên tắc không dẫn dắt.">
+            <span class="fl">4.1 Interview Guide</span>
+            <span class="fm">B3 b.1 · 146 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/meeting-minutes.html" title="Ghi rõ phát biểu gốc vs phần AI diễn giải; ai xác nhận, khi nào.">
+            <span class="fl">4.2 Biên bản họp / Workshop</span>
+            <span class="fm">B3 b.2 · 127 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/brd.html" title="Business context, stakeholder, FR/NFR có số, User Story chuẩn, MoSCoW, giả định &amp; rủi ro.">
+            <span class="fl">4.3 BRD theo BABOK v3</span>
+            <span class="fm">B3 b.3 · 212 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/process-flow.html" title="As-is/To-be, ký hiệu BPMN 2.0, User Journey Map rút gọn.">
+            <span class="fl">4.4 Process Flow / User Journey</span>
+            <span class="fm">B3 b.4 · 116 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/qa-log.html" title="Nguồn chính thức duy nhất trả lời 'ai quyết định gì, khi nào' — dùng tới khi chốt Spec.">
+            <span class="fl">4.5 Q&amp;A Log</span>
+            <span class="fm">B3 → B5 · 100 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Mẫu còn thiếu (bổ sung cho bản 5.10)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/spec.html" title="Theo cấu trúc Spec Kit spec-template: User Scenarios, Requirements, Success Criteria, Assumptions.">
+            <span class="fl">spec.md + User Story &amp; AC</span>
+            <span class="fm">B4 · 198 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/plan.html" title="Technical plan: bối cảnh, container, dữ liệu, API, rủi ro; C4 có thể vẽ bằng Mermaid/Structurizr.">
+            <span class="fl">plan.md + C4 Model</span>
+            <span class="fm">B6 · 226 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/tasks.html" title="Danh sách task ≤1 ngày công, mỗi task có AC riêng, thứ tự phụ thuộc.">
+            <span class="fl">tasks.md</span>
+            <span class="fm">B7 · 157 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-plan.html" title="Phạm vi, mục tiêu, hạng mục test, cách tiếp cận, tiêu chí dừng, môi trường, rủi ro.">
+            <span class="fl">Test Plan theo ISO/IEC/IEEE 29119-3</span>
+            <span class="fm">B11 · 170 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-case-rtm.html" title="Mẫu test case (Given-When-Then, dữ liệu, kết quả mong đợi) và RTM phủ 100% AC.">
+            <span class="fl">Test Case + RTM</span>
+            <span class="fm">B11 · 195 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/code-review-human.html" title="Nghiệp vụ, kiến trúc, khả năng bảo trì, tác động chéo — theo Google eng-practices.">
+            <span class="fl">Checklist review tầng 2 (người)</span>
+            <span class="fm">B10 · 156 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/runbook.html" title="Sự cố thường gặp, cách kiểm tra, lệnh xử lý, escalation, đầu mối liên hệ.">
+            <span class="fl">Runbook vận hành</span>
+            <span class="fm">B14 · 132 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/postmortem.html" title="Theo Google SRE: timeline, tác động, nguyên nhân gốc, hành động khắc phục có owner + hạn.">
+            <span class="fl">Post-mortem (blameless)</span>
+            <span class="fm">B14 · 134 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/changelog.html" title="Added/Changed/Deprecated/Removed/Fixed/Security + Semantic Versioning.">
+            <span class="fl">CHANGELOG theo Keep a Changelog</span>
+            <span class="fm">B13 · 161 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/conventional-commits.html" title="Định dạng commit, type/scope/breaking change, cách nối với CHANGELOG và semver.">
+            <span class="fl">Conventional Commits 1.0</span>
+            <span class="fm">B8 · 182 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/threat-model.html" title="Bảng đe dọa/đối sách theo STRIDE + OWASP LLM Top 10 cho tính năng có AI.">
+            <span class="fl">Threat Model theo STRIDE</span>
+            <span class="fm">B6/B12 · 99 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Quy chuẩn &amp; chỉ số tham chiếu</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/standards-index.html" title="Bảng 20+ chuẩn (Spec Kit, MADR, BABOK, BPMN, ISO 29119, OWASP, C4, DORA…) — áp ở bước nào, link gốc.">
+            <span class="fl">Chỉ mục chuẩn đang áp dụng</span>
+            <span class="fm">Toàn quy trình · 75 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/ai-governance.html" title="OWASP LLM Top 10, NIST AI RMF, ISO/IEC 42001 — áp vào chính sách tool/prompt của dự án.">
+            <span class="fl">Quản trị rủi ro AI</span>
+            <span class="fm">Mục 5 &amp; 7 · 115 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/dora-metrics.html" title="4 chỉ số DORA + escaped defects + mutation score: cách đo, ngưỡng tốt, cách thu thập.">
+            <span class="fl">Chỉ số DORA &amp; KPI chất lượng</span>
+            <span class="fm">Mục 8 · 156 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </details>
+</aside>
+</div>
+<footer>
+  <div class="wrap">
+    AI-SDLC v5.9 · Spec-Driven Development (GitHub Spec Kit) + Agile/Scrum + DevOps, bổ sung AI gate và Human gate<br>
+    ai.btdat.io.vn — nội dung trích từ quy-trinh-ai.pdf (47 trang). Bản gốc không bị chỉnh sửa.
+  </div>
+</footer>
+<script>
+/* Scroll-spy: highlight mục đang xem ở menu trái + menu ngang.
+   Dùng toạ độ TUYỆT ĐỐI (rect.top + scrollY) — offsetTop phụ thuộc offsetParent
+   nên sai khi phần tử nằm trong khối có position khác static. */
+(function () {
+  var THRESHOLD = 90; // px dưới header coi như "đang ở" mục đó
+
+  function absTop(el) {
+    return el.getBoundingClientRect().top + window.scrollY;
+  }
+
+  var stepNodes = [];
+  document.querySelectorAll('.tree li[data-step]').forEach(function (li) {
+    var el = document.getElementById(li.dataset.step);
+    if (el) stepNodes.push({ el: el, node: li });
+  });
+
+  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'vi-du-ins', 'tai-lieu'];
+  var secNodes = [];
+  SECTION_IDS.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var links = document.querySelectorAll('[data-sec="' + id + '"]');
+    if (links.length) secNodes.push({ el: el, nodes: Array.prototype.slice.call(links) });
+  });
+
+  if (!stepNodes.length && !secNodes.length) return;
+
+  function clearAll() {
+    document.querySelectorAll('.tree li.on, .nav-links a.on').forEach(function (n) { n.classList.remove('on'); });
+  }
+  function mark(nodes) {
+    clearAll();
+    (nodes || []).forEach(function (n) { if (n && n.classList) n.classList.add('on'); });
+  }
+
+  function update() {
+    var y = window.scrollY + THRESHOLD;
+    var all = [];
+    stepNodes.forEach(function (t) { all.push({ el: t.el, nodes: [t.node], key: t.el.id }); });
+    secNodes.forEach(function (t) { all.push({ el: t.el, nodes: t.nodes, key: t.el.id }); });
+    all.forEach(function (t) { t.top = absTop(t.el); });
+    all.sort(function (a, b) { return a.top - b.top; });
+
+    var found = null;
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].top <= y) found = all[i]; else break;
+    }
+    mark(found ? found.nodes : null);
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+  window.addEventListener('hashchange', function () { setTimeout(update, 120); });
+  update();
+  setTimeout(update, 400);   // sau khi ảnh lưu đồ tải xong (layout đổi)
+  setTimeout(update, 1500);
+})();
+
+/* Mở sẵn <details> chứa mục đang xem */
+(function () {
+  var on = document.querySelector('.side-list li.on, .tree li.on');
+  if (!on) return;
+  var d = on.closest('details');
+  if (d) d.open = true;
+})();
+
+/* ---------- popup xem biểu mẫu (chỉ cho link ở bảng chi tiết 14 bước) ----------
+   - Nội dung lấy từ <template id="tpl-<id>"> đã render sẵn trong trang.
+   - Chỉ bật khi bấm chuột trái không kèm phím tu chỉnh; Ctrl/Cmd/Shift-click và
+     chuột giữa vẫn mở trang riêng như bình thường.
+   - Esc và bấm nền cũng đóng. Khoá cuộn nền khi đang mở. */
+(function () {
+  var layer = document.getElementById('mm');
+  if (!layer) return;
+  var body = document.getElementById('mm-body');
+  var title = document.getElementById('mm-title');
+  var btnOpen = document.getElementById('mm-open');
+  var btnDl = document.getElementById('mm-dl');
+  var btnX = document.getElementById('mm-close');
+  var last = null;
+
+  function open(id) {
+    var tpl = document.getElementById('tpl-' + id);
+    if (!tpl) return false;
+    last = document.activeElement;
+    title.textContent = tpl.dataset.title || id;
+    body.replaceChildren(tpl.content.cloneNode(true));
+    btnOpen.href = tpl.dataset.url || ('/mau/' + id + '.html');
+    btnDl.href = tpl.dataset.raw || '#';
+    layer.hidden = false;
+    layer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mm-lock');
+    layer.querySelector('.mm-b').scrollTop = 0;
+    btnX.focus();
+    return true;
+  }
+  function close() {
+    if (layer.hidden) return;
+    layer.hidden = true;
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mm-lock');
+    body.replaceChildren();
+    if (last && last.focus) last.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[data-form]') : null;
+    if (!a) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (open(a.dataset.form)) e.preventDefault();
+  });
+  layer.addEventListener('click', function (e) { if (e.target.hasAttribute('data-close')) close(); });
+  btnX.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !layer.hidden) { close(); return; }
+    /* Tab giữ trong popup khi đang mở */
+    if (e.key === 'Tab' && !layer.hidden) {
+      var f = layer.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], lastEl = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+      else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -350,8 +350,10 @@ footer a{color:var(--dim)}
       <a href="/index.html#bieu-mau" data-sec="bieu-mau">Biểu mẫu</a>
       <a href="/index.html#kpi" data-sec="kpi">KPI &amp; chuẩn</a>
       <a href="/index.html#thieu" data-sec="thieu">Còn thiếu</a>
+      <a href="/index.html#vi-du-ins" data-sec="vi-du-ins">Ví dụ INS</a>
       <a href="/index.html#tai-lieu" data-sec="tai-lieu">Tài liệu gốc</a>
       <a class="ext" href="/mau/index.html">File mẫu ↗</a>
+      <a class="ext" href="/ins/index.html">Ví dụ INS ↗</a>
       <a class="ext" href="https://btdat.io.vn" target="_blank" rel="noopener">btdat.io.vn ↗</a>
     </nav>
   </div>
@@ -501,7 +503,7 @@ footer a{color:var(--dim)}
     <div class="tree-sep"></div>
     <nav class="tree tree-flat">
       <div class="tree-gt">Mục khác</div>
-      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
+      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="vi-du-ins"><a href="/index.html#vi-du-ins"><span class="tn">Ví dụ INS</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
     </nav>
   </details>
 </aside>
@@ -587,6 +589,10 @@ footer a{color:var(--dim)}
     <div class="side-actions">
       <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
       <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
+    </div>
+    <div class="side-actions">
+      <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
+      <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
     </div>
     
     <div class="side-g">
@@ -909,7 +915,7 @@ footer a{color:var(--dim)}
     if (el) stepNodes.push({ el: el, node: li });
   });
 
-  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'tai-lieu'];
+  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'vi-du-ins', 'tai-lieu'];
   var secNodes = [];
   SECTION_IDS.forEach(function (id) {
     var el = document.getElementById(id);

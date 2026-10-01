@@ -1,0 +1,243 @@
+{
+  "note": "Ví dụ điền thật — dự án INS Platform (đã ẩn danh). Nguồn: C:/Users/datel/insurance-platform/insurance-platform, copy tại vi-du-ins/.",
+  "groups": [
+    {
+      "id": "b2",
+      "title": "B2 — Quy định & luật cho AI",
+      "note": "Hiến pháp dự án, chỉ dẫn AI agent, quy ước code, DoR/DoD, từ điển — điền bằng dữ liệu thật của INS Platform.",
+      "files": [
+        {
+          "id": "b2",
+          "file": "b2/AGENTS.md",
+          "title": "AGENTS.md — Chỉ dẫn liên công cụ, INS Platform",
+          "for": "B2 — ví dụ điền thật",
+          "owner": "Tech Lead (A/R)",
+          "desc": "",
+          "lines": 210,
+          "slug": "agents"
+        },
+        {
+          "id": "b2",
+          "file": "b2/CODING_CONVENTION.md",
+          "title": "CODING_CONVENTION.md — Quy chuẩn viết code (INS Platform)",
+          "for": "B2 bước 2 — Soạn cùng constitution.md (Tech Lead + AI); áp dụng mọi giai đoạn từ B6 trở đi",
+          "owner": "Tech Lead",
+          "desc": "",
+          "lines": 274,
+          "slug": "coding-convention"
+        },
+        {
+          "id": "b2",
+          "file": "b2/SKILL.md",
+          "title": "SKILL.md — Luật điều khiển AI Agent, INS Platform",
+          "for": "B2 — ví dụ điền thật",
+          "owner": "Tech Lead (A/R) · Security Lead (C)",
+          "desc": "",
+          "lines": 183,
+          "slug": "skill"
+        },
+        {
+          "id": "b2",
+          "file": "b2/adr-template.md",
+          "title": "ADR Template (MADR) — ví dụ INS Platform",
+          "for": "B6 — Thiết kế kiến trúc (mọi quyết định kiến trúc quan trọng)",
+          "owner": "Tech Lead (A/R) · Dev (R) · AI (draft từ prompt B6)",
+          "desc": "",
+          "lines": 350,
+          "slug": "adr-template"
+        },
+        {
+          "id": "b2",
+          "file": "b2/constitution.md",
+          "title": "constitution.md — Hiến pháp dự án INS Platform",
+          "for": "B2 bước 1–2 — ví dụ điền thật",
+          "owner": "Tech Lead (người duyệt duy nhất) — PM đồng ký tại Gate B2",
+          "desc": "",
+          "lines": 249,
+          "slug": "constitution"
+        },
+        {
+          "id": "b2",
+          "file": "b2/data-classification.md",
+          "title": "data-classification.md — Phân loại dữ liệu & quy tắc dùng với AI, INS Platform",
+          "for": "B2 — ví dụ điền thật",
+          "owner": "Security Lead (A/R) · Tech Lead (R) · PM (I)",
+          "desc": "",
+          "lines": 143,
+          "slug": "data-classification"
+        },
+        {
+          "id": "b2",
+          "file": "b2/docs-index.md",
+          "title": "docs-index.md — Bản đồ tài liệu INS Platform",
+          "for": "B2 — ví dụ điền thật",
+          "owner": "Tech Lead (A/R) · PM (C)",
+          "desc": "",
+          "lines": 143,
+          "slug": "docs-index"
+        },
+        {
+          "id": "b2",
+          "file": "b2/dor-dod.md",
+          "title": "dor-dod.md — Definition of Ready / Definition of Done (INS Platform)",
+          "for": "B2 — dựng cùng constitution.md; áp dụng mọi sprint từ B7 trở đi",
+          "owner": "PM + Tech Lead (A/R) · PO (C) · Toàn đội (R)",
+          "desc": "",
+          "lines": 178,
+          "slug": "dor-dod"
+        },
+        {
+          "id": "b2",
+          "file": "b2/glossary.md",
+          "title": "glossary.md — Từ điển thuật ngữ dự án INS Platform",
+          "for": "B2 (khởi tạo), cập nhật liên tục từ B3 tới B14",
+          "owner": null,
+          "desc": "",
+          "lines": 157,
+          "slug": "glossary"
+        },
+        {
+          "id": "b2",
+          "file": "b2/prompts.md",
+          "title": "prompts.md — Thư viện Prompt theo giai đoạn (INS Platform)",
+          "for": "B2, dùng xuyên suốt B3–B14",
+          "owner": null,
+          "desc": "",
+          "lines": 219,
+          "slug": "prompts"
+        },
+        {
+          "id": "b2",
+          "file": "b2/tool-permissions.md",
+          "title": "tool-permissions.md — Phân quyền công cụ cho AI Agent, INS Platform",
+          "for": "B2 — ví dụ điền thật",
+          "owner": "Tech Lead (A/R) · Security Lead (C/A về ATTT)",
+          "desc": "",
+          "lines": 143,
+          "slug": "tool-permissions"
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "title": "rules/ — Linter AI tự kiểm",
+      "note": "Ba bộ checklist AI tự kiểm trước khi trình review: OpenAPI spec, unit test, code review.",
+      "files": [
+        {
+          "id": "rules",
+          "file": "rules/api-rules.md",
+          "title": "Linter cho OpenAPI Spec — rules/api-rules.md (ví dụ INS Platform)",
+          "for": "B6 bước 2 (AI tự kiểm OpenAPI) trước khi Tech Lead review",
+          "owner": "AI (tự kiểm) · Tech Lead (A/R) · Dev (R)",
+          "desc": "",
+          "lines": 236,
+          "slug": "api-rules"
+        },
+        {
+          "id": "rules",
+          "file": "rules/code-review-rules.md",
+          "title": "Checklist AI review tầng 1 — rules/code-review-rules.md (INS Platform)",
+          "for": "B10 bước 1–2 (AI review tầng 1, song song Sonar/secret scan) — GATE 3",
+          "owner": "AI (chạy) · Dev (sửa finding) · Reviewer (duyệt tầng 2) · Tech Lead (A)",
+          "desc": "",
+          "lines": 249,
+          "slug": "code-review-rules"
+        },
+        {
+          "id": "rules",
+          "file": "rules/test-rules.md",
+          "title": "Linter cho Unit Test do AI sinh — rules/test-rules.md (ví dụ INS Platform)",
+          "for": "B9 bước 2 (AI tự kiểm) trước khi CI chạy coverage gate",
+          "owner": "AI (tự kiểm) · Dev (R) · Tech Lead (A)",
+          "desc": "",
+          "lines": 215,
+          "slug": "test-rules"
+        }
+      ]
+    },
+    {
+      "id": "bo-sung",
+      "title": "Bổ sung — Runbook, post-mortem, commit, plan",
+      "note": "Bốn mẫu vận hành, đều lấy từ sự cố và quy trình thật của dự án.",
+      "files": [
+        {
+          "id": "bo-sung",
+          "file": "bo-sung/code-review-checklist-nguoi.md",
+          "title": "Checklist Code Review tầng 2 (Human Review) — INS Platform",
+          "for": "B10. Code Review 2 tầng — GATE 3 (bước 5: Reviewer dùng checklist)",
+          "owner": "Reviewer (người khác tác giả) · Tech Lead (A/R)",
+          "desc": "",
+          "lines": 182,
+          "slug": "code-review-checklist-nguoi"
+        },
+        {
+          "id": "bo-sung",
+          "file": "bo-sung/conventional-commits.md",
+          "title": "Conventional Commits — quy ước commit của dự án INS Platform",
+          "for": "B8 bước 5 — Commit & mở MR",
+          "owner": "Dev (R) · Tech Lead (A) · AI (sinh commit message — người kiểm)",
+          "desc": "",
+          "lines": 215,
+          "slug": "conventional-commits"
+        },
+        {
+          "id": "bo-sung",
+          "file": "bo-sung/plan.md",
+          "title": "Kế hoạch triển khai: Luồng truy vấn kết quả tạo hợp đồng",
+          "for": "—",
+          "owner": null,
+          "desc": "",
+          "lines": 323,
+          "slug": "plan"
+        },
+        {
+          "id": "bo-sung",
+          "file": "bo-sung/postmortem.md",
+          "title": "Post-mortem (blameless) — ví dụ INS Platform",
+          "for": "B14 bước 3 — Retrospective/Post-mortem sau sự cố lớn",
+          "owner": "PM (chủ trì) · Tech Lead (R) · Người liên quan (C/I)",
+          "desc": "",
+          "lines": 135,
+          "slug": "postmortem"
+        },
+        {
+          "id": "bo-sung",
+          "file": "bo-sung/runbook.md",
+          "title": "Runbook vận hành (ví dụ INS Platform)",
+          "for": "B14 bước 1 — Vận hành theo Runbook",
+          "owner": "DevOps/Ops (R) · Tech Lead (A) · Đội trực (R)",
+          "desc": "",
+          "lines": 227,
+          "slug": "runbook"
+        }
+      ]
+    },
+    {
+      "id": "quy-chuan",
+      "title": "Quy chuẩn — chỉ mục chuẩn & quản trị AI",
+      "note": "Chỉ liệt kê chuẩn dự án thật sự dùng, cùng chính sách rủi ro AI.",
+      "files": [
+        {
+          "id": "quy-chuan",
+          "file": "quy-chuan/ai-governance.md",
+          "title": "Quản trị rủi ro AI — INS Platform",
+          "for": "B2 (chính sách), B6/B8/B10 (biện pháp kỹ thuật), B14 (cập nhật bài học)",
+          "owner": null,
+          "desc": "",
+          "lines": 88,
+          "slug": "ai-governance"
+        },
+        {
+          "id": "quy-chuan",
+          "file": "quy-chuan/standards-index.md",
+          "title": "Chỉ mục chuẩn đang áp dụng — INS Platform",
+          "for": "toàn quy trình — tra \"việc này theo chuẩn nào\"",
+          "owner": null,
+          "desc": "",
+          "lines": 78,
+          "slug": "standards-index"
+        }
+      ]
+    }
+  ]
+}

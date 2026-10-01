@@ -21,6 +21,24 @@ const flows = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/flow-mapping.json'
 const css = fs.readFileSync(path.join(ROOT, 'src/styles.css'), 'utf8');
 const registry = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/templates.json'), 'utf8'));
 
+/* ---------- ví dụ điền thật: dự án INS Platform ----------
+   Nguồn: ~/insurance-platform/insurance-platform (copy nguyên trạng vào vi-du-ins/).
+   Mỗi file .md ở đây là 1 template của templates/ đã điền bằng dữ liệu thật của dự án
+   (đã ẩn danh) — dùng làm ví dụ tham chiếu cho bước B2 của quy trình. */
+const INS_DIR = path.join(ROOT, 'vi-du-ins');
+const insReg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/ins-examples.json'), 'utf8'));
+
+/* slug ví dụ -> id template gốc, để mỗi trang ví dụ trỏ ngược về mẫu trống */
+function insOriginTemplate(file) {
+  const base = path.basename(file).toLowerCase().replace(/_/g, '-');
+  const hit = allFiles.find((f) => path.basename(f.file).toLowerCase().replace(/_/g, '-') === base);
+  return hit ? hit.id : null;
+}
+
+let insGroups = [];
+let insAll = [];
+let insById = {};   // gán sau khi allFiles đã đọc xong (insOriginTemplate cần allFiles)
+
 /* ---------- đọc file mẫu ---------- */
 const allFiles = [];
 for (const g of registry.groups) {
@@ -36,6 +54,17 @@ const fileById = Object.fromEntries(allFiles.map((f) => [f.id, f]));
 const present = allFiles.filter((f) => !f.missing);
 const missingCount = allFiles.length - present.length;
 
+/* nạp ví dụ INS sau khi allFiles sẵn sàng (cần tra ngược template gốc) */
+insGroups = insReg.groups.map((g) => ({
+  ...g,
+  files: g.files.map((f) => {
+    const md = fs.readFileSync(path.join(INS_DIR, f.file), 'utf8');
+    return { ...f, md, lines: md.split('\n').length, origin: insOriginTemplate(f.file) };
+  }),
+}));
+insAll = insGroups.flatMap((g) => g.files);
+insById = Object.fromEntries(insAll.map((f) => [f.slug, f]));
+
 /* ---------- NAV ---------- */
 const NAV = [
   ['#quy-trinh', '14 bước'],
@@ -47,6 +76,7 @@ const NAV = [
   ['#bieu-mau', 'Biểu mẫu'],
   ['#kpi', 'KPI & chuẩn'],
   ['#thieu', 'Còn thiếu'],
+  ['#vi-du-ins', 'Ví dụ INS'],
   ['#tai-lieu', 'Tài liệu gốc'],
 ];
 
@@ -105,6 +135,10 @@ function sideFiles(activeId) {
       <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
       <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
     </div>
+    <div class="side-actions">
+      <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
+      <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
+    </div>
     ${registry.groups.map((g) => {
       const items = g.files.map((f) => fileById[f.id]).filter((f) => f);
       return `
@@ -143,6 +177,7 @@ function shell({ title, body, activeStep, activeFile, nav = true }) {
     <nav class="nav-links">
       ${NAV.map(([h, t]) => `<a href="/index.html${h}" data-sec="${h.slice(1)}">${esc(t)}</a>`).join('\n      ')}
       <a class="ext" href="/mau/index.html">File mẫu ↗</a>
+      <a class="ext" href="/ins/index.html">Ví dụ INS ↗</a>
       <a class="ext" href="https://btdat.io.vn" target="_blank" rel="noopener">btdat.io.vn ↗</a>
     </nav>
   </div>
@@ -175,7 +210,7 @@ function shell({ title, body, activeStep, activeFile, nav = true }) {
     if (el) stepNodes.push({ el: el, node: li });
   });
 
-  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'tai-lieu'];
+  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'vi-du-ins', 'tai-lieu'];
   var secNodes = [];
   SECTION_IDS.forEach(function (id) {
     var el = document.getElementById(id);
@@ -641,6 +676,66 @@ function gaps() {
 </section>`;
 }
 
+/* ---------- Ví dụ điền thật: INS Platform ---------- */
+/* 22 template của bộ mẫu đã được điền bằng dữ liệu thật của một dự án nền tảng
+   bảo hiểm (đã ẩn danh). Trang này cho thấy Gate B2 "trông thế nào khi áp vào
+   dự án thật" — kể cả chỗ dự án chưa có (TODO) và chỗ tài liệu lệch code (⚠️). */
+function insExample() {
+  return `
+<section id="vi-du-ins">
+  <h2>Ví dụ điền thật — dự án INS Platform</h2>
+  <p class="sub">${esc(insReg.note)}</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Bối cảnh dự án</h3>
+      <ul>
+        <li>Nền tảng bảo hiểm trung gian (Insurance Middleware Platform, kiến trúc MACH) nằm giữa khách hàng cuối và 8 công ty bảo hiểm.</li>
+        <li>15 microservice Java 21 / Spring Boot 3.5 + 2 app Angular 20; Phase 1 deploy 12 service.</li>
+        <li>Dữ liệu đã ẩn danh: tên dự án, đối tác, domain, IP đều thay bằng tên chung.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cách đọc bộ ví dụ này</h3>
+      <ul>
+        <li><b>Không bịa số liệu</b> — chỗ dự án chưa có dữ liệu được ghi <code>&gt; TODO</code> và ghi rõ ai cần bổ sung.</li>
+        <li><b>Không giấu mâu thuẫn</b> — chỗ tài liệu nói một đằng, code làm một nẻo được đánh dấu <code>⚠️</code>.</li>
+        <li>Mỗi trang ví dụ trỏ ngược về <b>mẫu trống</b> tương ứng trong bộ file mẫu để đối chiếu.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card amber" style="margin-top:16px">
+    <h3>Bài học rút ra khi điền template vào dự án thật</h3>
+    <p class="note" style="margin-bottom:8px">Điền template vào dự án thật làm lộ ra các chỗ tài liệu lệch code — đây chính là giá trị của Gate B2:</p>
+    <ul>
+      <li>Quy tắc ghi "Flyway-only" nhưng không service nào có <code>db/migration</code> — DDL thực tế chạy tay qua script.</li>
+      <li>Tài liệu ghi path <code>/api/v1/...</code>, code thật dùng <code>/ins/{svc}/public|private/v1/...</code>.</li>
+      <li>TSD ghi lỗi theo RFC 7807, code trả envelope <code>{success, errorCode, message, timestamp}</code>.</li>
+      <li>Chuẩn đặt tên và bộ rule Java lệch nhau về timestamp (<code>created_time</code> UTC vs <code>created_at</code> +07:00) và kiểu tiền (DECIMAL vs Long).</li>
+      <li>Script tiện ích chạy <code>git add -A</code> trên mọi repo — đúng thứ bài học sự cố đã cấm.</li>
+      <li>Không có CI pipeline, JaCoCo, commitlint hay branch protection — nên cột "cơ chế thực thi" của nhiều template phải để TODO.</li>
+    </ul>
+  </div>
+
+  ${insGroups.map((g) => `
+  <div class="card" style="margin-top:16px">
+    <h3>${esc(g.title)}</h3>
+    <p class="note">${esc(g.note)}</p>
+    <div class="filelist">
+      ${g.files.map((f) => `
+      <a class="file" href="/ins/${esc(f.slug)}.html">
+        <span class="n">${f.lines}</span>
+        <span><b>${esc(f.title)}</b><span>${esc(f.file)} · ${esc(f.for)}</span></span>
+      </a>`).join('')}
+    </div>
+  </div>`).join('')}
+
+  <div class="links" style="margin-top:16px">
+    <a href="/ins/index.html">Xem đủ ${insAll.length} ví dụ + tải .zip →</a>
+  </div>
+</section>`;
+}
+
 function assets() {
   return `
 <section id="tai-lieu">
@@ -665,6 +760,18 @@ function assets() {
       <div class="links">
         <a href="/mau/index.html">Xem tất cả ${allFiles.length} mẫu →</a>
         <a href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip toàn bộ</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Ví dụ điền thật (${insAll.length} file .md)</h3>
+      <ul>
+        <li>Bộ mẫu ở trên đã được điền bằng dữ liệu thật của dự án INS Platform (đã ẩn danh).</li>
+        <li>Giữ nguyên chỗ <code>&gt; TODO</code> (dự án chưa có) và <code>⚠️</code> (tài liệu lệch code) — không bịa cho đủ.</li>
+        <li>Dùng để tham chiếu khi soạn bộ B2 cho dự án thật.</li>
+      </ul>
+      <div class="links">
+        <a href="/ins/index.html">Xem ${insAll.length} ví dụ →</a>
+        <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip ví dụ</a>
       </div>
     </div>
   </div>
@@ -754,16 +861,124 @@ function templateIndex() {
   return shell({ title: `Bộ file mẫu — AI-SDLC v${d.meta.version}`, body, activeFile: null });
 }
 
+/* ---------- trang ví dụ INS ---------- */
+/* Trang chi tiết 1 ví dụ: render .md, kèm chip trỏ ngược về mẫu gốc trong /mau/. */
+function insPage(f, group) {
+  const sibs = group.files;
+  const i = sibs.findIndex((x) => x.slug === f.slug);
+  const prev = i > 0 ? sibs[i - 1] : null;
+  const next = i >= 0 && i < sibs.length - 1 ? sibs[i + 1] : null;
+  const origin = f.origin ? fileById[f.origin] : null;
+  const { meta, html } = mdToHtml(f.md, { headingOffset: 1 });
+
+  const chips = [
+    `<span class="chip">Dùng ở: <b>${esc(meta.for || f.for)}</b></span>`,
+    meta.owner ? `<span class="chip">Chủ sở hữu: <b>${esc(meta.owner)}</b></span>` : '',
+    `<span class="chip">Nhóm: <b>${esc(group.title)}</b></span>`,
+    `<span class="chip">${f.lines} dòng</span>`,
+  ].filter(Boolean).join('');
+
+  const body = `
+<div class="tpl-head">
+  <div class="crumb"><a href="/index.html">Trang chủ</a> / <a href="/ins/index.html">Ví dụ INS</a> / ${esc(f.title)}</div>
+  <h1>${esc(f.title)}</h1>
+  <div class="tpl-meta">${chips}</div>
+  <div class="warn" style="margin-top:14px">
+    <b>Ví dụ điền thật — INS Platform (đã ẩn danh).</b> Chỗ ghi <code>&gt; TODO</code> là dự án chưa có dữ liệu,
+    chỗ ghi <code>⚠️</code> là tài liệu lệch code — giữ nguyên để thấy đúng thực tế.
+    ${origin ? `Mẫu trống tương ứng: <a href="/mau/${origin.id}.html">${esc(origin.title)}</a>.` : ''}
+  </div>
+  <div class="links" style="margin-top:12px">
+    <a href="/ins/raw/${esc(f.file)}" download>⬇ Tải file .md</a>
+    <a href="/ins/raw/${esc(f.file)}" target="_blank" rel="noopener">Xem raw</a>
+    <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Cả bộ .zip</a>
+    ${origin ? `<a href="/mau/${origin.id}.html">→ Mẫu gốc (trống)</a>` : ''}
+  </div>
+</div>
+<article class="md">${html}</article>
+<nav class="pager">
+  ${prev ? `<a class="pg prev" href="/ins/${prev.slug}.html"><span>← Trước</span><b>${esc(prev.title)}</b></a>` : '<span></span>'}
+  ${next ? `<a class="pg next" href="/ins/${next.slug}.html"><span>Sau →</span><b>${esc(next.title)}</b></a>` : '<span></span>'}
+</nav>`;
+  return shell({ title: `${f.title} — Ví dụ INS Platform | AI-SDLC v${d.meta.version}`, body, activeFile: null });
+}
+
+function insIndex() {
+  const body = `
+<section id="top">
+  <div class="hero-in" style="padding:8px 0 32px">
+    <span class="badge"><i></i> ${insAll.length} file điền thật</span>
+    <h1 style="margin-bottom:10px">Ví dụ điền thật — INS Platform</h1>
+    <p class="lede">Bộ template của AI-SDLC v5.9 đã được điền bằng dữ liệu thật của một dự án nền tảng bảo hiểm
+      (15 microservice Java/Spring Boot + 2 app Angular, đã ẩn danh). Dùng để thấy Gate B2 trông thế nào khi áp
+      vào dự án thật — kể cả chỗ dự án <b>chưa có</b> (ghi <code>&gt; TODO</code>) và chỗ <b>tài liệu lệch code</b> (ghi <code>⚠️</code>).</p>
+    <div class="links" style="margin-top:14px">
+      <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải toàn bộ (.zip)</a>
+      <a href="/mau/index.html">← Bộ file mẫu (trống)</a>
+      <a href="/index.html#vi-du-ins">Trang quy trình</a>
+    </div>
+  </div>
+
+  <div class="card amber" style="margin-bottom:16px">
+    <h3>Bài học rút ra khi điền template vào dự án thật</h3>
+    <ul>
+      <li>Quy tắc ghi "Flyway-only" nhưng không service nào có <code>db/migration</code> — DDL thực tế chạy tay qua script.</li>
+      <li>Tài liệu ghi path <code>/api/v1/...</code>, code thật dùng <code>/ins/{svc}/public|private/v1/...</code>.</li>
+      <li>TSD ghi lỗi theo RFC 7807, code trả envelope <code>{success, errorCode, message, timestamp}</code>.</li>
+      <li>Chuẩn đặt tên và bộ rule Java lệch nhau về timestamp (<code>created_time</code> UTC vs <code>created_at</code> +07:00) và kiểu tiền (DECIMAL vs Long).</li>
+      <li>Script tiện ích chạy <code>git add -A</code> trên mọi repo — đúng thứ bài học sự cố đã cấm.</li>
+      <li>Không có CI pipeline, JaCoCo, commitlint hay branch protection — nên cột "cơ chế thực thi" của nhiều template phải để TODO.</li>
+    </ul>
+    <div class="note" style="margin-top:8px">→ Đây chính là giá trị của Gate B2: viết constitution/AGENTS/SKILL buộc đội phải đối chiếu quy tắc với thực tế.</div>
+  </div>
+
+  ${insGroups.map((g) => `
+  <div class="card" style="margin-bottom:14px">
+    <h3>${esc(g.title)}</h3>
+    <p class="note">${esc(g.note)}</p>
+    <div class="tw" style="margin-top:10px">
+      <table>
+        <thead><tr><th>File ví dụ</th><th>Dùng ở</th><th>Mẫu gốc</th><th>Quy mô</th></tr></thead>
+        <tbody>
+          ${g.files.map((f) => {
+            const o = f.origin ? fileById[f.origin] : null;
+            return `<tr>
+              <td><b><a href="/ins/${esc(f.slug)}.html">${esc(f.title)}</a></b><br><span class="note">${esc(f.file)}</span></td>
+              <td>${esc(f.for)}</td>
+              <td>${o ? `<a href="/mau/${o.id}.html">${esc(o.title)}</a>` : '<span class="pending">không có mẫu gốc</span>'}</td>
+              <td>${f.lines} dòng</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`).join('')}
+</section>`;
+  return shell({ title: `Ví dụ INS Platform — AI-SDLC v${d.meta.version}`, body, activeFile: null });
+}
+
 /* ---------- ghi ra đĩa ---------- */
 fs.mkdirSync(path.join(PUB, 'mau'), { recursive: true });
 fs.mkdirSync(path.join(PUB, 'mau/raw'), { recursive: true });
+fs.mkdirSync(path.join(PUB, 'ins'), { recursive: true });
+fs.mkdirSync(path.join(PUB, 'ins/raw'), { recursive: true });
 
 const mainHtml = shell({
   title: `AI-SDLC v${d.meta.version} — ${d.meta.tagline} | btdat.io.vn`,
-  body: hero() + pipeline() + gates() + aiLaw() + b2() + bugs() + release() + forms() + kpi() + gaps() + assets() + modalLayer(),
+  body: hero() + pipeline() + gates() + aiLaw() + b2() + bugs() + release() + forms() + kpi() + gaps() + insExample() + assets() + modalLayer(),
 });
 fs.writeFileSync(path.join(PUB, 'index.html'), mainHtml, 'utf8');
 fs.writeFileSync(path.join(PUB, 'mau/index.html'), templateIndex(), 'utf8');
+fs.writeFileSync(path.join(PUB, 'ins/index.html'), insIndex(), 'utf8');
+for (const g of insGroups) {
+  for (const f of g.files) {
+    fs.writeFileSync(path.join(PUB, 'ins', `${f.slug}.html`), insPage(f, g), 'utf8');
+    const rawDir = path.join(PUB, 'ins/raw', path.dirname(f.file));
+    fs.mkdirSync(rawDir, { recursive: true });
+    fs.writeFileSync(path.join(PUB, 'ins/raw', f.file), f.md, 'utf8');
+  }
+}
+console.log(`  /ins/: ${insAll.length} trang ví dụ + index`);
 
 let wrote = 0;
 for (const f of allFiles) {
@@ -782,4 +997,10 @@ const { zipFolder } = require('./zip');
 const zipEntries = zipFolder(path.join(__dirname, 'templates'), path.join(PUB, 'assets/mau/AI-SDLC-mau-tat-ca.zip'), { rootName: 'AI-SDLC-mau' });
 const zipSize = fs.statSync(path.join(PUB, 'assets/mau/AI-SDLC-mau-tat-ca.zip')).size;
 console.log(`  AI-SDLC-mau-tat-ca.zip: ${zipEntries} file · ${(zipSize / 1024).toFixed(1)} KB`);
+
+/* ---------- đóng gói .zip bộ ví dụ INS ---------- */
+fs.mkdirSync(path.join(PUB, 'assets/ins'), { recursive: true });
+const insZip = zipFolder(INS_DIR, path.join(PUB, 'assets/ins/AI-SDLC-vi-du-INS-Platform.zip'), { rootName: 'AI-SDLC-vi-du-INS-Platform' });
+const insZipSize = fs.statSync(path.join(PUB, 'assets/ins/AI-SDLC-vi-du-INS-Platform.zip')).size;
+console.log(`  AI-SDLC-vi-du-INS-Platform.zip: ${insZip} file · ${(insZipSize / 1024).toFixed(1)} KB`);
 

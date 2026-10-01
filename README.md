@@ -77,6 +77,29 @@ Link ở cột "Biểu mẫu" (bảng chi tiết 14 bước) mở **popup** thay
 CSS của popup nằm ở cuối khối "tables" trong `src/styles.css` (`.mm`, `.mm-win`,
 `.mm-b`…); `body.mm-lock` khoá cuộn nền.
 
+## Ví dụ điền thật — INS Platform (`/ins/`)
+
+21 template của bộ mẫu đã được điền bằng dữ liệu thật của một dự án nền tảng bảo hiểm
+(đã ẩn danh), nằm ở `vi-du-ins/` — **copy nguyên trạng** từ
+`C:/Users/datel/insurance-platform/insurance-platform`. Khi thư mục nguồn đổi, copy lại
+vào `vi-du-ins/` rồi chạy `node build.js` (nội dung `.md` được đọc lúc build, không tự sync).
+
+```
+vi-du-ins/                     # nguồn: 4 nhóm, 21 file .md + README
+src/ins-examples.json          # registry: group / slug / title / for / file (sinh tay 1 lần)
+public/ins/index.html          # chỉ mục 21 ví dụ, kèm cột "Mẫu gốc" trỏ ngược /mau/<id>.html
+public/ins/<slug>.html         # từng ví dụ, có warn TODO/⚠️ + link tải .md
+public/ins/raw/<đường/dẫn>     # bản .md gốc
+public/assets/ins/AI-SDLC-vi-du-INS-Platform.zip
+```
+
+- Mỗi ví dụ tự tra ngược **mẫu gốc** theo tên file (`insOriginTemplate()` trong `build.js`,
+  khớp basename không phân biệt hoa/thường và `_`↔`-`) → chip "Mẫu trống tương ứng".
+- Section trên trang chính là `insExample()` (id `vi-du-ins`), đã thêm vào `NAV` và
+  `SECTION_IDS` trong script scroll-spy. Link sidebar phải + header: `/ins/index.html`.
+- Quy ước trong nội dung ví dụ: `> TODO` = dự án chưa có dữ liệu, `⚠️` = tài liệu lệch code
+  — cố ý giữ nguyên, không bịa cho đủ.
+
 ## Public qua Cloudflare Tunnel
 
 Ingress đã thêm trong `~/.cloudflared/config.yml`:

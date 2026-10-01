@@ -350,8 +350,10 @@ footer a{color:var(--dim)}
       <a href="/index.html#bieu-mau" data-sec="bieu-mau">Biểu mẫu</a>
       <a href="/index.html#kpi" data-sec="kpi">KPI &amp; chuẩn</a>
       <a href="/index.html#thieu" data-sec="thieu">Còn thiếu</a>
+      <a href="/index.html#vi-du-ins" data-sec="vi-du-ins">Ví dụ INS</a>
       <a href="/index.html#tai-lieu" data-sec="tai-lieu">Tài liệu gốc</a>
       <a class="ext" href="/mau/index.html">File mẫu ↗</a>
+      <a class="ext" href="/ins/index.html">Ví dụ INS ↗</a>
       <a class="ext" href="https://btdat.io.vn" target="_blank" rel="noopener">btdat.io.vn ↗</a>
     </nav>
   </div>
@@ -501,7 +503,7 @@ footer a{color:var(--dim)}
     <div class="tree-sep"></div>
     <nav class="tree tree-flat">
       <div class="tree-gt">Mục khác</div>
-      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
+      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="vi-du-ins"><a href="/index.html#vi-du-ins"><span class="tn">Ví dụ INS</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
     </nav>
   </details>
 </aside>
@@ -1178,6 +1180,159 @@ footer a{color:var(--dim)}
     </table>
   </div>
 </section>
+<section id="vi-du-ins">
+  <h2>Ví dụ điền thật — dự án INS Platform</h2>
+  <p class="sub">Ví dụ điền thật — dự án INS Platform (đã ẩn danh). Nguồn: C:/Users/datel/insurance-platform/insurance-platform, copy tại vi-du-ins/.</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Bối cảnh dự án</h3>
+      <ul>
+        <li>Nền tảng bảo hiểm trung gian (Insurance Middleware Platform, kiến trúc MACH) nằm giữa khách hàng cuối và 8 công ty bảo hiểm.</li>
+        <li>15 microservice Java 21 / Spring Boot 3.5 + 2 app Angular 20; Phase 1 deploy 12 service.</li>
+        <li>Dữ liệu đã ẩn danh: tên dự án, đối tác, domain, IP đều thay bằng tên chung.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cách đọc bộ ví dụ này</h3>
+      <ul>
+        <li><b>Không bịa số liệu</b> — chỗ dự án chưa có dữ liệu được ghi <code>&gt; TODO</code> và ghi rõ ai cần bổ sung.</li>
+        <li><b>Không giấu mâu thuẫn</b> — chỗ tài liệu nói một đằng, code làm một nẻo được đánh dấu <code>⚠️</code>.</li>
+        <li>Mỗi trang ví dụ trỏ ngược về <b>mẫu trống</b> tương ứng trong bộ file mẫu để đối chiếu.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card amber" style="margin-top:16px">
+    <h3>Bài học rút ra khi điền template vào dự án thật</h3>
+    <p class="note" style="margin-bottom:8px">Điền template vào dự án thật làm lộ ra các chỗ tài liệu lệch code — đây chính là giá trị của Gate B2:</p>
+    <ul>
+      <li>Quy tắc ghi "Flyway-only" nhưng không service nào có <code>db/migration</code> — DDL thực tế chạy tay qua script.</li>
+      <li>Tài liệu ghi path <code>/api/v1/...</code>, code thật dùng <code>/ins/{svc}/public|private/v1/...</code>.</li>
+      <li>TSD ghi lỗi theo RFC 7807, code trả envelope <code>{success, errorCode, message, timestamp}</code>.</li>
+      <li>Chuẩn đặt tên và bộ rule Java lệch nhau về timestamp (<code>created_time</code> UTC vs <code>created_at</code> +07:00) và kiểu tiền (DECIMAL vs Long).</li>
+      <li>Script tiện ích chạy <code>git add -A</code> trên mọi repo — đúng thứ bài học sự cố đã cấm.</li>
+      <li>Không có CI pipeline, JaCoCo, commitlint hay branch protection — nên cột "cơ chế thực thi" của nhiều template phải để TODO.</li>
+    </ul>
+  </div>
+
+  
+  <div class="card" style="margin-top:16px">
+    <h3>B2 — Quy định &amp; luật cho AI</h3>
+    <p class="note">Hiến pháp dự án, chỉ dẫn AI agent, quy ước code, DoR/DoD, từ điển — điền bằng dữ liệu thật của INS Platform.</p>
+    <div class="filelist">
+      
+      <a class="file" href="/ins/agents.html">
+        <span class="n">210</span>
+        <span><b>AGENTS.md — Chỉ dẫn liên công cụ, INS Platform</b><span>b2/AGENTS.md · B2 — ví dụ điền thật</span></span>
+      </a>
+      <a class="file" href="/ins/coding-convention.html">
+        <span class="n">274</span>
+        <span><b>CODING_CONVENTION.md — Quy chuẩn viết code (INS Platform)</b><span>b2/CODING_CONVENTION.md · B2 bước 2 — Soạn cùng constitution.md (Tech Lead + AI); áp dụng mọi giai đoạn từ B6 trở đi</span></span>
+      </a>
+      <a class="file" href="/ins/skill.html">
+        <span class="n">183</span>
+        <span><b>SKILL.md — Luật điều khiển AI Agent, INS Platform</b><span>b2/SKILL.md · B2 — ví dụ điền thật</span></span>
+      </a>
+      <a class="file" href="/ins/adr-template.html">
+        <span class="n">350</span>
+        <span><b>ADR Template (MADR) — ví dụ INS Platform</b><span>b2/adr-template.md · B6 — Thiết kế kiến trúc (mọi quyết định kiến trúc quan trọng)</span></span>
+      </a>
+      <a class="file" href="/ins/constitution.html">
+        <span class="n">249</span>
+        <span><b>constitution.md — Hiến pháp dự án INS Platform</b><span>b2/constitution.md · B2 bước 1–2 — ví dụ điền thật</span></span>
+      </a>
+      <a class="file" href="/ins/data-classification.html">
+        <span class="n">143</span>
+        <span><b>data-classification.md — Phân loại dữ liệu &amp; quy tắc dùng với AI, INS Platform</b><span>b2/data-classification.md · B2 — ví dụ điền thật</span></span>
+      </a>
+      <a class="file" href="/ins/docs-index.html">
+        <span class="n">143</span>
+        <span><b>docs-index.md — Bản đồ tài liệu INS Platform</b><span>b2/docs-index.md · B2 — ví dụ điền thật</span></span>
+      </a>
+      <a class="file" href="/ins/dor-dod.html">
+        <span class="n">178</span>
+        <span><b>dor-dod.md — Definition of Ready / Definition of Done (INS Platform)</b><span>b2/dor-dod.md · B2 — dựng cùng constitution.md; áp dụng mọi sprint từ B7 trở đi</span></span>
+      </a>
+      <a class="file" href="/ins/glossary.html">
+        <span class="n">157</span>
+        <span><b>glossary.md — Từ điển thuật ngữ dự án INS Platform</b><span>b2/glossary.md · B2 (khởi tạo), cập nhật liên tục từ B3 tới B14</span></span>
+      </a>
+      <a class="file" href="/ins/prompts.html">
+        <span class="n">219</span>
+        <span><b>prompts.md — Thư viện Prompt theo giai đoạn (INS Platform)</b><span>b2/prompts.md · B2, dùng xuyên suốt B3–B14</span></span>
+      </a>
+      <a class="file" href="/ins/tool-permissions.html">
+        <span class="n">143</span>
+        <span><b>tool-permissions.md — Phân quyền công cụ cho AI Agent, INS Platform</b><span>b2/tool-permissions.md · B2 — ví dụ điền thật</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>rules/ — Linter AI tự kiểm</h3>
+    <p class="note">Ba bộ checklist AI tự kiểm trước khi trình review: OpenAPI spec, unit test, code review.</p>
+    <div class="filelist">
+      
+      <a class="file" href="/ins/api-rules.html">
+        <span class="n">236</span>
+        <span><b>Linter cho OpenAPI Spec — rules/api-rules.md (ví dụ INS Platform)</b><span>rules/api-rules.md · B6 bước 2 (AI tự kiểm OpenAPI) trước khi Tech Lead review</span></span>
+      </a>
+      <a class="file" href="/ins/code-review-rules.html">
+        <span class="n">249</span>
+        <span><b>Checklist AI review tầng 1 — rules/code-review-rules.md (INS Platform)</b><span>rules/code-review-rules.md · B10 bước 1–2 (AI review tầng 1, song song Sonar/secret scan) — GATE 3</span></span>
+      </a>
+      <a class="file" href="/ins/test-rules.html">
+        <span class="n">215</span>
+        <span><b>Linter cho Unit Test do AI sinh — rules/test-rules.md (ví dụ INS Platform)</b><span>rules/test-rules.md · B9 bước 2 (AI tự kiểm) trước khi CI chạy coverage gate</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Bổ sung — Runbook, post-mortem, commit, plan</h3>
+    <p class="note">Bốn mẫu vận hành, đều lấy từ sự cố và quy trình thật của dự án.</p>
+    <div class="filelist">
+      
+      <a class="file" href="/ins/code-review-checklist-nguoi.html">
+        <span class="n">182</span>
+        <span><b>Checklist Code Review tầng 2 (Human Review) — INS Platform</b><span>bo-sung/code-review-checklist-nguoi.md · B10. Code Review 2 tầng — GATE 3 (bước 5: Reviewer dùng checklist)</span></span>
+      </a>
+      <a class="file" href="/ins/conventional-commits.html">
+        <span class="n">215</span>
+        <span><b>Conventional Commits — quy ước commit của dự án INS Platform</b><span>bo-sung/conventional-commits.md · B8 bước 5 — Commit &amp; mở MR</span></span>
+      </a>
+      <a class="file" href="/ins/plan.html">
+        <span class="n">323</span>
+        <span><b>Kế hoạch triển khai: Luồng truy vấn kết quả tạo hợp đồng</b><span>bo-sung/plan.md · —</span></span>
+      </a>
+      <a class="file" href="/ins/postmortem.html">
+        <span class="n">135</span>
+        <span><b>Post-mortem (blameless) — ví dụ INS Platform</b><span>bo-sung/postmortem.md · B14 bước 3 — Retrospective/Post-mortem sau sự cố lớn</span></span>
+      </a>
+      <a class="file" href="/ins/runbook.html">
+        <span class="n">227</span>
+        <span><b>Runbook vận hành (ví dụ INS Platform)</b><span>bo-sung/runbook.md · B14 bước 1 — Vận hành theo Runbook</span></span>
+      </a>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3>Quy chuẩn — chỉ mục chuẩn &amp; quản trị AI</h3>
+    <p class="note">Chỉ liệt kê chuẩn dự án thật sự dùng, cùng chính sách rủi ro AI.</p>
+    <div class="filelist">
+      
+      <a class="file" href="/ins/ai-governance.html">
+        <span class="n">88</span>
+        <span><b>Quản trị rủi ro AI — INS Platform</b><span>quy-chuan/ai-governance.md · B2 (chính sách), B6/B8/B10 (biện pháp kỹ thuật), B14 (cập nhật bài học)</span></span>
+      </a>
+      <a class="file" href="/ins/standards-index.html">
+        <span class="n">78</span>
+        <span><b>Chỉ mục chuẩn đang áp dụng — INS Platform</b><span>quy-chuan/standards-index.md · toàn quy trình — tra &quot;việc này theo chuẩn nào&quot;</span></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="links" style="margin-top:16px">
+    <a href="/ins/index.html">Xem đủ 21 ví dụ + tải .zip →</a>
+  </div>
+</section>
 <section id="tai-lieu">
   <h2>Tài liệu gốc & bộ file mẫu</h2>
   <p class="sub">Bản gốc được giữ nguyên, không sửa — mọi nội dung trên site đều trích từ đây.</p>
@@ -1200,6 +1355,18 @@ footer a{color:var(--dim)}
       <div class="links">
         <a href="/mau/index.html">Xem tất cả 43 mẫu →</a>
         <a href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip toàn bộ</a>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Ví dụ điền thật (21 file .md)</h3>
+      <ul>
+        <li>Bộ mẫu ở trên đã được điền bằng dữ liệu thật của dự án INS Platform (đã ẩn danh).</li>
+        <li>Giữ nguyên chỗ <code>&gt; TODO</code> (dự án chưa có) và <code>⚠️</code> (tài liệu lệch code) — không bịa cho đủ.</li>
+        <li>Dùng để tham chiếu khi soạn bộ B2 cho dự án thật.</li>
+      </ul>
+      <div class="links">
+        <a href="/ins/index.html">Xem 21 ví dụ →</a>
+        <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip ví dụ</a>
       </div>
     </div>
   </div>
@@ -4411,6 +4578,10 @@ git log v1.3.0..HEAD --pretty='%s' | grep -E '^(feat|fix)(\(.+\))?!:'</code></pr
       <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
       <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
     </div>
+    <div class="side-actions">
+      <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
+      <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
+    </div>
     
     <div class="side-g">
       <div class="side-gt">Phụ lục biểu mẫu (PL1–PL6)</div>
@@ -4732,7 +4903,7 @@ git log v1.3.0..HEAD --pretty='%s' | grep -E '^(feat|fix)(\(.+\))?!:'</code></pr
     if (el) stepNodes.push({ el: el, node: li });
   });
 
-  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'tai-lieu'];
+  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'vi-du-ins', 'tai-lieu'];
   var secNodes = [];
   SECTION_IDS.forEach(function (id) {
     var el = document.getElementById(id);

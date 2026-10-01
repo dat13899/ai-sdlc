@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Linter cho Unit Test do AI sinh — rules/test-rules.md (ví dụ INS Platform) — Ví dụ INS Platform | AI-SDLC v5.9</title>
+<meta name="theme-color" content="#0a0a0f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237c6cf0'/%3E%3Ctext x='16' y='22' font-size='15' font-family='system-ui' font-weight='700' fill='white' text-anchor='middle'%3EAI%3C/text%3E%3C/svg%3E">
+<style>/* AI-SDLC site — dark premium (Linear/Stripe mood) */
+:root{
+  --bg:#0a0a0f; --bg-2:#12121a; --bg-3:#171722;
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --text:#e9e9f2; --dim:#a0a0b8; --dim-2:#7d7d96;
+  --accent:#7c6cf0; --accent-2:#5b8def; --amber:#f5b942; --green:#42d392; --pink:#ef6ca8;
+  --radius:14px; --radius-sm:9px;
+  --nav-h:60px;
+  --maxw:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* Neo (#b3, #quy-trinh…) không bị header sticky che */
+[id]{scroll-margin-top:calc(var(--nav-h) + 14px)}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Inter,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent-2);text-decoration:none}
+a:hover{color:#8fb6ff;text-decoration:underline}
+code,kbd{font-family:ui-monospace,"Cascadia Code","SF Mono",Consolas,monospace;font-size:.88em;
+  background:rgba(124,108,240,.13);border:1px solid rgba(124,108,240,.22);border-radius:6px;padding:.1em .42em;color:#cfc6ff}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* ---------- layout 3 cột ---------- */
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr) 290px;gap:22px;
+  max-width:1560px;margin:0 auto;padding:26px 20px 40px;align-items:start}
+.main{min-width:0}
+.side{position:sticky;top:calc(var(--nav-h) + 16px);max-height:calc(100vh - var(--nav-h) - 32px);
+  overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.side::-webkit-scrollbar{width:8px}
+.side::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:8px}
+.side-box{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:12px}
+.side-box>summary{display:flex;align-items:center;gap:8px;cursor:pointer;list-style:none;
+  padding:2px 2px 10px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.side-box>summary::-webkit-details-marker{display:none}
+.side-box>summary:before{content:"▾";color:var(--dim-2);font-size:11px;transition:transform .15s}
+.side-box:not([open])>summary:before{transform:rotate(-90deg)}
+.side-t{font-size:13.5px;font-weight:650;letter-spacing:.01em}
+.side-n{margin-left:auto;font-size:11.5px;color:var(--dim-2);background:rgba(255,255,255,.05);
+  border-radius:999px;padding:2px 8px}
+
+/* tree điều hướng */
+.tree-g{margin-bottom:10px}
+.tree-gt{font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim-2);
+  font-weight:600;margin:0 0 5px 4px}
+.tree ul{list-style:none;margin:0;padding:0}
+.tree li{margin:1px 0}
+.tree a{display:flex;align-items:flex-start;gap:8px;padding:6px 8px;border-radius:8px;
+  color:var(--dim);font-size:13.3px;line-height:1.4}
+.tree a:hover{background:rgba(255,255,255,.055);color:var(--text);text-decoration:none}
+.tree li.on>a{background:rgba(124,108,240,.17);color:var(--text)}
+.tree a .tb{font-family:ui-monospace,Consolas,monospace;font-size:11.5px;font-weight:700;
+  color:var(--accent);flex:none;min-width:22px;padding-top:1px}
+.tree a .tn{flex:1;min-width:0}
+.tree a .tg{flex:none;font-size:10px}
+.tree-sep{height:1px;background:var(--line);margin:12px 0}
+
+.side-actions{display:flex;gap:8px;margin-bottom:12px}
+.btn{flex:1;text-align:center;padding:8px 10px;border-radius:9px;font-size:12.8px;font-weight:600;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;white-space:nowrap}
+.btn:hover{color:#fff;text-decoration:none;filter:brightness(1.08)}
+.btn.ghost{background:transparent;border:1px solid var(--line-2);color:var(--dim)}
+.btn.ghost:hover{color:var(--text)}
+.side-g{margin-bottom:11px}
+.side-gt{font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--dim-2);
+  font-weight:600;margin:0 0 5px 4px}
+.side-list{list-style:none;margin:0;padding:0}
+.side-list a{display:block;padding:6px 8px;border-radius:8px}
+.side-list a:hover{background:rgba(255,255,255,.055);text-decoration:none}
+.side-list li.on a{background:rgba(124,108,240,.16)}
+.side-list .fl{display:block;font-size:13px;color:var(--text);line-height:1.35}
+.side-list .fm{display:block;font-size:11.5px;color:var(--dim-2);margin-top:2px}
+.pending{color:var(--amber)}
+
+/* ---------- trang file mẫu ---------- */
+.tpl-head{padding:4px 0 18px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.crumb{font-size:12.8px;color:var(--dim-2);margin-bottom:10px}
+.crumb a{color:var(--dim)}
+.tpl-head h1{font-size:clamp(1.5rem,3vw,2.05rem);margin:0 0 12px;letter-spacing:-.02em}
+.tpl-meta{display:flex;flex-wrap:wrap;gap:8px}
+.md{font-size:15.4px;line-height:1.72;max-width:900px}
+.md h2{font-size:1.34rem;margin:34px 0 10px;padding-bottom:7px;border-bottom:1px solid var(--line);letter-spacing:-.015em}
+.md h3{font-size:1.11rem;margin:26px 0 8px}
+.md h4{font-size:1rem;margin:20px 0 6px;color:var(--dim)}
+.md p{margin:10px 0;color:#dcdcea}
+.md ul,.md ol{margin:10px 0;padding-left:22px;color:#dcdcea}
+.md li{margin:5px 0}
+.md li::marker{color:var(--accent)}
+.md li.task{list-style:none;margin-left:-20px}
+.md .cb{color:var(--accent-2);font-weight:700;margin-right:6px}
+.md li.task.done{color:var(--dim-2)}
+.md li.task.done .cb{color:var(--green)}
+.md blockquote{margin:14px 0;padding:12px 15px;border-left:3px solid var(--accent);
+  background:rgba(124,108,240,.08);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--dim)}
+.md blockquote p{margin:0;color:var(--dim)}
+.md hr{margin:26px 0;border:0;border-top:1px solid var(--line)}
+.md .code{margin:14px 0;padding:14px 16px;background:#0d0d13;border:1px solid var(--line);
+  border-radius:var(--radius-sm);overflow-x:auto;font-size:13.2px;line-height:1.6}
+.md .code code{background:none;border:0;padding:0;color:#c9d5ff;font-size:inherit}
+.md .tw{margin:14px 0}
+.md .tw table{min-width:520px}
+.md a{overflow-wrap:anywhere}
+.pager{display:flex;gap:14px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line)}
+.pg{flex:1;padding:13px 15px;border:1px solid var(--line);border-radius:var(--radius);
+  background:var(--bg-2);color:var(--text)}
+.pg:hover{border-color:var(--line-2);text-decoration:none;color:var(--text)}
+.pg span{display:block;font-size:12px;color:var(--dim-2);margin-bottom:3px}
+.pg b{font-size:13.6px;font-weight:600;line-height:1.35}
+.pg.next{text-align:right}
+
+@media (max-width:1180px){
+  .layout{grid-template-columns:230px minmax(0,1fr);}
+  .side-r{display:none}
+}
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr);padding:18px 14px 32px}
+  .side-l{position:static;max-height:none;overflow:visible}
+  .side-r{display:block;position:static;max-height:none}
+  .side-l .side-box>summary{position:sticky;top:var(--nav-h);background:var(--bg-2);z-index:2;border-radius:8px}
+}
+
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;height:var(--nav-h);
+  background:rgba(10,10,15,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 20px;height:100%;display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650;letter-spacing:-.01em;color:var(--text);white-space:nowrap}
+.brand:hover{text-decoration:none;color:var(--text)}
+.logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;font-size:13px;font-weight:700;color:#fff;flex:none}
+.brand small{color:var(--dim-2);font-weight:500;font-size:12.5px}
+.nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{display:flex;align-items:center;min-height:40px;padding:0 12px;border-radius:9px;
+  color:var(--dim);font-size:14.5px;font-weight:500;white-space:nowrap}
+.nav-links a:hover{background:rgba(255,255,255,.06);color:var(--text);text-decoration:none}
+.nav-links a.on{color:var(--text);background:rgba(124,108,240,.16)}
+.nav-links a.ext{color:var(--dim-2)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:76px 0 54px;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero:before{content:"";position:absolute;inset:-40% 0 auto 0;height:620px;
+  background:radial-gradient(600px 300px at 22% 32%,rgba(124,108,240,.30),transparent 70%),
+             radial-gradient(520px 280px at 78% 12%,rgba(91,141,239,.22),transparent 70%);
+  filter:blur(6px);pointer-events:none}
+.hero-in{position:relative}
+.badge{display:inline-flex;align-items:center;gap:8px;padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(124,108,240,.35);background:rgba(124,108,240,.12);color:#c8bdff;
+  font-size:12.5px;font-weight:600;letter-spacing:.02em}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+h1{margin:20px 0 14px;font-size:clamp(2rem,5.2vw,3.3rem);line-height:1.1;letter-spacing:-.03em;font-weight:700}
+h1 .g{background:linear-gradient(100deg,#a99cff 0%,#7c6cf0 42%,#5b8def 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:730px;color:var(--dim);font-size:clamp(1rem,1.6vw,1.12rem)}
+.hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:7px 12px;border:1px solid var(--line);
+  background:var(--bg-2);border-radius:999px;font-size:13px;color:var(--dim)}
+.chip b{color:var(--text);font-weight:600}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.stat{background:linear-gradient(180deg,var(--bg-3),var(--bg-2));border:1px solid var(--line);
+  border-radius:var(--radius);padding:18px 16px}
+.stat b{display:block;font-size:29px;line-height:1.1;letter-spacing:-.02em;
+  background:linear-gradient(120deg,#fff,#b9aaff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;margin-top:5px;color:var(--dim-2);font-size:12.5px;text-transform:uppercase;letter-spacing:.06em}
+
+/* ---------- sections ---------- */
+section{padding:56px 0}
+section+section{border-top:1px solid var(--line)}
+h2{font-size:clamp(1.35rem,2.6vw,1.75rem);letter-spacing:-.02em;margin:0 0 8px;font-weight:650}
+.sub{color:var(--dim);margin:0 0 26px;max-width:820px}
+h3{font-size:1.05rem;margin:0 0 6px;font-weight:600;letter-spacing:-.01em}
+.note{color:var(--dim-2);font-size:13.5px}
+
+/* ---------- phase / step cards ---------- */
+.phase{margin-bottom:30px}
+.phase-h{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;padding-left:12px;border-left:3px solid var(--accent)}
+.phase-h .pid{font-size:12.5px;font-weight:700;letter-spacing:.08em;color:var(--dim-2);text-transform:uppercase}
+.phase-h .pname{font-size:1.12rem;font-weight:650;letter-spacing:-.01em}
+[data-tint=violet]{--accent:#7c6cf0}
+[data-tint=blue]{--accent:#5b8def}
+[data-tint=cyan]{--accent:#40c8d8}
+[data-tint=green]{--accent:#42d392}
+[data-tint=amber]{--accent:#f5b942}
+[data-tint=pink]{--accent:#ef6ca8}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.step{position:relative;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 16px 15px;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.step:hover{transform:translateY(-2px);border-color:var(--line-2);background:var(--bg-3)}
+.step.key{border-color:rgba(124,108,240,.5);background:linear-gradient(180deg,rgba(124,108,240,.13),var(--bg-2))}
+.step-top{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.bcode{font-family:ui-monospace,Consolas,monospace;font-size:12.5px;font-weight:700;color:var(--accent);
+  border:1px solid currentColor;border-radius:7px;padding:2px 7px;flex:none}
+.gatechip{font-size:11.5px;font-weight:600;color:var(--amber);background:rgba(245,185,66,.12);
+  border:1px solid rgba(245,185,66,.3);border-radius:7px;padding:2px 7px;margin-left:auto;text-align:right}
+.step h4{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.step p{margin:8px 0 0;font-size:13.2px;color:var(--dim)}
+.step p b{color:var(--dim);font-weight:600}
+.step .more{margin-top:10px;font-size:13px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);max-width:100%}
+table{width:100%;border-collapse:collapse;min-width:620px;font-size:14px;max-width:100%}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim-2);font-weight:600;background:rgba(255,255,255,.02)}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(255,255,255,.022)}
+td b{color:var(--text)}
+/* Cột "Biểu mẫu": các link mẫu xếp dọc, gọn trong ô hẹp */
+td.fc{line-height:1.5}
+td.fc a.mlink{display:inline-block;padding:2px 0;color:#8fb6ff;font-weight:500;
+  border-bottom:1px solid rgba(91,141,239,.35)}
+td.fc a.mlink:hover{color:#c3d8ff;border-bottom-color:#c3d8ff;text-decoration:none}
+td.fc .mlink-sep{color:var(--dim-2);padding:0 5px}
+
+/* ---------- popup xem biểu mẫu (bảng chi tiết 14 bước) ---------- */
+body.mm-lock{overflow:hidden}
+.mm{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:24px}
+.mm[hidden]{display:none}
+.mm-bd{position:absolute;inset:0;background:rgba(6,6,12,.74);backdrop-filter:blur(3px)}
+.mm-win{position:relative;display:flex;flex-direction:column;width:100%;max-width:920px;max-height:86vh;
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:18px;overflow:hidden;
+  box-shadow:0 30px 90px rgba(0,0,0,.65),0 0 0 1px rgba(124,108,240,.18)}
+.mm-h{display:flex;align-items:flex-start;gap:16px;padding:15px 16px 14px 20px;
+  border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(124,108,240,.10),rgba(124,108,240,0))}
+.mm-ht{min-width:0}
+.mm-k{font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.mm-h h3{margin:4px 0 0;font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.35}
+.mm-acts{display:flex;align-items:center;gap:8px;margin-left:auto;flex:none}
+.mm-btn{font-size:13px;font-weight:500;padding:7px 12px;border:1px solid var(--line-2);border-radius:9px;
+  color:var(--text);background:rgba(255,255,255,.03);white-space:nowrap}
+.mm-btn:hover{border-color:var(--accent);color:#fff;text-decoration:none;background:rgba(124,108,240,.18)}
+.mm-btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff}
+.mm-btn.primary:hover{filter:brightness(1.1)}
+.mm-x{width:34px;height:34px;flex:none;border:1px solid var(--line-2);border-radius:9px;background:rgba(255,255,255,.03);
+  color:var(--dim);font-size:14px;cursor:pointer;line-height:1}
+.mm-x:hover{color:#fff;border-color:var(--accent);background:rgba(124,108,240,.18)}
+.mm-b{overflow-y:auto;overscroll-behavior:contain;padding:16px 22px 30px;scrollbar-width:thin}
+.mm-b::-webkit-scrollbar{width:9px}
+.mm-b::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:9px}
+.mm-meta{display:flex;flex-wrap:wrap;gap:8px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.mm-md h2{font-size:1.2rem;margin:6px 0 10px;padding:0;border:0}
+.mm-md h3{font-size:1.04rem;margin:20px 0 7px}
+.mm-md h4{font-size:.96rem}
+@media (max-width:760px){
+  .mm{padding:0}
+  .mm-win{max-width:none;max-height:none;height:100%;border-radius:0;border:0}
+  .mm-h{padding:12px;flex-wrap:wrap}
+  .mm-ht{width:100%}
+  .mm-h h3{font-size:15.5px}
+  .mm-acts{margin-left:0;width:100%;gap:6px}
+  .mm-btn{flex:1;text-align:center;padding:9px 8px}
+  .mm-b{padding:14px 14px 40px}
+}
+
+/* ---------- generic blocks ---------- */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px}
+/* chặn bảng rộng kéo giãn grid gây tràn ngang trên mobile */
+.grid2>*,.grid3>*,.steps>*,.phase,.step,.step-big,.card,.filelist,.file{min-width:0}
+.card{overflow-wrap:anywhere}
+.tw{max-width:100%}
+table{max-width:100%}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:17px}
+.card.amber{border-color:rgba(245,185,66,.28);background:linear-gradient(180deg,rgba(245,185,66,.07),var(--bg-2))}
+.card h3{margin-bottom:7px}
+.card ul{margin:8px 0 0;padding-left:18px;color:var(--dim);font-size:13.6px}
+.card li{margin:5px 0}
+.card li::marker{color:var(--accent)}
+.card p{margin:0;color:var(--dim);font-size:13.6px}
+.pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;color:#c8bdff;
+  background:rgba(124,108,240,.14);border:1px solid rgba(124,108,240,.28);border-radius:999px;padding:2px 8px;margin-left:6px}
+.filelist{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:10px;margin-top:10px}
+.file{display:flex;gap:11px;padding:11px 12px;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg)}
+.file .n{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--accent);flex:none;padding-top:2px}
+.file b{display:block;font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:600;letter-spacing:-.01em}
+.file span{display:block;color:var(--dim-2);font-size:12.8px;margin-top:3px}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.flow .env{padding:8px 12px;border-radius:9px;border:1px solid var(--line);background:var(--bg-3);font-size:13px;font-weight:600}
+.flow .arw{color:var(--dim-2)}
+.flow .env.gate{border-color:rgba(245,185,66,.32);color:#f7cf82}
+.kv{display:flex;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.kv:last-child{border-bottom:0}
+.kv b{flex:none;min-width:112px;color:var(--text);font-weight:600}
+.kv span{color:var(--dim)}
+.lifecycle{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.lifecycle span{padding:7px 11px;border-radius:999px;background:rgba(66,211,146,.1);
+  border:1px solid rgba(66,211,146,.26);color:#9fe8c6;font-size:13px}
+.shot{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-3);padding:10px;margin-top:12px}
+.shot img{display:block;width:100%;height:auto;border-radius:var(--radius-sm);background:#fff}
+.shot figcaption{color:var(--dim-2);font-size:12.5px;margin-top:8px}
+.step-big{margin:0 0 26px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2)}
+.step-big.gated{border-color:rgba(245,185,66,.26);background:linear-gradient(180deg,rgba(245,185,66,.06),var(--bg-2))}
+.step-big-h{display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+.step-big-h h3{margin:0;font-size:1.14rem}
+.links{margin-top:12px;display:flex;flex-wrap:wrap;gap:14px;font-size:13.5px}
+footer{border-top:1px solid var(--line);padding:30px 0 46px;color:var(--dim-2);font-size:13.5px}
+footer a{color:var(--dim)}
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.toc a{padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg-2);
+  color:var(--dim);font-size:13.5px;font-weight:500}
+.toc a:hover{border-color:var(--line-2);color:var(--text);text-decoration:none}
+.warn{border-left:3px solid var(--amber);padding:12px 14px;background:rgba(245,185,66,.07);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--dim);font-size:14px}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .hero{padding:52px 0 38px}
+  section{padding:42px 0}
+  .brand small{display:none}
+  .nav-in{gap:6px}
+  .nav-links{-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+  .nav-links a{padding:0 10px;font-size:13.5px}
+  .kv{flex-direction:column;gap:2px}
+  .kv b{min-width:0}
+  .gatechip{margin-left:0;flex-basis:100%}
+  .step-top{flex-wrap:wrap}
+  .step-big{padding:15px}
+  h1{margin:16px 0 12px}
+  .grid2,.grid3{gap:12px}
+  .toc{gap:7px}
+  .toc a{font-size:12.8px;padding:6px 10px}
+  .shot{padding:7px}
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="/index.html"><span class="logo">AI</span> AI-SDLC <small>v5.9 · ai.btdat.io.vn</small></a>
+    <nav class="nav-links">
+      <a href="/index.html#quy-trinh" data-sec="quy-trinh">14 bước</a>
+      <a href="/index.html#gate" data-sec="gate">8 Gate</a>
+      <a href="/index.html#luat-ai" data-sec="luat-ai">Luật cho AI</a>
+      <a href="/index.html#bo-tai-lieu-b2" data-sec="bo-tai-lieu-b2">Bộ tài liệu B2</a>
+      <a href="/index.html#bug" data-sec="bug">Quản lý bug</a>
+      <a href="/index.html#release" data-sec="release">Release</a>
+      <a href="/index.html#bieu-mau" data-sec="bieu-mau">Biểu mẫu</a>
+      <a href="/index.html#kpi" data-sec="kpi">KPI &amp; chuẩn</a>
+      <a href="/index.html#thieu" data-sec="thieu">Còn thiếu</a>
+      <a href="/index.html#vi-du-ins" data-sec="vi-du-ins">Ví dụ INS</a>
+      <a href="/index.html#tai-lieu" data-sec="tai-lieu">Tài liệu gốc</a>
+      <a class="ext" href="/mau/index.html">File mẫu ↗</a>
+      <a class="ext" href="/ins/index.html">Ví dụ INS ↗</a>
+      <a class="ext" href="https://btdat.io.vn" target="_blank" rel="noopener">btdat.io.vn ↗</a>
+    </nav>
+  </div>
+</header>
+<div class="layout">
+  
+<aside class="side side-l">
+  <details class="side-box" open>
+    <summary><span class="side-t">Quy trình 14 bước</span></summary>
+    <nav class="tree">
+      
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 0 · Khởi tạo</div>
+        <ul>
+          
+          <li data-step="b1">
+            <a href="/index.html#b1">
+              <span class="tb">B1</span>
+              <span class="tn">Project Charter &amp; Kick-off</span>
+              
+            </a>
+          </li>
+          <li data-step="b2">
+            <a href="/index.html#b2">
+              <span class="tb">B2</span>
+              <span class="tn">Constitution &amp; skill.md</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 1 · Yêu cầu</div>
+        <ul>
+          
+          <li data-step="b3">
+            <a href="/index.html#b3">
+              <span class="tb">B3</span>
+              <span class="tn">Thu thập yêu cầu</span>
+              
+            </a>
+          </li>
+          <li data-step="b4">
+            <a href="/index.html#b4">
+              <span class="tb">B4</span>
+              <span class="tn">Viết Spec (Specify)</span>
+              
+            </a>
+          </li>
+          <li data-step="b5">
+            <a href="/index.html#b5">
+              <span class="tb">B5</span>
+              <span class="tn">Làm rõ &amp; chốt Spec</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 2 · Thiết kế</div>
+        <ul>
+          
+          <li data-step="b6">
+            <a href="/index.html#b6">
+              <span class="tb">B6</span>
+              <span class="tn">Technical Plan &amp; Kiến trúc</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+          <li data-step="b7">
+            <a href="/index.html#b7">
+              <span class="tb">B7</span>
+              <span class="tn">Phân rã Task &amp; sprint planning</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 3 · Lập trình</div>
+        <ul>
+          
+          <li data-step="b8">
+            <a href="/index.html#b8">
+              <span class="tb">B8</span>
+              <span class="tn">Coding</span>
+              
+            </a>
+          </li>
+          <li data-step="b9">
+            <a href="/index.html#b9">
+              <span class="tb">B9</span>
+              <span class="tn">Unit Test</span>
+              
+            </a>
+          </li>
+          <li data-step="b10">
+            <a href="/index.html#b10">
+              <span class="tb">B10</span>
+              <span class="tn">Code Review 2 tầng</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 4 · Kiểm thử</div>
+        <ul>
+          
+          <li data-step="b11">
+            <a href="/index.html#b11">
+              <span class="tb">B11</span>
+              <span class="tn">Test Plan &amp; Test Case</span>
+              
+            </a>
+          </li>
+          <li data-step="b12">
+            <a href="/index.html#b12">
+              <span class="tb">B12</span>
+              <span class="tn">SIT/Regression/UAT</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="tree-g">
+        <div class="tree-gt">GĐ 5 · Phát hành &amp; Vận hành</div>
+        <ul>
+          
+          <li data-step="b13">
+            <a href="/index.html#b13">
+              <span class="tb">B13</span>
+              <span class="tn">Release &amp; triển khai môi trường</span>
+              <span class="tg" title="Human Gate">⛔</span>
+            </a>
+          </li>
+          <li data-step="b14">
+            <a href="/index.html#b14">
+              <span class="tb">B14</span>
+              <span class="tn">Vận hành &amp; cải tiến</span>
+              
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="tree-sep"></div>
+    <nav class="tree tree-flat">
+      <div class="tree-gt">Mục khác</div>
+      <ul><li data-sec="gate"><a href="/index.html#gate"><span class="tn">8 Gate</span></a></li><li data-sec="luat-ai"><a href="/index.html#luat-ai"><span class="tn">Luật cho AI</span></a></li><li data-sec="bo-tai-lieu-b2"><a href="/index.html#bo-tai-lieu-b2"><span class="tn">Bộ tài liệu B2</span></a></li><li data-sec="bug"><a href="/index.html#bug"><span class="tn">Quản lý bug</span></a></li><li data-sec="release"><a href="/index.html#release"><span class="tn">Release</span></a></li><li data-sec="bieu-mau"><a href="/index.html#bieu-mau"><span class="tn">Biểu mẫu</span></a></li><li data-sec="kpi"><a href="/index.html#kpi"><span class="tn">KPI &amp; chuẩn</span></a></li><li data-sec="thieu"><a href="/index.html#thieu"><span class="tn">Còn thiếu</span></a></li><li data-sec="vi-du-ins"><a href="/index.html#vi-du-ins"><span class="tn">Ví dụ INS</span></a></li><li data-sec="tai-lieu"><a href="/index.html#tai-lieu"><span class="tn">Tài liệu gốc</span></a></li></ul>
+    </nav>
+  </details>
+</aside>
+  <main class="main">
+<div class="tpl-head">
+  <div class="crumb"><a href="/index.html">Trang chủ</a> / <a href="/ins/index.html">Ví dụ INS</a> / Linter cho Unit Test do AI sinh — rules/test-rules.md (ví dụ INS Platform)</div>
+  <h1>Linter cho Unit Test do AI sinh — rules/test-rules.md (ví dụ INS Platform)</h1>
+  <div class="tpl-meta"><span class="chip">Dùng ở: <b>B9 bước 2 (AI tự kiểm) trước khi CI chạy coverage gate</b></span><span class="chip">Chủ sở hữu: <b>AI (tự kiểm) · Dev (R) · Tech Lead (A)</b></span><span class="chip">Nhóm: <b>rules/ — Linter AI tự kiểm</b></span><span class="chip">215 dòng</span></div>
+  <div class="warn" style="margin-top:14px">
+    <b>Ví dụ điền thật — INS Platform (đã ẩn danh).</b> Chỗ ghi <code>&gt; TODO</code> là dự án chưa có dữ liệu,
+    chỗ ghi <code>⚠️</code> là tài liệu lệch code — giữ nguyên để thấy đúng thực tế.
+    Mẫu trống tương ứng: <a href="/mau/test-rules.html">rules/test-rules.md</a>.
+  </div>
+  <div class="links" style="margin-top:12px">
+    <a href="/ins/raw/rules/test-rules.md" download>⬇ Tải file .md</a>
+    <a href="/ins/raw/rules/test-rules.md" target="_blank" rel="noopener">Xem raw</a>
+    <a href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Cả bộ .zip</a>
+    <a href="/mau/test-rules.html">→ Mẫu gốc (trống)</a>
+  </div>
+</div>
+<article class="md"><blockquote><p>Ví dụ điền thật từ dự án INS Platform (đã ẩn danh). Template gốc: templates/rules/test-rules.md</p></blockquote>
+<h2>rules/test-rules.md — Checklist AI tự kiểm Unit Test (INS Platform)</h2>
+<h3>Mục đích</h3>
+<p>INS Platform có 15 microservice Java 21 + Spring Boot 3.5, mỗi service là Maven 3 module <code>domain</code> ← <code>application</code> ← <code>adapter</code>. Rủi ro test giả ở đây có bằng chứng cụ thể: purchase-service từng có <strong>40+ test đỏ nền</strong> và <strong>một assertion sai thật nằm im trong đó nhiều tuần</strong> vì mọi người chỉ so tổng số fail (LESSONS §5.3). File này quy định tầng test, cách chạy, cách <strong>đếm và so sánh test cho đúng</strong>, và mốc đỏ sẵn để AI không báo &quot;xanh&quot; giả.</p>
+<h3>Khi nào chạy</h3>
+<div class="tw"><table>
+<thead><tr><th>Mốc</th><th>Ai chạy</th><th>Đầu vào</th></tr></thead>
+<tbody><tr><td>B9 bước 1 — AI sinh test</td><td>AI</td><td>code + SRS (AC Gherkin <code>TC-{SVC}-NN</code> trong TSD <code>07_testing-design.md</code> §11)</td></tr><tr><td>B9 bước 2 — AI tự kiểm</td><td>AI</td><td>test vừa sinh + <strong>chạy RIÊNG lớp test của use case vừa sửa</strong></td></tr><tr><td>B9 bước 3 — Dev đọc assert</td><td>Dev</td><td>test đã qua linter</td></tr><tr><td>B9 bước 4 — chạy cả module</td><td>Dev/CI</td><td><code>-Dmaven.test.failure.ignore=true</code>, so theo danh tính với mốc</td></tr><tr><td>B10 — review tầng 1</td><td>AI review</td><td>test trong PR + <code>ArchitectureTest</code></td></tr></tbody>
+</table></div>
+<p><strong>Quy tắc bắt buộc của tài liệu gốc:</strong> Dev phải <strong>đọc assert</strong> thay vì tin mù vào kết quả AI báo.</p>
+<h3>Tầng test &amp; lệnh chạy</h3>
+<div class="tw"><table>
+<thead><tr><th>Tầng</th><th>Module</th><th>Công cụ</th><th>Quy ước</th><th>Docker?</th></tr></thead>
+<tbody><tr><td>Domain unit</td><td><code>domain/</code></td><td>JUnit 5 + AssertJ thuần, <strong>không Spring</strong>, thường không có Mockito trong pom</td><td>Dựng value object trực tiếp; test factory (happy + reject), chuyển trạng thái + guard, event accumulator (<code>pullEvents</code>/<code>flushEvents</code>)</td><td>Không</td></tr><tr><td>UseCase unit</td><td><code>application/</code></td><td>JUnit 5 + Mockito</td><td>UseCase <strong>không phải Spring bean</strong> → <code>new XUseCase(...)</code> qua constructor (hoặc param-object <code>*Deps</code>); chỉ mock <strong>port</strong>; record DTO là <code>final</code> → dựng thật; <code>repo.save → thenAnswer(inv -&gt; inv.getArgument(0))</code></td><td>Không</td></tr><tr><td>ArchUnit</td><td><code>adapter/</code></td><td><code>archunit-junit5</code></td><td><code>ArchitectureTest</code> — domain không phụ thuộc Spring/JPA/Temporal, application không phụ thuộc adapter, UseCase không <code>@Service</code>/<code>@Component</code>, controller chỉ gọi facade</td><td>Không</td></tr><tr><td>Controller</td><td><code>adapter/</code></td><td>Standalone MockMvc</td><td><code>MockMvcBuilders.standaloneSetup(new XController(mockFacade)).build()</code></td><td>Không</td></tr><tr><td>Temporal workflow</td><td><code>adapter/</code></td><td><code>TestWorkflowEnvironment</code> (mock activity) + <code>WorkflowReplayer</code></td><td>Mọi thay đổi nhịp poll / nhánh phải đi qua version marker; test replay phải xanh</td><td>Không</td></tr><tr><td>Integration</td><td><code>adapter/</code> (<code>*IntegrationTest</code> / <code>*IT</code>)</td><td>Testcontainers (MariaDB, Kafka, Redis/Valkey), WireMock</td><td>Pin version image, <strong>cấm <code>latest</code></strong></td><td><strong>Có</strong></td></tr></tbody>
+</table></div>
+<pre class="code lang-bash"><code># chạy từ trong ins-{service}/
+./mvnw test -pl domain                                   # no Docker
+./mvnw test -pl application                              # no Docker
+./mvnw test -pl adapter -Dtest='ArchitectureTest'        # no Docker
+./mvnw test -pl adapter -Dtest='*IntegrationTest'        # Docker required
+./mvnw test -pl &lt;module&gt; -Dtest='ClassName#methodName'   # 1 method
+
+# chạy 1 lớp ở application khi reactor có module khác không khớp pattern
+mvn -o -pl application -am test -Dtest='XUseCaseTest' -Dsurefire.failIfNoSpecifiedTests=false</code></pre>
+<p><strong>Hiện trạng tầng integration:</strong> không đồng đều. <code>ins-insurer-adaptor</code> có sẵn integration test Testcontainers. Ở purchase-service (baseline TSD), pom <strong>không có Testcontainers, WireMock, Pact</strong> — integration/contract/E2E trong TSD là <strong>đặc tả target</strong>, chưa có công cụ để viết. Không được báo &quot;đã có integration test&quot; cho service chưa có dependency.</p>
+<p><strong>Gotcha build (đã gặp):</strong></p>
+<ul><li>Lần đầu chạy phải <strong>online</strong> để tải provider <code>surefire-junit-platform</code>; sau đó <code>-o</code> được.</li><li><code>-pl application test</code> không kèm <code>-am</code> mà <code>.m2</code> còn jar domain cũ → <code>TestEngine 'junit-jupiter' failed to discover tests</code> — là lỗi linkage, <strong>không phải lỗi test</strong>. Thêm <code>-am</code> hoặc <code>mvn -o -pl domain install -DskipTests</code> trước.</li><li>Maven incremental <strong>không build lại</strong> khi chỉ đổi file test → <code>clean</code> trước khi đọc kết quả.</li><li><code>messages.properties</code> nằm ở module adapter, không có trên classpath test của domain/application → <code>Msg.get</code> trả <strong>tên KEY</strong> thay vì message → nguồn gốc 40+ test đỏ nền ở purchase.</li></ul>
+<h3>Đếm test &amp; so sánh theo danh tính</h3>
+<ol><li><code>./mvnw -o -q test</code> <strong>DỪNG ở module đầu tiên đỏ</strong> → bỏ qua hẳn module <code>adapter</code> (nơi nhiều test nhất). <strong>Bắt buộc</strong> <code>-Dmaven.test.failure.ignore=true</code>.</li><li><strong>Không</strong> đếm bằng <code>awk</code> trên file surefire <code>.txt</code>: lớp <code>@Nested</code> có display name tiếng Việt làm lệch cột. Sai thật: 337 đếm ra 303, 178 → 70, 671 → 668.</li><li>Nguồn số đúng duy nhất = dòng <code>Tests run:</code> trong khối <code>[INFO] Results:</code> của <strong>từng module</strong>.</li><li><code>tr -d '\r'</code> trước khi grep log, nếu không grep báo &quot;binary file matches&quot;.</li><li><strong>So theo DANH TÍNH, không theo số</strong> — số test có thể tăng vì người khác vừa commit; chuỗi <code>Time elapsed</code> làm <code>diff</code> log vô nghĩa:</li></ol>
+<pre class="code lang-bash"><code>grep -aoE &quot;[A-Za-z]+Test\.[A-Za-z0-9_]+ -- Time elapsed: [0-9.]+ s &lt;&lt;&lt; (FAILURE|ERROR)!&quot; log.txt \
+  | sed 's/ -- Time.*&lt;&lt;&lt; / /' | sort -u &gt; sau.txt
+comm -13 truoc.txt sau.txt   # rỗng = không hồi quy</code></pre>
+<h3>Mốc đỏ sẵn (2026-08-28)</h3>
+<p>Số dạng <code>chạy / đỏ</code>. Đỏ <strong>nhiều hơn</strong> mốc = hồi quy; bằng mốc <strong>chưa chắc</strong> an toàn — vẫn phải so danh tính.</p>
+<div class="tw"><table>
+<thead><tr><th>Service</th><th>domain</th><th>application</th><th>adapter</th></tr></thead>
+<tbody><tr><td>purchase</td><td>178 / 0</td><td>231 / <strong>40</strong></td><td>692 / <strong>2</strong></td></tr><tr><td>promotion</td><td>117 / <strong>32</strong></td><td>171 / <strong>51 + 1 error</strong></td><td>265 / 0</td></tr><tr><td>insurer-adaptor</td><td>27 / 0</td><td>24 / 0</td><td>337 / 0</td></tr></tbody>
+</table></div>
+<p><code>ArchitectureTest#controller_should_go_through_facade</code> đỏ với <strong>3 vi phạm</strong> — số này là mốc, nhiều hơn = hồi quy.</p>
+<h3>Quy tắc bắt buộc (điều kiện chặn)</h3>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Quy tắc</th><th>Vì sao chặn</th></tr></thead>
+<tbody><tr><td>C1</td><td><strong>Mọi test phải có assert thật</strong> trên kết quả nghiệp vụ</td><td>Test không assert luôn xanh</td></tr><tr><td>C2</td><td>Không assert tautology / <code>assertNotNull</code> trên object vừa dựng trong test</td><td>Không kiểm logic</td></tr><tr><td>C3</td><td>Một hành vi mỗi test; tên test (hoặc <code>@DisplayName</code> tiếng Việt) nói rõ hành vi</td><td>Fail không biết lỗi ở đâu</td></tr><tr><td>C4</td><td>Không phụ thuộc thứ tự chạy / dữ liệu dùng chung</td><td>Flaky</td></tr><tr><td>C5</td><td>Không mock chính use case/aggregate đang test; <strong>chỉ mock port</strong></td><td>Test kiểm tra mock = không test gì</td></tr><tr><td>C6</td><td>Không hard-code CCCD/SĐT/email thật — dùng <code>net.datafaker:datafaker</code> hoặc giá trị giả rõ ràng (<code>0900000000</code>)</td><td>Rò rỉ PII</td></tr><tr><td>C7</td><td><strong>Không sửa code main để test pass</strong></td><td>Quy ước đã chốt của đợt nâng coverage</td></tr><tr><td>C8</td><td>Đổi hành vi thì sửa <strong>cùng commit</strong> cả test lẫn javadoc; chạy RIÊNG lớp test của use case vừa sửa</td><td>Một commit đổi hành vi <code>RESUMABLE</code> mà không sửa test → assertion sai thật nằm im nhiều tuần giữa 40 test đỏ nền</td></tr></tbody>
+</table></div>
+<h3>Checklist tự kiểm</h3>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Câu hỏi kiểm tra</th><th>Đạt/Không đạt</th><th>Ghi chú dự án</th></tr></thead>
+<tbody><tr><td>1</td><td>Mọi test function có ít nhất 1 assert?</td><td></td><td>AssertJ <code>assertThat(...)</code></td></tr><tr><td>2</td><td>Có assert so với chính giá trị vừa gán?</td><td></td><td></td></tr><tr><td>3</td><td>Có <code>assertTrue(true)</code> / <code>isNotNull()</code> trên object luôn tồn tại?</td><td></td><td></td></tr><tr><td>4</td><td>Mỗi test kiểm <strong>một</strong> hành vi?</td><td></td><td></td></tr><tr><td>5</td><td>Tên test mô tả hành vi?</td><td></td><td>Ví dụ thật: <code>paymentFailThenSuccess_keepsAliveAndIssues</code></td></tr><tr><td>6</td><td>Có phụ thuộc thứ tự chạy?</td><td></td><td></td></tr><tr><td>7</td><td>Chạy riêng từng lớp — có lớp fail mà chạy cả suite lại pass (hoặc ngược lại)?</td><td></td><td>Bắt buộc chạy riêng lớp của use case vừa sửa</td></tr><tr><td>8</td><td>Có test mock chính class đang test?</td><td></td><td></td></tr><tr><td>9</td><td>Có test chỉ <code>verify(mock)</code> mà không kiểm kết quả nghiệp vụ?</td><td></td><td>Side-effect quan trọng (REST/Kafka/SMS) thì verify <strong>kèm</strong> assert trạng thái</td></tr><tr><td>10</td><td>Đã phủ edge case (null, rỗng, 0, âm, biên, Unicode)?</td><td></td><td>Các nhánh <code>??</code> / `\</td></tr><tr><td>11</td><td>Đã phủ đường lỗi (NCC từ chối, timeout, sai tenant, không tồn tại)?</td><td></td><td>Guard phải đứng <strong>trước</strong> side-effect — test đường lỗi phải khẳng định <strong>không</strong> có REST/Kafka/SMS nào đã bắn (LESSONS §1)</td></tr><tr><td>12</td><td>Có dữ liệu cá nhân thật?</td><td></td><td>Datafaker locale <code>vi</code></td></tr><tr><td>13</td><td>Có test unit gọi API/DB thật?</td><td></td><td>Unit dùng mock port; I/O thật chỉ ở <code>*IntegrationTest</code></td></tr><tr><td>14</td><td>Kiểm giá trị biên chính xác thay vì chỉ &quot;khác null&quot;?</td><td></td><td>Tiền VND so <code>Long</code> chính xác</td></tr><tr><td>15</td><td>Mỗi AC trong SRS/TSD có ít nhất 1 test?</td><td></td><td>Map <code>TC-{SVC}-NN</code> → lớp test (&quot;Test hiện có: ...&quot;)</td></tr><tr><td>16</td><td>Có AC nào không có test?</td><td></td><td>AC viết cho thành phần đã xoá phải gỡ hoặc thay, không để treo</td></tr><tr><td>17</td><td>Coverage đạt ngưỡng?</td><td></td><td>Xem &quot;Ngưỡng&quot; — đo JaCoCo ad-hoc</td></tr><tr><td>18</td><td>Coverage có bị làm đầy bằng test vô nghĩa?</td><td></td><td>Getter/enum chỉ để đủ số không tính là &quot;phủ hành vi&quot;</td></tr><tr><td>19</td><td>Có test <code>@Disabled</code> không lý do?</td><td></td><td></td></tr><tr><td>20</td><td>Suite unit chạy trong ngưỡng thời gian?</td><td></td><td>&gt; TODO: dự án chưa có số đo thời gian suite — cần Tech Lead bổ sung</td></tr><tr><td>21</td><td>Có mutation testing?</td><td></td><td>&gt; TODO: dự án chưa có — cần Tech Lead quyết có dùng PIT không</td></tr><tr><td>22</td><td>Có test trùng lặp?</td><td></td><td></td></tr><tr><td>23</td><td>Side-effect quan trọng đã được khẳng định?</td><td></td><td>Outbox row được ghi, SMS <strong>không</strong> gửi khi guard chặn</td></tr><tr><td>24</td><td>Đã đếm test theo &quot;Results&quot; từng module + so danh tính với mốc?</td><td></td><td>Mục &quot;Đếm test&quot; ở trên</td></tr><tr><td>25</td><td>Test đọc message dựa vào <code>Msg.get</code>?</td><td></td><td>Trên domain/application sẽ nhận <strong>tên KEY</strong> — assert theo mã lỗi, không theo câu chữ</td></tr></tbody>
+</table></div>
+<p><strong>Ngưỡng đạt:</strong> C1–C8 = Đạt, câu 17 = Đạt, câu 24 = Đạt, và số câu &quot;Không đạt&quot; = 0.</p>
+<h3>Ví dụ ĐÚNG vs SAI</h3>
+<p><strong>UseCase — SAI</strong> (mock chính đối tượng, chỉ verify):</p>
+<pre class="code lang-java"><code>XUseCase useCase = mock(XUseCase.class);
+useCase.execute(cmd);
+verify(useCase).execute(cmd);        // không kiểm gì</code></pre>
+<p><strong>ĐÚNG</strong> (dựng thật, chỉ mock port, assert kết quả nghiệp vụ):</p>
+<pre class="code lang-java"><code>when(orderRepo.findById(id)).thenReturn(Optional.of(order));
+when(orderRepo.save(any())).thenAnswer(inv -&gt; inv.getArgument(0));
+var useCase = new CancelOrderUseCase(orderRepo, promotionPort);
+
+var result = useCase.execute(new CancelOrderCommand(id, tenantId));
+
+assertThat(result.status()).isEqualTo(OrderStatus.CANCEL_BY_CUSTOMER);</code></pre>
+<p><strong>Đường lỗi — SAI:</strong> chỉ assert ném <code>BusinessRuleViolationException</code>. <strong>ĐÚNG:</strong> assert ném <strong>và</strong> <code>verifyNoInteractions(policyPort, smsPublisher)</code> — vì <code>@Transactional</code> không gỡ được hợp đồng đã tạo qua REST hay SMS đã bắn thẳng Kafka.</p>
+<p><strong>Đếm test — SAI:</strong> &quot;Tổng fail vẫn là 42 như hôm qua → không hồi quy.&quot; <strong>ĐÚNG:</strong> chạy <code>comm -13 truoc.txt sau.txt</code> theo danh tính <code>Class.method</code>; kết quả rỗng mới là không hồi quy.</p>
+<p><strong>Message — SAI:</strong> <code>assertThat(ex.getMessage()).isEqualTo(&quot;Đơn hàng không thể huỷ&quot;)</code> ở module application (nhận tên KEY → đỏ nền). <strong>ĐÚNG:</strong> assert theo mã lỗi / loại exception.</p>
+<h3>Khi nào tự động CHẶN (block)</h3>
+<p>Không được mở PR nếu:</p>
+<ul><li class="task"><span class="cb">☐</span> Có test không assert (C1) hoặc assert tautology (C2)</li><li class="task"><span class="cb">☐</span> Có test phụ thuộc thứ tự chạy (C4)</li><li class="task"><span class="cb">☐</span> Có dữ liệu cá nhân thật (C6)</li><li class="task"><span class="cb">☐</span> Code main bị sửa chỉ để test pass (C7)</li><li class="task"><span class="cb">☐</span> <code>ArchitectureTest</code> có <strong>hơn 3</strong> vi phạm <code>controller_should_go_through_facade</code>, hoặc đỏ ở rule khác</li><li class="task"><span class="cb">☐</span> <code>comm -13</code> giữa danh sách fail trước/sau <strong>không rỗng</strong></li><li class="task"><span class="cb">☐</span> Coverage dưới ngưỡng dự án (câu 17)</li><li class="task"><span class="cb">☐</span> Có AC không test nào bao phủ (câu 16)</li></ul>
+<h3>Ngưỡng gợi ý cho dự án</h3>
+<p><strong>Ngưỡng mục tiêu (TSD purchase <code>07_testing-design.md</code> §9):</strong></p>
+<div class="tw"><table>
+<thead><tr><th>Module</th><th>LINE</th><th>BRANCH</th></tr></thead>
+<tbody><tr><td>---</td><td>:-:</td><td>:-:</td></tr><tr><td><code>domain/</code></td><td>≥ 90%</td><td>≥ 80%</td></tr><tr><td><code>application/</code></td><td>≥ 80%</td><td>≥ 80%</td></tr><tr><td><code>adapter/</code></td><td>≥ 70%</td><td>≥ 70%</td></tr><tr><td>Toàn service</td><td>≥ 80%</td><td>≥ 80%</td></tr></tbody>
+</table></div>
+<p>Gate CI đặc tả: GitLab stage <code>test</code> chạy <code>./mvnw verify</code>, fail MR nếu coverage giảm &gt; 1% so với nhánh base. <strong>Hiện trạng:</strong> JaCoCo <strong>chưa có trong pom</strong> — đang đo ad-hoc:</p>
+<pre class="code lang-bash"><code>cd &lt;service&gt; &amp;&amp; mvn -pl domain,application \
+    org.jacoco:jacoco-maven-plugin:0.8.12:prepare-agent test \
+    org.jacoco:jacoco-maven-plugin:0.8.12:report
+# → &lt;module&gt;/target/site/jacoco/index.html (CSV: jacoco.csv)</code></pre>
+<p>(Đợt 2026-06-25 dùng JaCoCo 0.8.13 vì 0.8.12 không instrument được trên JDK 25.)</p>
+<p><strong>Coverage thực tế (JaCoCo 2026-06-25, 12 service, chỉ domain + application):</strong></p>
+<div class="tw"><table>
+<thead><tr><th>Chỉ số</th><th>Giá trị</th></tr></thead>
+<tbody><tr><td>Test class / test method</td><td>474 / 2.673</td></tr><tr><td>LINE</td><td><strong>91,6%</strong> (từ 67,1%)</td></tr><tr><td>BRANCH</td><td><strong>74,3%</strong> (từ ≈ 50%)</td></tr><tr><td>Service đạt LINE ≥ 85%</td><td>12/12 (thấp nhất 87,6%)</td></tr><tr><td>BRANCH thấp nhất</td><td>60,2% (product), 64,9% (cms)</td></tr><tr><td><code>ins-common</code></td><td>38,4% LINE (chưa đo lại)</td></tr><tr><td>Tầng adapter</td><td><strong>chưa đo</strong> — coverage toàn service thực tế <strong>thấp hơn</strong> các số trên</td></tr></tbody>
+</table></div>
+<p>→ LINE đạt ngưỡng; <strong>BRANCH chưa đạt 80%</strong> theo TSD; adapter chưa có số. Không được báo &quot;coverage đạt&quot; khi chỉ đo 2/3 module.</p>
+<h3>Nguồn tham chiếu</h3>
+<ul><li><code>Architecture.md</code> §2.7 (Testing), §1.4 (dependency rule)</li><li><code>LESSONS.md</code> §5.1–§5.4, §1</li><li>Báo cáo Unit Test &amp; Coverage (2026-06-25) §1, §3, §5, §6</li><li>Báo cáo Unit Test (2026-06-21) — mục &quot;Công cụ đo coverage&quot;</li><li>TSD purchase-service <code>07_testing-design.md</code> §1, §2.6, §5, §8, §9, §10</li><li>Template gốc: <code>templates/rules/test-rules.md</code></li></ul></article>
+<nav class="pager">
+  <a class="pg prev" href="/ins/code-review-rules.html"><span>← Trước</span><b>Checklist AI review tầng 1 — rules/code-review-rules.md (INS Platform)</b></a>
+  <span></span>
+</nav></main>
+  
+<aside class="side side-r">
+  <details class="side-box" open>
+    <summary><span class="side-t">File mẫu & quy chuẩn</span><span class="side-n">43/43</span></summary>
+    <div class="side-actions">
+      <a class="btn" href="/mau/index.html">Xem tất cả mẫu</a>
+      <a class="btn ghost" href="/assets/mau/AI-SDLC-mau-tat-ca.zip" download>⬇ Tải .zip</a>
+    </div>
+    <div class="side-actions">
+      <a class="btn" href="/ins/index.html">Ví dụ điền thật</a>
+      <a class="btn ghost" href="/assets/ins/AI-SDLC-vi-du-INS-Platform.zip" download>⬇ Tải .zip</a>
+    </div>
+    
+    <div class="side-g">
+      <div class="side-gt">Phụ lục biểu mẫu (PL1–PL6)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/pl1-project-charter.html" title="Charter (mục tiêu SMART, in/out-scope, ngân sách), milestones gắn Gate 1–5, Stakeholder Register, Communication Plan.">
+            <span class="fl">PL1 — Project Charter &amp; Kick-off</span>
+            <span class="fm">B1 · 153 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl2-change-request.html" title="Mọi thay đổi phạm vi/thiết kế sau khi Spec đã chốt — PM + PO duyệt trước khi làm.">
+            <span class="fl">PL2 — Change Request Form</span>
+            <span class="fm">Sau Gate 1 · 141 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl3-bo-tai-lieu-b2.html" title="Chỉ mục 17 file luật của dự án, ánh xạ sang các mẫu .md đã tổng hợp trong nhóm B2/rules.">
+            <span class="fl">PL3 — Bộ tài liệu B2 (chỉ mục 17 file)</span>
+            <span class="fm">B2 · 110 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl4-bo-bieu-mau-b3.html" title="Interview Guide, Biên bản họp, BRD, Process Flow/User Journey, Q&amp;A Log — ánh xạ sang nhóm B3.">
+            <span class="fl">PL4 — Bộ biểu mẫu B3 (chỉ mục 5 mẫu)</span>
+            <span class="fm">B3 · 101 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl5-bug-report.html" title="Steps to reproduce, expected vs actual, evidence, liên kết AC/Test Case, Severity + Priority.">
+            <span class="fl">PL5 — Bug Report</span>
+            <span class="fm">Vận hành · 150 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/pl6-uat-go-no-go.html" title="Phần 1 biên bản UAT (Test Lead, Security Lead, PO ký). Phần 2 checklist Go/No-Go trước go-live.">
+            <span class="fl">PL6 — UAT Sign-off &amp; Go/No-Go Checklist</span>
+            <span class="fm">Gate 4 &amp; 5 · 207 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Nhóm 1–3: quy định kỹ thuật &amp; vận hành AI</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/constitution.html" title="Nguyên tắc bất biến: mỗi Rule phải kèm Rationale + Application, có Governance.">
+            <span class="fl">constitution.md — Hiến pháp dự án</span>
+            <span class="fm">B2 · PL 3.1 · 226 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/coding-convention.html" title="Naming, formatting, cấu trúc thư mục, docstring; ánh xạ formatter/linter theo ngôn ngữ.">
+            <span class="fl">CODING_CONVENTION.md</span>
+            <span class="fm">B2 · PL 3.2 · 162 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/adr-template.html" title="Khuôn Architecture Decision Record (MADR): Context, Decision Drivers, Options, Outcome, Consequences.">
+            <span class="fl">adr-template.md — ADR theo MADR</span>
+            <span class="fm">B2 · PL 3.3 · 211 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/skill.html" title="Identity, thứ tự đọc file, phạm vi quyền hạn, xử lý khi không chắc chắn, workflow coding, Tầng 1/2.">
+            <span class="fl">SKILL.md — luật điều khiển AI Agent</span>
+            <span class="fm">B2 · PL 3.4 · 152 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/agents.html" title="Chuẩn file chỉ dẫn agent dùng chung cho nhiều công cụ (de-facto 2026); SKILL.md có thể include file này.">
+            <span class="fl">AGENTS.md — chuẩn liên-công-cụ</span>
+            <span class="fm">B2 · 161 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/tool-permissions.html" title="Least-privilege: bảng hành động được/không được tự chạy; mức tự chủ theo môi trường.">
+            <span class="fl">tool-permissions.md — quyền hạn AI</span>
+            <span class="fm">B2 · PL 3.5 · 134 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/data-classification.html" title="Public / Internal / Confidential / Restricted — loại nào được đưa vào prompt AI (tham chiếu NIST/ISO 27001).">
+            <span class="fl">data-classification.md — phân loại dữ liệu</span>
+            <span class="fm">B2 · PL 3.6 · 114 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/ai-tool-scope.html" title="Danh mục tool theo dự án + trạng thái Zero Data Retention + điều kiện phê duyệt tool ngoài danh sách.">
+            <span class="fl">ai-tool-scope.md — tool AI được duyệt</span>
+            <span class="fm">B2 · PL 3.7 · 123 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/prompts.html" title="System prompt theo giai đoạn B3, B4, B6, B9, B10, B13 — copy-paste dùng ngay.">
+            <span class="fl">prompts.md — thư viện prompt</span>
+            <span class="fm">B2 · PL 3.8 · 281 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/docs-index.html" title="Danh mục tài liệu + thứ tự đọc cho AI; ai sở hữu, cập nhật khi nào.">
+            <span class="fl">docs-index.md — bản đồ tài liệu</span>
+            <span class="fm">B2 · PL 3.15 · 123 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/glossary.html" title="Thuật ngữ nghiệp vụ + kỹ thuật, quy tắc: từ nào phải vào glossary.">
+            <span class="fl">glossary.md — từ điển thuật ngữ</span>
+            <span class="fm">B2 · PL 3.16 · 106 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/dor-dod.html" title="Tiêu chí khách quan cho mọi gate (tham chiếu Scrum.org), tách DoR sprint / DoD task.">
+            <span class="fl">dor-dod.md — Definition of Ready / Done</span>
+            <span class="fm">B2 · PL 3.17 · 184 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Nhóm 4 (rules/): linter để AI tự kiểm</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/brd-rules.html" title="Linter BRD: yêu cầu đo lường được, phân biệt FR/NFR, truy vết mục tiêu kinh doanh.">
+            <span class="fl">rules/brd-rules.md</span>
+            <span class="fm">B3 · PL 3.9 · 104 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/bpm-rules.html" title="Linter BPMN: không nhánh cụt, mọi gateway có nhãn, actor nhất quán, ký hiệu đúng BPMN 2.0.">
+            <span class="fl">rules/bpm-rules.md</span>
+            <span class="fm">B3/B4 · PL 3.10 · 122 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/adr-rules.html" title="Checklist tự kiểm ADR theo MADR trước khi trình Tech Lead.">
+            <span class="fl">rules/adr-rules.md</span>
+            <span class="fm">B6 · PL 3.11 · 100 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/api-rules.html" title="Checklist OpenAPI 3.x: naming, versioning, lỗi, bảo mật, ví dụ request/response.">
+            <span class="fl">rules/api-rules.md</span>
+            <span class="fm">B6 · PL 3.12 · 133 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-rules.html" title="Checklist unit test AI sinh: assert thật, một hành vi/test, bao phủ edge case, không test giả.">
+            <span class="fl">rules/test-rules.md</span>
+            <span class="fm">B9 · PL 3.13 · 146 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/code-review-rules.html" title="Checklist AI review tầng 1 — cụ thể hoá OWASP ASVS + Top 10 + secret/SAST.">
+            <span class="fl">rules/code-review-rules.md</span>
+            <span class="fm">B10 · PL 3.14 · 234 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">B3 — phân tích yêu cầu (PL4)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/interview-guide.html" title="Chọn kỹ thuật theo tình huống + bộ câu hỏi mở, nguyên tắc không dẫn dắt.">
+            <span class="fl">4.1 Interview Guide</span>
+            <span class="fm">B3 b.1 · 146 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/meeting-minutes.html" title="Ghi rõ phát biểu gốc vs phần AI diễn giải; ai xác nhận, khi nào.">
+            <span class="fl">4.2 Biên bản họp / Workshop</span>
+            <span class="fm">B3 b.2 · 127 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/brd.html" title="Business context, stakeholder, FR/NFR có số, User Story chuẩn, MoSCoW, giả định &amp; rủi ro.">
+            <span class="fl">4.3 BRD theo BABOK v3</span>
+            <span class="fm">B3 b.3 · 212 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/process-flow.html" title="As-is/To-be, ký hiệu BPMN 2.0, User Journey Map rút gọn.">
+            <span class="fl">4.4 Process Flow / User Journey</span>
+            <span class="fm">B3 b.4 · 116 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/qa-log.html" title="Nguồn chính thức duy nhất trả lời 'ai quyết định gì, khi nào' — dùng tới khi chốt Spec.">
+            <span class="fl">4.5 Q&amp;A Log</span>
+            <span class="fm">B3 → B5 · 100 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Mẫu còn thiếu (bổ sung cho bản 5.10)</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/spec.html" title="Theo cấu trúc Spec Kit spec-template: User Scenarios, Requirements, Success Criteria, Assumptions.">
+            <span class="fl">spec.md + User Story &amp; AC</span>
+            <span class="fm">B4 · 198 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/plan.html" title="Technical plan: bối cảnh, container, dữ liệu, API, rủi ro; C4 có thể vẽ bằng Mermaid/Structurizr.">
+            <span class="fl">plan.md + C4 Model</span>
+            <span class="fm">B6 · 226 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/tasks.html" title="Danh sách task ≤1 ngày công, mỗi task có AC riêng, thứ tự phụ thuộc.">
+            <span class="fl">tasks.md</span>
+            <span class="fm">B7 · 157 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-plan.html" title="Phạm vi, mục tiêu, hạng mục test, cách tiếp cận, tiêu chí dừng, môi trường, rủi ro.">
+            <span class="fl">Test Plan theo ISO/IEC/IEEE 29119-3</span>
+            <span class="fm">B11 · 170 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/test-case-rtm.html" title="Mẫu test case (Given-When-Then, dữ liệu, kết quả mong đợi) và RTM phủ 100% AC.">
+            <span class="fl">Test Case + RTM</span>
+            <span class="fm">B11 · 195 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/code-review-human.html" title="Nghiệp vụ, kiến trúc, khả năng bảo trì, tác động chéo — theo Google eng-practices.">
+            <span class="fl">Checklist review tầng 2 (người)</span>
+            <span class="fm">B10 · 156 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/runbook.html" title="Sự cố thường gặp, cách kiểm tra, lệnh xử lý, escalation, đầu mối liên hệ.">
+            <span class="fl">Runbook vận hành</span>
+            <span class="fm">B14 · 132 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/postmortem.html" title="Theo Google SRE: timeline, tác động, nguyên nhân gốc, hành động khắc phục có owner + hạn.">
+            <span class="fl">Post-mortem (blameless)</span>
+            <span class="fm">B14 · 134 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/changelog.html" title="Added/Changed/Deprecated/Removed/Fixed/Security + Semantic Versioning.">
+            <span class="fl">CHANGELOG theo Keep a Changelog</span>
+            <span class="fm">B13 · 161 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/conventional-commits.html" title="Định dạng commit, type/scope/breaking change, cách nối với CHANGELOG và semver.">
+            <span class="fl">Conventional Commits 1.0</span>
+            <span class="fm">B8 · 182 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/threat-model.html" title="Bảng đe dọa/đối sách theo STRIDE + OWASP LLM Top 10 cho tính năng có AI.">
+            <span class="fl">Threat Model theo STRIDE</span>
+            <span class="fm">B6/B12 · 99 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="side-g">
+      <div class="side-gt">Quy chuẩn &amp; chỉ số tham chiếu</div>
+      <ul class="side-list">
+        
+        <li>
+          <a href="/mau/standards-index.html" title="Bảng 20+ chuẩn (Spec Kit, MADR, BABOK, BPMN, ISO 29119, OWASP, C4, DORA…) — áp ở bước nào, link gốc.">
+            <span class="fl">Chỉ mục chuẩn đang áp dụng</span>
+            <span class="fm">Toàn quy trình · 75 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/ai-governance.html" title="OWASP LLM Top 10, NIST AI RMF, ISO/IEC 42001 — áp vào chính sách tool/prompt của dự án.">
+            <span class="fl">Quản trị rủi ro AI</span>
+            <span class="fm">Mục 5 &amp; 7 · 115 dòng</span>
+          </a>
+        </li>
+        <li>
+          <a href="/mau/dora-metrics.html" title="4 chỉ số DORA + escaped defects + mutation score: cách đo, ngưỡng tốt, cách thu thập.">
+            <span class="fl">Chỉ số DORA &amp; KPI chất lượng</span>
+            <span class="fm">Mục 8 · 156 dòng</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </details>
+</aside>
+</div>
+<footer>
+  <div class="wrap">
+    AI-SDLC v5.9 · Spec-Driven Development (GitHub Spec Kit) + Agile/Scrum + DevOps, bổ sung AI gate và Human gate<br>
+    ai.btdat.io.vn — nội dung trích từ quy-trinh-ai.pdf (47 trang). Bản gốc không bị chỉnh sửa.
+  </div>
+</footer>
+<script>
+/* Scroll-spy: highlight mục đang xem ở menu trái + menu ngang.
+   Dùng toạ độ TUYỆT ĐỐI (rect.top + scrollY) — offsetTop phụ thuộc offsetParent
+   nên sai khi phần tử nằm trong khối có position khác static. */
+(function () {
+  var THRESHOLD = 90; // px dưới header coi như "đang ở" mục đó
+
+  function absTop(el) {
+    return el.getBoundingClientRect().top + window.scrollY;
+  }
+
+  var stepNodes = [];
+  document.querySelectorAll('.tree li[data-step]').forEach(function (li) {
+    var el = document.getElementById(li.dataset.step);
+    if (el) stepNodes.push({ el: el, node: li });
+  });
+
+  var SECTION_IDS = ['quy-trinh', 'chi-tiet', 'gate', 'luat-ai', 'bo-tai-lieu-b2', 'bug', 'release', 'bieu-mau', 'kpi', 'thieu', 'vi-du-ins', 'tai-lieu'];
+  var secNodes = [];
+  SECTION_IDS.forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var links = document.querySelectorAll('[data-sec="' + id + '"]');
+    if (links.length) secNodes.push({ el: el, nodes: Array.prototype.slice.call(links) });
+  });
+
+  if (!stepNodes.length && !secNodes.length) return;
+
+  function clearAll() {
+    document.querySelectorAll('.tree li.on, .nav-links a.on').forEach(function (n) { n.classList.remove('on'); });
+  }
+  function mark(nodes) {
+    clearAll();
+    (nodes || []).forEach(function (n) { if (n && n.classList) n.classList.add('on'); });
+  }
+
+  function update() {
+    var y = window.scrollY + THRESHOLD;
+    var all = [];
+    stepNodes.forEach(function (t) { all.push({ el: t.el, nodes: [t.node], key: t.el.id }); });
+    secNodes.forEach(function (t) { all.push({ el: t.el, nodes: t.nodes, key: t.el.id }); });
+    all.forEach(function (t) { t.top = absTop(t.el); });
+    all.sort(function (a, b) { return a.top - b.top; });
+
+    var found = null;
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].top <= y) found = all[i]; else break;
+    }
+    mark(found ? found.nodes : null);
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { ticking = false; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
+  window.addEventListener('hashchange', function () { setTimeout(update, 120); });
+  update();
+  setTimeout(update, 400);   // sau khi ảnh lưu đồ tải xong (layout đổi)
+  setTimeout(update, 1500);
+})();
+
+/* Mở sẵn <details> chứa mục đang xem */
+(function () {
+  var on = document.querySelector('.side-list li.on, .tree li.on');
+  if (!on) return;
+  var d = on.closest('details');
+  if (d) d.open = true;
+})();
+
+/* ---------- popup xem biểu mẫu (chỉ cho link ở bảng chi tiết 14 bước) ----------
+   - Nội dung lấy từ <template id="tpl-<id>"> đã render sẵn trong trang.
+   - Chỉ bật khi bấm chuột trái không kèm phím tu chỉnh; Ctrl/Cmd/Shift-click và
+     chuột giữa vẫn mở trang riêng như bình thường.
+   - Esc và bấm nền cũng đóng. Khoá cuộn nền khi đang mở. */
+(function () {
+  var layer = document.getElementById('mm');
+  if (!layer) return;
+  var body = document.getElementById('mm-body');
+  var title = document.getElementById('mm-title');
+  var btnOpen = document.getElementById('mm-open');
+  var btnDl = document.getElementById('mm-dl');
+  var btnX = document.getElementById('mm-close');
+  var last = null;
+
+  function open(id) {
+    var tpl = document.getElementById('tpl-' + id);
+    if (!tpl) return false;
+    last = document.activeElement;
+    title.textContent = tpl.dataset.title || id;
+    body.replaceChildren(tpl.content.cloneNode(true));
+    btnOpen.href = tpl.dataset.url || ('/mau/' + id + '.html');
+    btnDl.href = tpl.dataset.raw || '#';
+    layer.hidden = false;
+    layer.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('mm-lock');
+    layer.querySelector('.mm-b').scrollTop = 0;
+    btnX.focus();
+    return true;
+  }
+  function close() {
+    if (layer.hidden) return;
+    layer.hidden = true;
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('mm-lock');
+    body.replaceChildren();
+    if (last && last.focus) last.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[data-form]') : null;
+    if (!a) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (open(a.dataset.form)) e.preventDefault();
+  });
+  layer.addEventListener('click', function (e) { if (e.target.hasAttribute('data-close')) close(); });
+  btnX.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !layer.hidden) { close(); return; }
+    /* Tab giữ trong popup khi đang mở */
+    if (e.key === 'Tab' && !layer.hidden) {
+      var f = layer.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], lastEl = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
+      else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+</body>
+</html>
