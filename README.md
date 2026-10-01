@@ -106,21 +106,6 @@ Sau khi đổi đánh số PL, phải cập nhật **cả 4 nơi**, nếu không
 Template `.md` cũng phải sửa: `phu-luc/PL3-bo-tai-lieu-b2.md`, `b2/dor-dod.md`
 (3.17→3.18), `b2/docs-index.md` (3.15→3.16).
 
-## Dòng gạch ngang trong bảng chi tiết
-
-Bước đã bỏ khỏi quy trình vẫn giữ trong `src/steps-detail.json` để đối chiếu được tài liệu
-gốc, nhưng hiển thị gạch ngang. Khai báo trong `build.js`:
-
-```js
-const STRUCK_ROWS = {
-  B11: ['3. Viết automation'],   // khóa = mã bước, giá trị = danh sách tên dòng
-};
-```
-
-`stepBlock()` gắn `class="struck"` vào `<tr>` khi khớp; CSS ở `src/styles.css`:
-`tr.struck td{text-decoration:line-through;…}`. Khóa theo **mã bước** chứ không chỉ tên dòng
-để không gạch nhầm dòng trùng tên ở bước khác.
-
 ## Ví dụ điền thật — INS Platform (`/ins/`)
 
 21 template của bộ mẫu đã được điền bằng dữ liệu thật của một dự án nền tảng bảo hiểm

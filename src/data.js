@@ -79,8 +79,8 @@ const phases = [
     tint: 'amber',
     steps: [
       { code: 'B11', name: 'Test Plan & Test Case', gate: 'Test Lead duyệt',
-        out: 'Test Plan, Test Case, RTM, Automation script',
-        ai: 'AI sinh test case từ Acceptance Criteria, tự rà bằng rules/testcase-rules.md; RTM phủ 100% AC và gắn nhãn AI-generated/Manual; script automation phải qua code-review-rules.md' },
+        out: 'Test Plan, Test Case, RTM',
+        ai: 'AI sinh test case từ Acceptance Criteria, tự rà bằng rules/testcase-rules.md; RTM phủ 100% AC và gắn nhãn AI-generated/Manual' },
       { code: 'B12', name: 'SIT / Regression / UAT / ATTT & Hiệu năng', gate: '⛔ Gate 4a/4b/4c + Gate 4',
         out: 'Biên bản SIT, báo cáo ATTT, báo cáo hiệu năng, Biên bản UAT Sign-off',
         ai: 'DAST + pentest (4b), JMeter/k6 (4c); zero bug S1–S2 mới trình PO ký UAT' },
@@ -233,7 +233,7 @@ const standards = [
   { g: 'Kiến trúc & Code', v: 'C4 Model · ADR · OpenAPI 3.x · Conventional Commits' },
   { g: 'Bảo mật', v: 'OWASP ASVS · OWASP Top 10 · OWASP LLM Top 10 (rủi ro riêng khi dùng AI)' },
   { g: 'Kiểm thử & QA', v: 'ISO/IEC/IEEE 29119 · ISTQB' },
-  { g: 'Công cụ', v: 'GitHub Spec Kit · Claude Code (agentic) · CodeRabbit (review) · Playwright (automation)' },
+  { g: 'Công cụ', v: 'GitHub Spec Kit · Claude Code (agentic) · CodeRabbit (review)' },
 ];
 
 const raci = 'RACI đầy đủ 14 bước × 7 vai trò (PM, BA, PO/Sponsor, Tech Lead, Dev, Test, Security, DevOps/Ops). Nguyên tắc xuyên suốt: AI không bao giờ giữ vai trò A — trách nhiệm cuối cùng luôn thuộc về con người.';

@@ -21,7 +21,7 @@ Linter này chặn loại lỗi thứ hai và bảo đảm Test Case đủ sức
 |---|---|---|
 | B11 bước 1 — AI sinh Test Plan/Case | AI | Acceptance Criteria (Gherkin) + tài liệu yêu cầu |
 | B11 bước 2 — AI tự kiểm | AI | Test Case vừa sinh + AC nguồn để đối chiếu |
-| B11 bước 3 — Ánh xạ RTM | Tester | Test Case đã qua linter |
+| B11 bước 3 — Duyệt Test Plan/Test Case | Test Lead | Test Case + RTM đã qua linter |
 | B11 bước 4 — Duyệt | Test Lead | Test Plan/Test Case + RTM |
 
 **Điều kiện tiên quyết:** AI phải có **AC nguồn** trong context. Không có AC thì không được sinh Test Case — phải ghi `[CẦN LÀM RÕ]` và dừng, không đoán.
@@ -114,7 +114,6 @@ Không được chuyển sang bước 2 (RTM) nếu:
 ## Ghi chú liên kết
 
 - **B11 bước 2 (Ánh xạ RTM):** mỗi Test Case gắn nhãn nguồn gốc `AI-generated` / `Manual`, RTM phủ 100% Acceptance Criteria.
-- **B11 bước 3 (Viết automation):** script automation do AI sinh phải qua `rules/code-review-rules.md` như code thật trước khi merge.
 - **B11 bước 1:** AI sinh Test Case bằng prompt B11 trong `b2/prompts.md`.
 
 ## Nguồn tham chiếu

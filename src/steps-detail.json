@@ -807,14 +807,7 @@
       "—"
     ],
     [
-      "3. Viết automation",
-      "Tester + AI",
-      "Viết automation script (Playwright codegen) cho các luồng chính.",
-      "Script AI sinh phải qua rules/code-review-rules.md trước khi merge.",
-      "—"
-    ],
-    [
-      "4. Duyệt Test Plan/ Test Case",
+      "3. Duyệt Test Plan/ Test Case",
       "Test Lead",
       "Review & duyệt chính thức.",
       "Human Gate.",
