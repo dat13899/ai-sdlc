@@ -434,6 +434,13 @@ function formCell(r) {
   }).join('<span class="mlink-sep">·</span>');
 }
 
+/* Dòng được gạch ngang trong bảng chi tiết: { mã bước: [tên dòng] }.
+   Dùng cặp (bước, tên dòng) để không gạch nhầm các dòng trùng tên ở bước khác. */
+const STRUCK_ROWS = {
+  B11: ['3. Viết automation'],
+};
+const isStruck = (code, label) => (STRUCK_ROWS[code] || []).includes(label);
+
 function stepBlock(step, phaseName) {
   const rows = steps[step.code] || [];
   const img = flows[step.code];
@@ -454,7 +461,7 @@ function stepBlock(step, phaseName) {
       <table>
         <thead><tr><th>Bước</th><th>Người thực hiện</th><th>Cách thức thực hiện</th><th>Lưu ý</th><th>Biểu mẫu</th></tr></thead>
         <tbody>
-          ${rows.map((r) => `<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td class="fc">${formCell(r)}</td></tr>`).join('')}
+          ${rows.map((r) => `<tr${isStruck(step.code, r[0]) ? ' class="struck"' : ''}><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td class="fc">${formCell(r)}</td></tr>`).join('')}
         </tbody>
       </table>
     </div>` : ''}

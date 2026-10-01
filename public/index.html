@@ -243,6 +243,11 @@ tbody tr:hover{background:rgba(255,255,255,.022)}
 td b{color:var(--text)}
 /* Cột "Biểu mẫu": các link mẫu xếp dọc, gọn trong ô hẹp */
 td.fc{line-height:1.5}
+
+/* dòng bị gạch ngang (STRUCK_ROWS trong build.js) — dùng cho bước đã bỏ khỏi quy trình */
+tr.struck td{text-decoration:line-through;text-decoration-color:rgba(233,233,242,.45);
+  text-decoration-thickness:1.5px;color:var(--dim-2)}
+tr.stuck:hover td{background:transparent}
 td.fc a.mlink{display:inline-block;padding:2px 0;color:#8fb6ff;font-weight:500;
   border-bottom:1px solid rgba(91,141,239,.35)}
 td.fc a.mlink:hover{color:#c3d8ff;border-bottom-color:#c3d8ff;text-decoration:none}
@@ -913,7 +918,7 @@ footer a{color:var(--dim)}
       <table>
         <thead><tr><th>Bước</th><th>Người thực hiện</th><th>Cách thức thực hiện</th><th>Lưu ý</th><th>Biểu mẫu</th></tr></thead>
         <tbody>
-          <tr><td><b>1. Sinh Test Plan/Case</b></td><td>Test Lead + AI</td><td>Sinh từ Acceptance Criteria/ (Tài liệu nghiệp vụ / yêu cầu, Tài liệu thiết kế, Tài liệu dự án,..) bằng prompt tương ứng trong prompts.md.</td><td>—</td><td class="fc"><a class="mlink" href="/mau/test-plan.html" data-form="test-plan" title="Test Plan theo ISO/IEC/IEEE 29119-3 · 170 dòng">Test Plan (29119)</a><span class="mlink-sep">·</span><a class="mlink" href="/mau/test-case-rtm.html" data-form="test-case-rtm" title="Test Case + RTM · 195 dòng">Test Case + RTM</a></td></tr><tr><td><b>2. Ánh xạ RTM</b></td><td>Tester</td><td>Ánh xạ Test Case vào RTM (Requirement Traceability Matrix ), đảm bảo phủ 100% Acceptance Criteria; gắn nhãn nguồn gốc (AI-generated/Manual) cho từng Test Case.</td><td>—</td><td class="fc">—</td></tr><tr><td><b>3. Viết automation</b></td><td>Tester + AI</td><td>Viết automation script (Playwright codegen) cho các luồng chính.</td><td>Script AI sinh phải qua rules/code-review-rules.md trước khi merge.</td><td class="fc">—</td></tr><tr><td><b>4. Duyệt Test Plan/ Test Case</b></td><td>Test Lead</td><td>Review &amp; duyệt chính thức.</td><td>Human Gate.</td><td class="fc">—</td></tr>
+          <tr><td><b>1. Sinh Test Plan/Case</b></td><td>Test Lead + AI</td><td>Sinh từ Acceptance Criteria/ (Tài liệu nghiệp vụ / yêu cầu, Tài liệu thiết kế, Tài liệu dự án,..) bằng prompt tương ứng trong prompts.md.</td><td>—</td><td class="fc"><a class="mlink" href="/mau/test-plan.html" data-form="test-plan" title="Test Plan theo ISO/IEC/IEEE 29119-3 · 170 dòng">Test Plan (29119)</a><span class="mlink-sep">·</span><a class="mlink" href="/mau/test-case-rtm.html" data-form="test-case-rtm" title="Test Case + RTM · 195 dòng">Test Case + RTM</a></td></tr><tr><td><b>2. Ánh xạ RTM</b></td><td>Tester</td><td>Ánh xạ Test Case vào RTM (Requirement Traceability Matrix ), đảm bảo phủ 100% Acceptance Criteria; gắn nhãn nguồn gốc (AI-generated/Manual) cho từng Test Case.</td><td>—</td><td class="fc">—</td></tr><tr class="struck"><td><b>3. Viết automation</b></td><td>Tester + AI</td><td>Viết automation script (Playwright codegen) cho các luồng chính.</td><td>Script AI sinh phải qua rules/code-review-rules.md trước khi merge.</td><td class="fc">—</td></tr><tr><td><b>4. Duyệt Test Plan/ Test Case</b></td><td>Test Lead</td><td>Review &amp; duyệt chính thức.</td><td>Human Gate.</td><td class="fc">—</td></tr>
         </tbody>
       </table>
     </div>
