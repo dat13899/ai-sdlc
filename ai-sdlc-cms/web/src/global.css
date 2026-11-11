@@ -1,0 +1,83 @@
+/* Modern Global Styles inspired by Linear / Vercel */
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+code, pre, .mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Slim modern scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 140, 140, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 140, 140, 0.45);
+}
+
+/* Pulsating indicator for active/doing status */
+@keyframes pulse-doing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(217, 119, 6, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 119, 6, 0);
+  }
+}
+
+.pulse-dot-doing {
+  animation: pulse-doing 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Subtle sleek transitions */
+.hover-lift {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Rung nhẹ khi bị lỗi / bị chặn */
+@keyframes haptic-shake-anim {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.haptic-shake {
+  animation: haptic-shake-anim 0.4s ease-in-out;
+}

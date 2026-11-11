@@ -1,0 +1,9 @@
+node_modules/
+data/
+*.log
+*.tmp
+deploy/
+.env.deploy
+backups/
+*-old/
+dist-old/

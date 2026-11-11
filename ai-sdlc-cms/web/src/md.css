@@ -1,0 +1,83 @@
+/* Trình xem Markdown — khoảng cách theo lưới 8pt */
+.md-body { font-size: 14px; line-height: 1.6; color: inherit; word-wrap: break-word; }
+.md-body > :first-child { margin-top: 0; }
+.md-body h1, .md-body h2, .md-body h3, .md-body h4 { margin: 24px 0 8px; font-weight: 700; line-height: 1.3; }
+.md-body h1 { font-size: 24px; padding-bottom: 8px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); }
+.md-body h2 { font-size: 20px; padding-bottom: 8px; border-bottom: 1px solid rgba(128, 128, 128, 0.2); }
+.md-body h3 { font-size: 16px; } .md-body h4 { font-size: 14px; }
+.md-body p, .md-body ul, .md-body ol, .md-body table, .md-body blockquote, .md-body pre { margin: 0 0 16px; }
+.md-body ul, .md-body ol { padding-left: 24px; }
+.md-body li + li { margin-top: 4px; }
+.md-body li.task-list-item { list-style: none; margin-left: -24px; }
+.md-body li.task-list-item input { margin-right: 8px; }
+.md-body blockquote { padding: 8px 16px; color: #8c8c8c; background: rgba(128, 128, 128, 0.08); border-left: 4px solid #1677ff; border-radius: 0 8px 8px 0; }
+.md-body blockquote > :last-child { margin-bottom: 0; }
+.md-body code { padding: 2px 6px; background: rgba(128, 128, 128, 0.12); border-radius: 4px; font: 13px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; }
+.md-body pre { padding: 16px; background: rgba(128, 128, 128, 0.08); border-radius: 8px; overflow: auto; border: 1px solid rgba(128, 128, 128, 0.15); }
+.md-body pre code { padding: 0; background: none; }
+.md-body table { border-collapse: collapse; display: block; overflow-x: auto; max-width: 100%; margin-bottom: 16px; }
+.md-body th, .md-body td { padding: 8px 16px; border: 1px solid rgba(128, 128, 128, 0.25); text-align: left; vertical-align: top; }
+.md-body th { background: rgba(128, 128, 128, 0.08); font-weight: 600; }
+.md-body tr:nth-child(2n) td { background: rgba(128, 128, 128, 0.03); }
+.md-body hr { border: 0; border-top: 1px solid rgba(128, 128, 128, 0.2); margin: 24px 0; }
+.md-body img { max-width: 100%; border-radius: 6px; }
+
+/* Dạng thô: văn bản gốc, có số dòng, giữ nguyên khoảng trắng */
+.md-raw { margin: 0; padding: 16px 0; background: rgba(128, 128, 128, 0.05); border: 1px solid rgba(128, 128, 128, 0.15); border-radius: 8px; overflow: auto;
+  font: 13px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace; color: inherit; }
+.md-raw code { display: block; padding: 0 16px 0 0; white-space: pre; }
+.md-raw .ln { display: inline-block; width: 48px; padding-right: 16px; margin-right: 16px; text-align: right; color: #8c8c8c; border-right: 1px solid rgba(128, 128, 128, 0.2); user-select: none; }
+
+/* In ấn chuẩn A4 chuyên nghiệp */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 15mm 18mm 15mm;
+  }
+  body {
+    background: #ffffff !important;
+    color: #1f1f1f !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+  /* Ẩn các thành phần giao diện khi in */
+  .ant-layout-sider,
+  .ant-layout-header,
+  .ant-drawer-mask,
+  .ant-drawer-header,
+  .ant-drawer-close,
+  .no-print {
+    display: none !important;
+  }
+  .ant-drawer,
+  .ant-drawer-content,
+  .ant-drawer-body {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  .md-body {
+    color: #111827 !important;
+  }
+  .md-body h1, .md-body h2, .md-body h3 {
+    page-break-after: avoid;
+    color: #0958d9 !important;
+  }
+  .md-body table, .md-body pre, .md-body blockquote {
+    page-break-inside: avoid;
+  }
+  .md-body table {
+    display: table !important;
+    width: 100% !important;
+  }
+  .md-body th, .md-body td {
+    border-color: #d1d5db !important;
+  }
+  .md-body th {
+    background-color: #f3f4f6 !important;
+  }
+}
